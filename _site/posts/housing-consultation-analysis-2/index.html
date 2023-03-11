@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-02-11">
+<meta name="description" content="주거상담 주제 분석">
+
+<title>Juhyeon Park - 주거상담기록 분석 (2): 텍스트 전처리</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Juhyeon Park</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">about Me</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jhyeonpark"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">주거상담기록 분석 (2): 텍스트 전처리</h1>
+                  <div>
+        <div class="description">
+          <p>주거상담 주제 분석</p>
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">python</div>
+                <div class="quarto-category">Morphology analysis</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 11, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p><strong>텍스트 전처리</strong>는 주거상담 원형 텍스트를 정제하고 토큰화하는 작업을 말한다. 비정형 텍스트 데이터는 그대로 활용할 수 없어 취득 이후, 전처리하는 과정을 거쳐야 한다.</p>
+<p><img src="image/overview.png" class="img-fluid"></p>
+<section id="텍스트-정제" class="level3">
+<h3 class="anchored" data-anchor-id="텍스트-정제">1. 텍스트 정제</h3>
+<section id="패키지-설치-및-데이터-불러오기" class="level4">
+<h4 class="anchored" data-anchor-id="패키지-설치-및-데이터-불러오기">1.1. 패키지 설치 및 데이터 불러오기</h4>
+<p>이번 작업에서 필요한 패키지를 설치하는 코드는 아래와 같다.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 필요한 패키지 설치하기</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pandas</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install tqdm</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install kiwipiepy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>설치 후, 필요한 패키지를 먼저 불러온다.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 필요한 모듈 불러오기</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json, random, re, os</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> swifter</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm <span class="co"># 작업 프로세스 시각화</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> kiwipiepy <span class="im">import</span> Kiwi <span class="co"># 형태소분석기 모듈</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> kiwipiepy.utils <span class="im">import</span> Stopwords <span class="co"># 불용어사전 담겨있는 모듈 불러오기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>csv로 저장된 데이터를 불러온다. 예제 파일은 <a href="data/db_record_v1_sample.csv">여기</a>에서 다운로드 할 수 있다. <code>id_f</code>는 각 데이터 고유 ID, <code>cons_text</code>는 형태소 분석 할 상담 내용이다.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>db_record <span class="op">=</span> pd.read_csv(<span class="st">"data/db_record_v1_sample.csv"</span>) <span class="co"># 데이터 불러오기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="3">
+
+<style type="text/css">
+</style>
+<table id="T_a0a35">
+  <thead>
+    <tr>
+      <th id="T_a0a35_level0_col0" class="col_heading level0 col0">id_f</th>
+      <th id="T_a0a35_level0_col1" class="col_heading level0 col1">cons_text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_a0a35_row0_col0" class="data row0 col0">1</td>
+      <td id="T_a0a35_row0_col1" class="data row0 col1">* 재개발 임대 아파트 거주중.
+* 임대료 7개월 1,381,980원 체납
+* 일자리를 구하는 중으로 수입이 없어 경제적으로 어려운 상황으로 인함.
+* 작년 20.10.30 체납 상담했던 대상자로 현재 실업급여로 180만원이 나오고 있는데, 수급자 신청해 보려 했으나, 실업급여와 중복으로 받을 수 없다고 안내를 받았다 함. 
+* 임대료 체납 기간이 길어질수록 나중에 퇴거 명령을 받으실 수도 있다고 안내드렸더니, 이번에 빌려서 어떻게든 해결해 보려 한다고 하심.  
+* 일자리를 구하신다고 하셔서 임대주택 입주자 분들께 일자리 상담 연계해 드리고 있는데, 필요하신지 여쭤보았더니, 자신이 직접 알아보시겠다고 하심.</td>
+    </tr>
+    <tr>
+      <td id="T_a0a35_row1_col0" class="data row1 col0">2</td>
+      <td id="T_a0a35_row1_col1" class="data row1 col1">* 청년임차보증금 이자지원사업 추천서 관련 문의전화 주심(20대 추정)
+* 건강보험자격득실확인서 지역가입자이며 대학생으로 소득 없음. 국세청홈택스 소득금액증명원 조회결과 2019년 아르바이트 소득 조회됨. 취업준비생 유형으로 신청 가능한지 궁금
+· 취업준비생 유형으로 신청 가능
+* 서울주거포털에서 추천서 신청시 거주지 주소에 현주소 기입하는 것인지 궁금
+· 서울주거포털 추천서 신청시 현주소 기입
+* 서울시추천서 신청과 이사 할 전월세주택 물색 중에서 어느것을 먼저 해야하는지 궁금
+· 서울시추천서 유효기간 발급일로부터 3개월임을 안내</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="불필요한-토큰-제거" class="level4">
+<h4 class="anchored" data-anchor-id="불필요한-토큰-제거">1.2. 불필요한 토큰 제거</h4>
+<p>원형 텍스트에서 <strong>불필요한 토큰</strong>인 기호, 태그, 등을 삭제한다. 때로는 숫자와 영어도 불필요하다고 여겨지지만 ‘1인가구’, ‘2룸’, ‘LH’, ‘SH’ 등 의미있는 토큰이 많아 삭제하지 않았다. 아래 코드로 먼저 텍스트 내 영어 표현을 모두 소문자화 한 후, 한글과 숫자, 영어 외 나머지를 공백 처리했다.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>db_record[<span class="st">'cons_text_cleaned_1'</span>] <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> text: re.sub(<span class="vs">r"([^가-힣0-9a-z ])"</span>, <span class="st">" "</span>, text), db_record[<span class="st">'cons_text'</span>].<span class="bu">str</span>.lower()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="5">
+
+<style type="text/css">
+</style>
+<table id="T_2d668">
+  <thead>
+    <tr>
+      <th id="T_2d668_level0_col0" class="col_heading level0 col0">cons_text</th>
+      <th id="T_2d668_level0_col1" class="col_heading level0 col1">cons_text_cleaned_1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_2d668_row0_col0" class="data row0 col0">* 재개발 임대 아파트 거주중.
+* 임대료 7개월 1,381,980원 체납
+* 일자리를 구하는 중으로 수입이 없어 경제적으로 어려운 상황으로 인함.
+* 작년 20.10.30 체납 상담했던 대상자로 현재 실업급여로 180만원이 나오고 있는데, 수급자 신청해 보려 했으나, 실업급여와 중복으로 받을 수 없다고 안내를 받았다 함. 
+* 임대료 체납 기간이 길어질수록 나중에 퇴거 명령을 받으실 수도 있다고 안내드렸더니, 이번에 빌려서 어떻게든 해결해 보려 한다고 하심.  
+* 일자리를 구하신다고 하셔서 임대주택 입주자 분들께 일자리 상담 연계해 드리고 있는데, 필요하신지 여쭤보았더니, 자신이 직접 알아보시겠다고 하심.</td>
+      <td id="T_2d668_row0_col1" class="data row0 col1">  재개발 임대 아파트 거주중    임대료 7개월 1 381 980원 체납   일자리를 구하는 중으로 수입이 없어 경제적으로 어려운 상황으로 인함    작년 20 10 30 체납 상담했던 대상자로 현재 실업급여로 180만원이 나오고 있는데  수급자 신청해 보려 했으나  실업급여와 중복으로 받을 수 없다고 안내를 받았다 함     임대료 체납 기간이 길어질수록 나중에 퇴거 명령을 받으실 수도 있다고 안내드렸더니  이번에 빌려서 어떻게든 해결해 보려 한다고 하심      일자리를 구하신다고 하셔서 임대주택 입주자 분들께 일자리 상담 연계해 드리고 있는데  필요하신지 여쭤보았더니  자신이 직접 알아보시겠다고 하심 </td>
+    </tr>
+    <tr>
+      <td id="T_2d668_row1_col0" class="data row1 col0">* 청년임차보증금 이자지원사업 추천서 관련 문의전화 주심(20대 추정)
+* 건강보험자격득실확인서 지역가입자이며 대학생으로 소득 없음. 국세청홈택스 소득금액증명원 조회결과 2019년 아르바이트 소득 조회됨. 취업준비생 유형으로 신청 가능한지 궁금
+· 취업준비생 유형으로 신청 가능
+* 서울주거포털에서 추천서 신청시 거주지 주소에 현주소 기입하는 것인지 궁금
+· 서울주거포털 추천서 신청시 현주소 기입
+* 서울시추천서 신청과 이사 할 전월세주택 물색 중에서 어느것을 먼저 해야하는지 궁금
+· 서울시추천서 유효기간 발급일로부터 3개월임을 안내</td>
+      <td id="T_2d668_row1_col1" class="data row1 col1">  청년임차보증금 이자지원사업 추천서 관련 문의전화 주심 20대 추정    건강보험자격득실확인서 지역가입자이며 대학생으로 소득 없음  국세청홈택스 소득금액증명원 조회결과 2019년 아르바이트 소득 조회됨  취업준비생 유형으로 신청 가능한지 궁금   취업준비생 유형으로 신청 가능   서울주거포털에서 추천서 신청시 거주지 주소에 현주소 기입하는 것인지 궁금   서울주거포털 추천서 신청시 현주소 기입   서울시추천서 신청과 이사 할 전월세주택 물색 중에서 어느것을 먼저 해야하는지 궁금   서울시추천서 유효기간 발급일로부터 3개월임을 안내</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="동의어-사전" class="level4">
+<h4 class="anchored" data-anchor-id="동의어-사전">1.3. 동의어 사전</h4>
+<p><strong>같은 의미지만 다른 표현으로 쓰는 단어</strong>를 통일한다. 아래와 같이 구축한 동의어 사전을 활용하며, 사전은 바꿔줄 단어<code>beforeWord</code>, 바꿀 단어<code>afterWord</code>로 구성했다.</p>
+<div class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="6">
+
+<style type="text/css">
+</style>
+<table id="T_41801">
+  <thead>
+    <tr>
+      <th class="blank level0">&nbsp;</th>
+      <th id="T_41801_level0_col0" class="col_heading level0 col0">beforeWord</th>
+      <th id="T_41801_level0_col1" class="col_heading level0 col1">afterWord</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_41801_level0_row0" class="row_heading level0 row0">0</th>
+      <td id="T_41801_row0_col0" class="data row0 col0">재개발 임대</td>
+      <td id="T_41801_row0_col1" class="data row0 col1">재개발임대</td>
+    </tr>
+    <tr>
+      <th id="T_41801_level0_row1" class="row_heading level0 row1">1</th>
+      <td id="T_41801_row1_col0" class="data row1 col0">재개발임대주택</td>
+      <td id="T_41801_row1_col1" class="data row1 col1">재개발임대</td>
+    </tr>
+    <tr>
+      <th id="T_41801_level0_row2" class="row_heading level0 row2">2</th>
+      <td id="T_41801_row2_col0" class="data row2 col0">서울 주거포털</td>
+      <td id="T_41801_row2_col1" class="data row2 col1">서울주거포털</td>
+    </tr>
+    <tr>
+      <th id="T_41801_level0_row3" class="row_heading level0 row3">3</th>
+      <td id="T_41801_row3_col0" class="data row3 col0">현대아산재단&nbsp;</td>
+      <td id="T_41801_row3_col1" class="data row3 col1">아산사회복지재단</td>
+    </tr>
+    <tr>
+      <th id="T_41801_level0_row4" class="row_heading level0 row4">4</th>
+      <td id="T_41801_row4_col0" class="data row4 col0">아산재단</td>
+      <td id="T_41801_row4_col1" class="data row4 col1">아산사회복지재단</td>
+    </tr>
+    <tr>
+      <th id="T_41801_level0_row5" class="row_heading level0 row5">5</th>
+      <td id="T_41801_row5_col0" class="data row5 col0">아산사회복지 재단</td>
+      <td id="T_41801_row5_col1" class="data row5 col1">아산사회복지재단</td>
+    </tr>
+    <tr>
+      <th id="T_41801_level0_row6" class="row_heading level0 row6">6</th>
+      <td id="T_41801_row6_col0" class="data row6 col0">아산복지재단</td>
+      <td id="T_41801_row6_col1" class="data row6 col1">아산사회복지재단</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<p>‘재개발 임대’는 ’재개발’과 ’임대’가 아닌 ’재개발임대’의 다른 표현이므로 이를 통일시켰다. ’서울 주거포털’도 마찬가지 사례다. ’아산사회복지재단’은 ’현대아산재단’, ‘아산재단’ 등 다르게 쓰는 표현을 일치시켜주었다.</p>
+<p>동의어 사전으로 상담 원문 내용을 바꾸는 코드는 아래와 같다. 함수 <code>replace_word</code>는 한 개의 상담 내용<code>cons_text</code> 열마다 동의어사전<code>dict_synonyms</code>에서 <code>beforeWord</code>와 일치하는 구간이 발견되면 <code>afterWord</code>로 바꾼다.</p>
+</section>
+<section id="적용" class="level4">
+<h4 class="anchored" data-anchor-id="적용">1.4. 적용</h4>
+<p>위 작업을 하는 코드는 아래와 같다.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 구축한 동의어사전 불러오기</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dict_synonyms <span class="op">=</span> pd.read_csv(<span class="st">'data/dict/dict_synonyms.csv'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">## 동의어사전을 적용하는 함수 정의</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> replace_word(text):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(dict_synonyms[<span class="st">'beforeWord'</span>])): </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> dict_synonyms[<span class="st">'beforeWord'</span>][i] <span class="kw">in</span> text: <span class="co"># beforeWord가 상담내용에서 발견된다면</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                text <span class="op">=</span> text.replace(dict_synonyms[<span class="st">'beforeWord'</span>][i], dict_synonyms[<span class="st">'afterWord'</span>][i]) <span class="co"># 해당하는 단어의 afterWord로 바꾸어라</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e: <span class="co"># 에러가 있다면 멈추고 알려주어라</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Error 발생 / 에러명: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(dict_synonyms[<span class="st">'afterWord'</span>][i])</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(text)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> text</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>db_record[<span class="st">'cons_text_cleaned_2'</span>] <span class="op">=</span> db_record[<span class="st">'cons_text_cleaned_1'</span>].swifter.set_npartitions(npartitions <span class="op">=</span> <span class="dv">12</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: replace_word(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"5c0f0af4172245b5a81f5a9e43481330","version_major":2,"version_minor":0}
+</script>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="8">
+
+<style type="text/css">
+</style>
+<table id="T_539f3">
+  <thead>
+    <tr>
+      <th id="T_539f3_level0_col0" class="col_heading level0 col0">cons_text</th>
+      <th id="T_539f3_level0_col1" class="col_heading level0 col1">cons_text_cleaned_2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_539f3_row0_col0" class="data row0 col0">* 재개발 임대 아파트 거주중.
+* 임대료 7개월 1,381,980원 체납
+* 일자리를 구하는 중으로 수입이 없어 경제적으로 어려운 상황으로 인함.
+* 작년 20.10.30 체납 상담했던 대상자로 현재 실업급여로 180만원이 나오고 있는데, 수급자 신청해 보려 했으나, 실업급여와 중복으로 받을 수 없다고 안내를 받았다 함. 
+* 임대료 체납 기간이 길어질수록 나중에 퇴거 명령을 받으실 수도 있다고 안내드렸더니, 이번에 빌려서 어떻게든 해결해 보려 한다고 하심.  
+* 일자리를 구하신다고 하셔서 임대주택 입주자 분들께 일자리 상담 연계해 드리고 있는데, 필요하신지 여쭤보았더니, 자신이 직접 알아보시겠다고 하심.</td>
+      <td id="T_539f3_row0_col1" class="data row0 col1">  재개발임대 아파트 거주중    임대료 7개월 1 381 980원 체납   일자리를 구하는 중으로 수입이 없어 경제적으로 어려운 상황으로 인함    작년 20 10 30 체납 상담했던 대상자로 현재 실업급여로 180만원이 나오고 있는데  수급자 신청해 보려 했으나  실업급여와 중복으로 받을 수 없다고 안내를 받았다 함     임대료 체납 기간이 길어질수록 나중에 퇴거 명령을 받으실 수도 있다고 안내드렸더니  이번에 빌려서 어떻게든 해결해 보려 한다고 하심      일자리를 구하신다고 하셔서 임대주택 입주자 분들께 일자리 상담 연계해 드리고 있는데  필요하신지 여쭤보았더니  자신이 직접 알아보시겠다고 하심 </td>
+    </tr>
+    <tr>
+      <td id="T_539f3_row1_col0" class="data row1 col0">* 청년임차보증금 이자지원사업 추천서 관련 문의전화 주심(20대 추정)
+* 건강보험자격득실확인서 지역가입자이며 대학생으로 소득 없음. 국세청홈택스 소득금액증명원 조회결과 2019년 아르바이트 소득 조회됨. 취업준비생 유형으로 신청 가능한지 궁금
+· 취업준비생 유형으로 신청 가능
+* 서울주거포털에서 추천서 신청시 거주지 주소에 현주소 기입하는 것인지 궁금
+· 서울주거포털 추천서 신청시 현주소 기입
+* 서울시추천서 신청과 이사 할 전월세주택 물색 중에서 어느것을 먼저 해야하는지 궁금
+· 서울시추천서 유효기간 발급일로부터 3개월임을 안내</td>
+      <td id="T_539f3_row1_col1" class="data row1 col1">  청년임차보증금 이자지원 추천서 관련 문의전화 주심 20대 추정    건강보험자격득실확인서 지역가입자이며 대학생으로 소득 없음  국세청홈택스 소득금액증명원 조회결과 2019년 아르바이트 소득 조회됨  취업준비생 유형으로 신청 가능한지 궁금   취업준비생 유형으로 신청 가능   서울주거포털에서 추천서 신청시 거주지 주소에 현주소 기입하는 것인지 궁금   서울주거포털 추천서 신청시 현주소 기입   서울시추천서 신청과 이사 할 전월세주택물색 중에서 어느것을 먼저 해야하는지 궁금   서울시추천서 유효기간 발급일로부터 3개월임을 안내</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="텍스트-토큰화" class="level3">
+<h3 class="anchored" data-anchor-id="텍스트-토큰화">2. 텍스트 토큰화</h3>
+<section id="형태소분석기-kiwi" class="level4">
+<h4 class="anchored" data-anchor-id="형태소분석기-kiwi">2.1. 형태소분석기 Kiwi</h4>
+<p>다양한 형태소분석기 중 Kiwi를 선택했다. 빠른 속도와 준수한 정확도, 그리고 사용자사전 수정과 활용이 쉽기 때문이다. 앞의 두 장점과 분석기 설명은 <a href="https://lab.bab2min.pe.kr/kiwi">여기</a>에서 확인 가능하다.</p>
+<p>기본 설정으로 Kiwi 분석기로 형태소 분석을 한 결과는 다음과 같다.</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>kiwi <span class="op">=</span> Kiwi() <span class="co"># Kiwi 기본값 설정</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>kiwi.tokenize(<span class="st">"서울주거포털에서 재개발임대 정보를 알아보셰요"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>[Token(form='서울', tag='NNP', start=0, len=2),
+ Token(form='주거', tag='NNG', start=2, len=2),
+ Token(form='포털', tag='NNG', start=4, len=2),
+ Token(form='에서', tag='JKB', start=6, len=2),
+ Token(form='재', tag='XPN', start=9, len=1),
+ Token(form='개발', tag='NNG', start=10, len=2),
+ Token(form='임대', tag='NNG', start=12, len=2),
+ Token(form='정보', tag='NNG', start=15, len=2),
+ Token(form='를', tag='JKO', start=17, len=1),
+ Token(form='알아보셰요', tag='NNG', start=19, len=5)]</code></pre>
+</div>
+</div>
+<p>형태소화된 토큰은 원형<code>form</code>과 형태소<code>tag</code>, 시작위치<code>start</code>, 길이<code>len</code>으로 구성된다.</p>
+<div class="cell" data-execution_count="11">
+<div class="cell-output cell-output-stdout">
+<pre><code>[Token(form='서울', tag='NNP', start=0, len=2), 
+ Token(form='주거', tag='NNG', start=2, len=2), 
+ Token(form='포털', tag='NNG', start=4, len=2), 
+ Token(form='에서', tag='JKB', start=6, len=2), 
+ Token(form='재', tag='XPN', start=9, len=1), 
+ Token(form='개발', tag='NNG', start=10, len=2), 
+ Token(form='임대', tag='NNG', start=12, len=2), 
+ Token(form='장보', tag='NNP', start=15, len=2), 
+ Token(form='를', tag='JKO', start=17, len=1), 
+ Token(form='알', tag='VV', start=19, len=1), 
+ Token(form='어', tag='EC', start=20, len=1), 
+ Token(form='보', tag='VX', start=21, len=1), 
+ Token(form='세', tag='EC', start=22, len=1), 
+ Token(form='요', tag='JX', start=23, len=1)]</code></pre>
+</div>
+</div>
+</section>
+<section id="kiwi-추가-설정" class="level4">
+<h4 class="anchored" data-anchor-id="kiwi-추가-설정">2.2. Kiwi 추가 설정</h4>
+<p>이 모듈에서 몇가지 추가 설정을 한 코드는 다음과 같다.<br>
+<img src="image/kiwi_setting.png" class="img-fluid"></p>
+<p>1은 형태소 분석기에 활용하는 모델을 지정하고 2는 기본적인 맞춤법 검사를 하게끔 한다(자세한 정보는 <a href="https://bab2min.github.io/kiwipiepy/v0.14.1/kr/">여기</a>).</p>
+<p>4는 불용어를 걸러내준다. <code>Stopword()</code>은 Kiwi에서 제공하는 기본 불용어사전이다.</p>
+<p>3은 사용자정의사전을 추가하는 것이다. 위 결과에서 보이듯 사용자정의사전을 추가하지 않으면 ’서울주거포털’은 ’서울 + 주거 + 포털’로 나눠지게 된다. 사용자정의사전을 만드는 코드는 아래와 같다.</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 동의어사전에서 추출하기</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dict_synonyms <span class="op">=</span> pd.read_csv(<span class="st">'data/dict/dict_synonyms.csv'</span>) <span class="co"># 동의어사전 불러오기</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>list_userDefined_synonyms <span class="op">=</span> (dict_synonyms[<span class="st">'afterWord'</span>].<span class="bu">str</span>.strip().unique() <span class="op">+</span> <span class="st">"</span><span class="ch">\t</span><span class="st">NNG</span><span class="ch">\t</span><span class="st">9"</span>).tolist() <span class="co"># 사용자 정의 사전 포맷으로 변경</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">## 사용자 정의 사전 불러오기</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>dict_add <span class="op">=</span> pd.read_table(<span class="st">"data/dict/dict_userDefined_madeByMe.txt"</span>) <span class="co"># 추가 사전 불러오기</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>list_userDefined_add <span class="op">=</span> (pd.read_table(<span class="st">"data/dict/dict_userDefined_madeByMe.txt"</span>, header <span class="op">=</span> <span class="va">None</span>, sep <span class="op">=</span> <span class="st">"-"</span>)[<span class="dv">0</span>] <span class="op">+</span> <span class="st">"</span><span class="ch">\t</span><span class="st">9"</span>).tolist() <span class="co"># 사용자 정의 사전 포맷으로 변경</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">## 위 두 사전 합치기</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>dict_userDefined <span class="op">=</span> pd.DataFrame(pd.DataFrame(list_userDefined_synonyms <span class="op">+</span> list_userDefined_add)[<span class="dv">0</span>].unique()) <span class="co"># 두 list 결합</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>dict_userDefined.to_csv(<span class="st">'data/dict/dict_userDefined.txt'</span>, index <span class="op">=</span> <span class="va">False</span>, header <span class="op">=</span> <span class="va">False</span>) <span class="co"># 새로운 사용자 정의 사전 저장하기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>동의어 사전 부분은 <code>afterWord</code>를 고유명사화(NNG) 하는 작업이다. 동의어 사전에서 지정한 단어들은 ‘1인가구’, ‘미성년자’, ‘늘푸른돌봄센터’ 등으로 대부분 명사에 속하기 때문이다.</p>
+<p>따로 만든 사용자 정의 사전에는 명사 외 사용자 정의를 해줄 단어가 들어있다. ‘통보함’이 ’통보함(NNG/명사)’가 아니라 ’통보/NNG + 하/VV + 다/EF’, ’연락키로’가 ’연락키로(NNG/명사)’가 아니라 ’연락/NNG + 하/XSV + 기/ETN + 로/JKB’로 형태소화 되게끔 만들었다.</p>
+<p>추가 설정을 한 형태소 분석의 결과는 다음과 같다.</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Kiwi 설정</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>kiwi <span class="op">=</span> Kiwi(model_type <span class="op">=</span> <span class="st">'sbg'</span>, typos <span class="op">=</span> <span class="st">'basic'</span>) <span class="co"># Kiwi 추가 설정</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>kiwi.load_user_dictionary(<span class="st">'data/dict/dict_userDefined.txt'</span>) <span class="co"># 사용자사전 추가</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>kiwi.tokenize(<span class="st">"서울주거포털에서 재개발임대 정보를 알아보셰요"</span>, stopwords <span class="op">=</span> Stopwords())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="14">
+<div class="cell-output cell-output-stdout">
+<pre><code>[Token(form='서울주거포털', tag='NNG', start=0, len=6), 
+ Token(form='재개발임대', tag='NNG', start=9, len=5), 
+ Token(form='정보', tag='NNG', start=15, len=2), 
+ Token(form='알', tag='VV', start=19, len=1), 
+ Token(form='보', tag='VX', start=21, len=1), 
+ Token(form='세', tag='EC', start=22, len=1), 
+ Token(form='요', tag='JX', start=23, len=1)]</code></pre>
+</div>
+</div>
+</section>
+<section id="적용-1" class="level4">
+<h4 class="anchored" data-anchor-id="적용-1">2.3. 적용</h4>
+<p>위 작업을 적용한 결과는 다음과 같다.</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Kiwi 설정</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>kiwi <span class="op">=</span> Kiwi(model_type <span class="op">=</span> <span class="st">'sbg'</span>, typos <span class="op">=</span> <span class="st">'basic'</span>) <span class="co"># Kiwi 추가 설정</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>kiwi.load_user_dictionary(<span class="st">'data/dict/dict_userDefined.txt'</span>) <span class="co"># 사용자사전 추가</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>morph_analysis <span class="op">=</span> <span class="kw">lambda</span> x: kiwi.tokenize(x, stopwords <span class="op">=</span> Stopwords()) <span class="cf">if</span> <span class="bu">type</span>(x) <span class="kw">is</span> <span class="bu">str</span> <span class="cf">else</span> <span class="va">None</span> <span class="co"># 형태소 분석</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>db_record[<span class="st">'cons_text_posTagged_kiwi'</span>] <span class="op">=</span> db_record[<span class="st">'cons_text_cleaned_2'</span>].swifter.<span class="bu">apply</span>(morph_analysis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"2c3d6c2e106c469caf35e752518e23c1","version_major":2,"version_minor":0}
+</script>
+</div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="13">
+
+<style type="text/css">
+</style>
+<table id="T_cc5eb">
+  <thead>
+    <tr>
+      <th id="T_cc5eb_level0_col0" class="col_heading level0 col0">cons_text</th>
+      <th id="T_cc5eb_level0_col1" class="col_heading level0 col1">cons_text_posTagged_kiwi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_cc5eb_row0_col0" class="data row0 col0">* 재개발 임대 아파트 거주중.
+* 임대료 7개월 1,381,980원 체납
+* 일자리를 구하는 중으로 수입이 없어 경제적으로 어려운 상황으로 인함.
+* 작년 20.10.30 체납 상담했던 대상자로 현재 실업급여로 180만원이 나오고 있는데, 수급자 신청해 보려 했으나, 실업급여와 중복으로 받을 수 없다고 안내를 받았다 함. 
+* 임대료 체납 기간이 길어질수록 나중에 퇴거 명령을 받으실 수도 있다고 안내드렸더니, 이번에 빌려서 어떻게든 해결해 보려 한다고 하심.  
+* 일자리를 구하신다고 하셔서 임대주택 입주자 분들께 일자리 상담 연계해 드리고 있는데, 필요하신지 여쭤보았더니, 자신이 직접 알아보시겠다고 하심.</td>
+      <td id="T_cc5eb_row0_col1" class="data row0 col1">[Token(form='재개발임대', tag='NNG', start=2, len=5), Token(form='아파트', tag='NNG', start=8, len=3), Token(form='거주', tag='NNG', start=12, len=3), Token(form='임대료', tag='NNG', start=19, len=3), Token(form='7', tag='SN', start=23, len=1), Token(form='개월', tag='NNB', start=24, len=2), Token(form='1', tag='SN', start=27, len=1), Token(form='381', tag='SN', start=29, len=3), Token(form='980', tag='SN', start=33, len=3), Token(form='체납', tag='NNG', start=38, len=2), Token(form='일자리', tag='NNG', start=43, len=3), Token(form='구하', tag='VV', start=48, len=2), Token(form='중', tag='NNG', start=52, len=1), Token(form='수입', tag='NNG', start=56, len=2), Token(form='경제', tag='NNG', start=63, len=2), Token(form='어렵', tag='VA-I', start=69, len=3), Token(form='상황', tag='NNG', start=73, len=2), Token(form='인하', tag='VV', start=78, len=2), Token(form='ᆷ', tag='ETM', start=79, len=1), Token(form='작년', tag='NNG', start=84, len=2), Token(form='20', tag='SN', start=87, len=2), Token(form='10', tag='SN', start=90, len=2), Token(form='30', tag='SN', start=93, len=2), Token(form='체납', tag='NNG', start=96, len=2), Token(form='상담', tag='NNG', start=99, len=2), Token(form='대상자', tag='NNG', start=104, len=3), Token(form='현재', tag='MAG', start=109, len=2), Token(form='실업급여', tag='NNG', start=112, len=4), Token(form='180', tag='SN', start=118, len=3), Token(form='나오', tag='VV', start=125, len=2), Token(form='데', tag='NNB', start=131, len=1), Token(form='수급자', tag='NNG', start=134, len=3), Token(form='신청', tag='NNG', start=138, len=2), Token(form='보', tag='VX', start=142, len=1), Token(form='려', tag='EC', start=143, len=1), Token(form='으나', tag='EC', start=146, len=2), Token(form='실업급여', tag='NNG', start=150, len=4), Token(form='중복', tag='NNG', start=156, len=2), Token(form='받', tag='VV-R', start=161, len=1), Token(form='안내', tag='NNG', start=170, len=2), Token(form='받', tag='VV-R', start=174, len=1), Token(form='함', tag='NNP', start=178, len=1), Token(form='임대료', tag='NNG', start=184, len=3), Token(form='체납', tag='NNG', start=188, len=2), Token(form='기간', tag='NNG', start=191, len=2), Token(form='길어지', tag='VV', start=195, len=3), Token(form='ᆯ수록', tag='EC', start=197, len=3), Token(form='나중', tag='NNG', start=201, len=2), Token(form='퇴거', tag='NNG', start=205, len=2), Token(form='명령', tag='NNG', start=208, len=2), Token(form='받', tag='VV-R', start=212, len=1), Token(form='으시', tag='EP', start=213, len=2), Token(form='있', tag='VA', start=219, len=1), Token(form='안내', tag='NNG', start=223, len=2), Token(form='드리', tag='VV', start=225, len=2), Token(form='더니', tag='EC', start=227, len=2), Token(form='이번', tag='NNG', start=231, len=2), Token(form='빌리', tag='VV', start=235, len=2), Token(form='어떻게', tag='MAG', start=239, len=3), Token(form='든', tag='JX', start=242, len=1), Token(form='해결', tag='NNG', start=244, len=2), Token(form='보', tag='VX', start=248, len=1), Token(form='려', tag='EC', start=249, len=1), Token(form='ᆫ다고', tag='EC', start=251, len=3), Token(form='시', tag='EP', start=255, len=2), Token(form='일자리', tag='NNG', start=263, len=3), Token(form='구하', tag='VV', start=268, len=2), Token(form='시', tag='EP', start=270, len=1), Token(form='ᆫ다고', tag='EC', start=270, len=3), Token(form='시', tag='EP', start=275, len=1), Token(form='임대주택', tag='NNG', start=278, len=4), Token(form='입주자', tag='NNG', start=283, len=3), Token(form='분', tag='NNB', start=287, len=1), Token(form='께', tag='JKB', start=289, len=1), Token(form='일자리', tag='NNG', start=291, len=3), Token(form='상담', tag='NNG', start=295, len=2), Token(form='연계', tag='NNG', start=298, len=2), Token(form='드리', tag='VX', start=302, len=2), Token(form='데', tag='NNB', start=308, len=1), Token(form='필요', tag='NNG', start=311, len=2), Token(form='시', tag='EP', start=314, len=1), Token(form='ᆫ지', tag='EC', start=314, len=2), Token(form='여쭈', tag='VV', start=317, len=2), Token(form='보', tag='VX', start=319, len=1), Token(form='더니', tag='EC', start=321, len=2), Token(form='자신', tag='NNG', start=325, len=2), Token(form='직접', tag='MAG', start=329, len=2), Token(form='알아보', tag='VV', start=332, len=3), Token(form='시', tag='EP', start=335, len=1), Token(form='시', tag='EP', start=340, len=2)]</td>
+    </tr>
+    <tr>
+      <td id="T_cc5eb_row1_col0" class="data row1 col0">* 청년임차보증금 이자지원사업 추천서 관련 문의전화 주심(20대 추정)
+* 건강보험자격득실확인서 지역가입자이며 대학생으로 소득 없음. 국세청홈택스 소득금액증명원 조회결과 2019년 아르바이트 소득 조회됨. 취업준비생 유형으로 신청 가능한지 궁금
+· 취업준비생 유형으로 신청 가능
+* 서울주거포털에서 추천서 신청시 거주지 주소에 현주소 기입하는 것인지 궁금
+· 서울주거포털 추천서 신청시 현주소 기입
+* 서울시추천서 신청과 이사 할 전월세주택 물색 중에서 어느것을 먼저 해야하는지 궁금
+· 서울시추천서 유효기간 발급일로부터 3개월임을 안내</td>
+      <td id="T_cc5eb_row1_col1" class="data row1 col1">[Token(form='청년', tag='NNG', start=2, len=2), Token(form='임차보증금', tag='NNG', start=4, len=5), Token(form='이자지원', tag='NNG', start=10, len=4), Token(form='추천서', tag='NNG', start=15, len=3), Token(form='관련', tag='NNG', start=19, len=2), Token(form='문의', tag='NNG', start=22, len=2), Token(form='전화', tag='NNG', start=24, len=2), Token(form='주', tag='VV', start=27, len=2), Token(form='시', tag='EP', start=27, len=2), Token(form='20', tag='SN', start=30, len=2), Token(form='대', tag='NNB', start=32, len=1), Token(form='추정', tag='NNG', start=34, len=2), Token(form='건강', tag='NNG', start=40, len=2), Token(form='보험', tag='NNG', start=42, len=2), Token(form='자격', tag='NNG', start=44, len=2), Token(form='득실', tag='NNG', start=46, len=2), Token(form='확인서', tag='NNG', start=48, len=3), Token(form='가입자', tag='NNG', start=54, len=3), Token(form='대학생', tag='NNG', start=60, len=3), Token(form='소득', tag='NNG', start=66, len=2), Token(form='음', tag='EC', start=70, len=1), Token(form='국세청', tag='NNG', start=73, len=3), Token(form='홈텍스', tag='NNG', start=76, len=3), Token(form='소득', tag='NNG', start=80, len=2), Token(form='금액', tag='NNG', start=82, len=2), Token(form='증명', tag='NNG', start=84, len=2), Token(form='원', tag='NNG', start=86, len=1), Token(form='조회', tag='NNG', start=88, len=2), Token(form='결과', tag='NNG', start=90, len=2), Token(form='2019', tag='SN', start=93, len=4), Token(form='아르바이트', tag='NNG', start=99, len=5), Token(form='소득', tag='NNG', start=105, len=2), Token(form='조회됨', tag='NNG', start=108, len=3), Token(form='취업', tag='NNG', start=113, len=2), Token(form='준비', tag='NNG', start=115, len=2), Token(form='생', tag='XSN', start=117, len=1), Token(form='유형', tag='NNG', start=119, len=2), Token(form='신청', tag='NNG', start=124, len=2), Token(form='가능', tag='NNG', start=127, len=2), Token(form='ᆫ지', tag='EC', start=129, len=2), Token(form='궁금', tag='NNG', start=132, len=2), Token(form='취업', tag='NNG', start=137, len=2), Token(form='준비', tag='NNG', start=139, len=2), Token(form='생', tag='XSN', start=141, len=1), Token(form='유형', tag='NNG', start=143, len=2), Token(form='신청', tag='NNG', start=148, len=2), Token(form='가능', tag='NNG', start=151, len=2), Token(form='서울주거포털', tag='NNG', start=156, len=6), Token(form='추천서', tag='NNG', start=165, len=3), Token(form='신청', tag='NNG', start=169, len=2), Token(form='시', tag='NNB', start=171, len=1), Token(form='거주지', tag='NNG', start=173, len=3), Token(form='주소', tag='NNG', start=177, len=2), Token(form='현', tag='MM', start=181, len=1), Token(form='주소', tag='NNG', start=182, len=2), Token(form='기입', tag='NNG', start=185, len=2), Token(form='ᆫ지', tag='EC', start=191, len=2), Token(form='궁금', tag='XR', start=194, len=2), Token(form='서울주거포털', tag='NNG', start=199, len=6), Token(form='추천서', tag='NNG', start=206, len=3), Token(form='신청', tag='NNG', start=210, len=2), Token(form='시', tag='NNB', start=212, len=1), Token(form='현주소', tag='NNG', start=214, len=3), Token(form='기입', tag='NNG', start=218, len=2), Token(form='서울시', tag='NNP', start=223, len=3), Token(form='추천서', tag='NNG', start=226, len=3), Token(form='신청', tag='NNG', start=230, len=2), Token(form='이사', tag='NNG', start=234, len=2), Token(form='전월세', tag='NNG', start=239, len=3), Token(form='주택물색', tag='NNG', start=242, len=4), Token(form='어느', tag='MM', start=251, len=2), Token(form='먼저', tag='MAG', start=256, len=2), Token(form='지', tag='NNB', start=263, len=1), Token(form='궁금', tag='NNG', start=265, len=2), Token(form='서울시', tag='NNP', start=270, len=3), Token(form='추천서', tag='NNG', start=273, len=3), Token(form='유효', tag='NNG', start=277, len=2), Token(form='기간', tag='NNG', start=279, len=2), Token(form='발급', tag='NNG', start=282, len=2), Token(form='로부터', tag='JKB', start=285, len=3), Token(form='3', tag='SN', start=289, len=1), Token(form='개월', tag='NNB', start=290, len=2), Token(form='ᆷ', tag='ETN', start=292, len=1), Token(form='안내', tag='NNG', start=295, len=2)]</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="불용어-제거-및-형태소-결합" class="level3">
+<h3 class="anchored" data-anchor-id="불용어-제거-및-형태소-결합">3. 불용어 제거 및 형태소 결합</h3>
+<section id="불용어-사전" class="level4">
+<h4 class="anchored" data-anchor-id="불용어-사전">3.1. 불용어 사전</h4>
+<p>kiwi 기본 불용어 사전에서 거르지 못한 불용어를 거르기 위해 사전을 만든다. ‘대상자’와 ’서비스’, ‘주거’ 등은 자주 등장하지만 크게 의미있는 단어가 아니다. 지역명과 상담사명도 마찬가지다.</p>
+<div class="cell" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="14">
+
+<style type="text/css">
+</style>
+<table id="T_5d9da">
+  <thead>
+    <tr>
+      <th class="blank level0">&nbsp;</th>
+      <th id="T_5d9da_level0_col0" class="col_heading level0 col0">type</th>
+      <th id="T_5d9da_level0_col1" class="col_heading level0 col1">word</th>
+      <th id="T_5d9da_level0_col2" class="col_heading level0 col2">pos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_5d9da_level0_row0" class="row_heading level0 row0">0</th>
+      <td id="T_5d9da_row0_col0" class="data row0 col0">일반</td>
+      <td id="T_5d9da_row0_col1" class="data row0 col1">대상자</td>
+      <td id="T_5d9da_row0_col2" class="data row0 col2">NNG</td>
+    </tr>
+    <tr>
+      <th id="T_5d9da_level0_row1" class="row_heading level0 row1">1</th>
+      <td id="T_5d9da_row1_col0" class="data row1 col0">일반</td>
+      <td id="T_5d9da_row1_col1" class="data row1 col1">서비스</td>
+      <td id="T_5d9da_row1_col2" class="data row1 col2">NNG</td>
+    </tr>
+    <tr>
+      <th id="T_5d9da_level0_row2" class="row_heading level0 row2">2</th>
+      <td id="T_5d9da_row2_col0" class="data row2 col0">일반</td>
+      <td id="T_5d9da_row2_col1" class="data row2 col1">주거</td>
+      <td id="T_5d9da_row2_col2" class="data row2 col2">NNG</td>
+    </tr>
+    <tr>
+      <th id="T_5d9da_level0_row3" class="row_heading level0 row3">3</th>
+      <td id="T_5d9da_row3_col0" class="data row3 col0">일반</td>
+      <td id="T_5d9da_row3_col1" class="data row3 col1">주택</td>
+      <td id="T_5d9da_row3_col2" class="data row3 col2">NNG</td>
+    </tr>
+    <tr>
+      <th id="T_5d9da_level0_row4" class="row_heading level0 row4">4</th>
+      <td id="T_5d9da_row4_col0" class="data row4 col0">일반</td>
+      <td id="T_5d9da_row4_col1" class="data row4 col1">가구</td>
+      <td id="T_5d9da_row4_col2" class="data row4 col2">NNG</td>
+    </tr>
+    <tr>
+      <th id="T_5d9da_level0_row5" class="row_heading level0 row5">5</th>
+      <td id="T_5d9da_row5_col0" class="data row5 col0">지역명</td>
+      <td id="T_5d9da_row5_col1" class="data row5 col1">잠실2동</td>
+      <td id="T_5d9da_row5_col2" class="data row5 col2">NNG</td>
+    </tr>
+    <tr>
+      <th id="T_5d9da_level0_row6" class="row_heading level0 row6">6</th>
+      <td id="T_5d9da_row6_col0" class="data row6 col0">지역명</td>
+      <td id="T_5d9da_row6_col1" class="data row6 col1">잠실3동</td>
+      <td id="T_5d9da_row6_col2" class="data row6 col2">NNG</td>
+    </tr>
+    <tr>
+      <th id="T_5d9da_level0_row7" class="row_heading level0 row7">7</th>
+      <td id="T_5d9da_row7_col0" class="data row7 col0">상담사명</td>
+      <td id="T_5d9da_row7_col1" class="data row7 col1">박상준</td>
+      <td id="T_5d9da_row7_col2" class="data row7 col2">NNG</td>
+    </tr>
+    <tr>
+      <th id="T_5d9da_level0_row8" class="row_heading level0 row8">8</th>
+      <td id="T_5d9da_row8_col0" class="data row8 col0">상담사명</td>
+      <td id="T_5d9da_row8_col1" class="data row8 col1">이종현</td>
+      <td id="T_5d9da_row8_col2" class="data row8 col2">NNG</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="한글자-사전" class="level4">
+<h4 class="anchored" data-anchor-id="한글자-사전">3.2. 한글자 사전</h4>
+<p>단어가 한글자지만 중요한 것을 모아둔 사전이다. 보통 한글자는 의미가 잘 없다. 하지만 ‘돈’은 경제적 상황을 서술할 때 사용하며, ’좁’은 ’좁다’, ‘좁은 집’으로, ’낡’은 ’낡다’ 등으로 활용된다. 이 같은 의미있는 한글자는 불용어로 걸러지지 않게끔 한다. 형태소 분석한 토큰이 아주 짧은 경우는 보통 제거한다.</p>
+<div class="cell" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="15">
+
+<style type="text/css">
+</style>
+<table id="T_dc72f">
+  <thead>
+    <tr>
+      <th class="blank level0">&nbsp;</th>
+      <th id="T_dc72f_level0_col0" class="col_heading level0 col0">word</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_dc72f_level0_row0" class="row_heading level0 row0">0</th>
+      <td id="T_dc72f_row0_col0" class="data row0 col0">돈</td>
+    </tr>
+    <tr>
+      <th id="T_dc72f_level0_row1" class="row_heading level0 row1">1</th>
+      <td id="T_dc72f_row1_col0" class="data row1 col0">좁</td>
+    </tr>
+    <tr>
+      <th id="T_dc72f_level0_row2" class="row_heading level0 row2">2</th>
+      <td id="T_dc72f_row2_col0" class="data row2 col0">낡</td>
+    </tr>
+    <tr>
+      <th id="T_dc72f_level0_row3" class="row_heading level0 row3">3</th>
+      <td id="T_dc72f_row3_col0" class="data row3 col0">커</td>
+    </tr>
+    <tr>
+      <th id="T_dc72f_level0_row4" class="row_heading level0 row4">4</th>
+      <td id="T_dc72f_row4_col0" class="data row4 col0">크</td>
+    </tr>
+    <tr>
+      <th id="T_dc72f_level0_row5" class="row_heading level0 row5">5</th>
+      <td id="T_dc72f_row5_col0" class="data row5 col0">작</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="적용-2" class="level4">
+<h4 class="anchored" data-anchor-id="적용-2">3.3. 적용</h4>
+<p>위 두 사전과 함께 형태소화된 토큰을 결합하는 단계는 아래와 같다.</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 형태소분석된 것들을 join</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>dict_stopword <span class="op">=</span> pd.read_csv(<span class="st">'data/dict/dict_stopword.csv'</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>dict_oneChar <span class="op">=</span> pd.read_csv(<span class="st">"data/dict/dict_oneChar.csv"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">## 품사 정의하기</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>list_pos_all <span class="op">=</span> (<span class="st">"N"</span>, <span class="st">"V"</span>, <span class="st">"M"</span>, <span class="st">"J"</span>, <span class="st">"E"</span>, <span class="st">"X"</span>) <span class="co"># 주요 품사 모두</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>list_pos_main <span class="op">=</span> (<span class="st">"N"</span>, <span class="st">"V"</span>) <span class="co"># 명사, 동사, 형용사만</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">## 불용어 제거하고 형태소 결합하기</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tokenToText(tokens):</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    textJoinedMain <span class="op">=</span> []</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    textJoinedAll <span class="op">=</span> [] </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> token, pos, _, _ <span class="kw">in</span> tokens:        </span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (token <span class="kw">not</span> <span class="kw">in</span> <span class="bu">list</span>(dict_stopword[<span class="st">'word'</span>]) <span class="kw">and</span> ( <span class="bu">len</span>(token) <span class="op">&gt;</span> <span class="dv">1</span> <span class="kw">or</span> (<span class="bu">len</span>(token) <span class="op">==</span> <span class="dv">1</span> <span class="kw">and</span> token <span class="kw">in</span> <span class="bu">list</span>(dict_oneChar[<span class="st">'word'</span>]) ) )): </span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> pos.startswith(<span class="st">'V'</span>): token <span class="op">=</span> token <span class="op">+</span> <span class="st">'다'</span> <span class="co"># 동사라면 뒤에 '다'를 붙여서 자연스럽게 만들기</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> pos.startswith(list_pos_main) : textJoinedMain.append(token)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> pos.startswith(list_pos_all) : textJoinedAll.append(token)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> pd.Series([<span class="st">' '</span>.join(textJoinedAll), <span class="st">' '</span>.join(textJoinedMain)])</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>db_record[[<span class="st">'cons_text_posTagged_all'</span>, <span class="st">'cons_text_posTagged_main'</span>]] <span class="op">=</span> db_record[<span class="st">'cons_text_posTagged_kiwi'</span>].swifter.set_npartitions(npartitions <span class="op">=</span> <span class="dv">6</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: tokenToText(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"681cbdf921bd4206bb6d360a235f5764","version_major":2,"version_minor":0}
+</script>
+</div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="17">
+
+<style type="text/css">
+</style>
+<table id="T_85e17">
+  <thead>
+    <tr>
+      <th id="T_85e17_level0_col0" class="col_heading level0 col0">cons_text</th>
+      <th id="T_85e17_level0_col1" class="col_heading level0 col1">cons_text_posTagged_main</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_85e17_row0_col0" class="data row0 col0">* 재개발 임대 아파트 거주중.
+* 임대료 7개월 1,381,980원 체납
+* 일자리를 구하는 중으로 수입이 없어 경제적으로 어려운 상황으로 인함.
+* 작년 20.10.30 체납 상담했던 대상자로 현재 실업급여로 180만원이 나오고 있는데, 수급자 신청해 보려 했으나, 실업급여와 중복으로 받을 수 없다고 안내를 받았다 함. 
+* 임대료 체납 기간이 길어질수록 나중에 퇴거 명령을 받으실 수도 있다고 안내드렸더니, 이번에 빌려서 어떻게든 해결해 보려 한다고 하심.  
+* 일자리를 구하신다고 하셔서 임대주택 입주자 분들께 일자리 상담 연계해 드리고 있는데, 필요하신지 여쭤보았더니, 자신이 직접 알아보시겠다고 하심.</td>
+      <td id="T_85e17_row0_col1" class="data row0 col1">재개발임대 아파트 거주 임대료 체납 일자리 구하다 수입 경제 어렵다 상황 인하다 작년 체납 상담 실업급여 나오다 수급자 신청 실업급여 중복 안내 임대료 체납 기간 길어지다 나중 퇴거 명령 안내 드리다 빌리다 해결 일자리 구하다 임대주택 입주자 일자리 상담 연계 드리다 필요 여쭈다 알아보다</td>
+    </tr>
+    <tr>
+      <td id="T_85e17_row1_col0" class="data row1 col0">* 청년임차보증금 이자지원사업 추천서 관련 문의전화 주심(20대 추정)
+* 건강보험자격득실확인서 지역가입자이며 대학생으로 소득 없음. 국세청홈택스 소득금액증명원 조회결과 2019년 아르바이트 소득 조회됨. 취업준비생 유형으로 신청 가능한지 궁금
+· 취업준비생 유형으로 신청 가능
+* 서울주거포털에서 추천서 신청시 거주지 주소에 현주소 기입하는 것인지 궁금
+· 서울주거포털 추천서 신청시 현주소 기입
+* 서울시추천서 신청과 이사 할 전월세주택 물색 중에서 어느것을 먼저 해야하는지 궁금
+· 서울시추천서 유효기간 발급일로부터 3개월임을 안내</td>
+      <td id="T_85e17_row1_col1" class="data row1 col1">청년 임차보증금 이자지원 추천서 문의 전화 추정 건강 보험 자격 득실 확인서 가입자 대학생 소득 국세청 홈텍스 소득 금액 증명 조회 결과 아르바이트 소득 조회됨 취업 준비 유형 신청 가능 궁금 취업 준비 유형 신청 가능 서울주거포털 추천서 신청 거주지 주소 주소 기입 서울주거포털 추천서 신청 현주소 기입 서울시 추천서 신청 이사 전월세 주택물색 궁금 서울시 추천서 유효 기간 발급 안내</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="끝으로" class="level3">
+<h3 class="anchored" data-anchor-id="끝으로">끝으로</h3>
+<p>위 과정을 종합한 코드는 <a href="../../posts/housing-consultation-analysis-2/data/2. morphAnalysis.html">여기</a>에서 다운로드 가능하다.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="application/vnd.jupyter.widget-state+json">
+{"state":{"034b7a0caf1f46b1bacc9b7ec297d9c4":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"FloatProgressModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"ProgressView","bar_style":"success","description":"","description_allow_html":false,"layout":"IPY_MODEL_c8fbf1d389b94378a6cf97344f985934","max":100,"min":0,"orientation":"horizontal","style":"IPY_MODEL_db8b596a79bd484faa519095606a09d9","tabbable":null,"tooltip":null,"value":100}},"0efdf51e7c6643df89dbd1fe504afae9":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"17fd9e8665b34f409b8129dd2a557dbc":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"ProgressStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"19700dfe2a7c45cea7cc4f3fe8e3febe":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"FloatProgressModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"ProgressView","bar_style":"success","description":"","description_allow_html":false,"layout":"IPY_MODEL_0efdf51e7c6643df89dbd1fe504afae9","max":100,"min":0,"orientation":"horizontal","style":"IPY_MODEL_a1ceb447d7fb4b38aee63506e9e83021","tabbable":null,"tooltip":null,"value":100}},"288c22894e80490e961e76b59679b936":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_84099e9dbdd145d69457853aa129cfa6","placeholder":"​","style":"IPY_MODEL_b96302f4e05d458c9ea881f0bbcff359","tabbable":null,"tooltip":null,"value":" 100/100 [00:00&lt;00:00, 475.90it/s]"}},"2c3d6c2e106c469caf35e752518e23c1":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HBoxModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_71acdf6936af4275afd7e78e318141d0","IPY_MODEL_c735e9caf0904efaa0e665e82ecc3bc9","IPY_MODEL_659d1a31626d4bc98f55ab0492ac1000"],"layout":"IPY_MODEL_51af5bdcbce64320b65ae4a016e8ab2b","tabbable":null,"tooltip":null}},"2d5c5d7a567e49e3a2a30efdd2cab4c8":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"32afe33b24954ce6bc38fdfd1b9dd894":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_eba26a02f23a4e859195f5e2a3b8c67f","placeholder":"​","style":"IPY_MODEL_42fa4e86d3b0494f879de3a07c9e14f9","tabbable":null,"tooltip":null,"value":" 100/100 [00:00&lt;00:00, 208.29it/s]"}},"38891bfdd04d4d0b8043009094895e4c":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"3ddd4a7b1aa046e4a493a0575b5063ee":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"42fa4e86d3b0494f879de3a07c9e14f9":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"4e1d667e672c41f38c1f883163593fe0":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"51af5bdcbce64320b65ae4a016e8ab2b":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"5ba4ddf128244a4d85994460b35982f2":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"5c0f0af4172245b5a81f5a9e43481330":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HBoxModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_d88b3f227e9a43ae9ad2d9772832c196","IPY_MODEL_19700dfe2a7c45cea7cc4f3fe8e3febe","IPY_MODEL_288c22894e80490e961e76b59679b936"],"layout":"IPY_MODEL_4e1d667e672c41f38c1f883163593fe0","tabbable":null,"tooltip":null}},"659d1a31626d4bc98f55ab0492ac1000":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_2d5c5d7a567e49e3a2a30efdd2cab4c8","placeholder":"​","style":"IPY_MODEL_7e68a847ac3343b5bf278d67af11a170","tabbable":null,"tooltip":null,"value":" 100/100 [00:00&lt;00:00, 126.48it/s]"}},"67c26ae0c8184a1782de9cec1795a299":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_6ff828436be442949e39b9db65fcb9c3","placeholder":"​","style":"IPY_MODEL_3ddd4a7b1aa046e4a493a0575b5063ee","tabbable":null,"tooltip":null,"value":"Pandas Apply: 100%"}},"681cbdf921bd4206bb6d360a235f5764":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HBoxModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_67c26ae0c8184a1782de9cec1795a299","IPY_MODEL_034b7a0caf1f46b1bacc9b7ec297d9c4","IPY_MODEL_32afe33b24954ce6bc38fdfd1b9dd894"],"layout":"IPY_MODEL_5ba4ddf128244a4d85994460b35982f2","tabbable":null,"tooltip":null}},"6ff828436be442949e39b9db65fcb9c3":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"709dd92567374d02bba72ac14bca3d33":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"71acdf6936af4275afd7e78e318141d0":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_8b403e1efcb9413880daf8101a8a2cb7","placeholder":"​","style":"IPY_MODEL_38891bfdd04d4d0b8043009094895e4c","tabbable":null,"tooltip":null,"value":"Pandas Apply: 100%"}},"7e68a847ac3343b5bf278d67af11a170":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"84099e9dbdd145d69457853aa129cfa6":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"8b403e1efcb9413880daf8101a8a2cb7":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"99ffde54bede4743a37a480b0e6f0762":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"a1ceb447d7fb4b38aee63506e9e83021":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"ProgressStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"aaa516c48628499b8cbc91dd3184fbd7":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"b96302f4e05d458c9ea881f0bbcff359":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"c735e9caf0904efaa0e665e82ecc3bc9":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"FloatProgressModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"ProgressView","bar_style":"success","description":"","description_allow_html":false,"layout":"IPY_MODEL_aaa516c48628499b8cbc91dd3184fbd7","max":100,"min":0,"orientation":"horizontal","style":"IPY_MODEL_17fd9e8665b34f409b8129dd2a557dbc","tabbable":null,"tooltip":null,"value":100}},"c8fbf1d389b94378a6cf97344f985934":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"d88b3f227e9a43ae9ad2d9772832c196":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_709dd92567374d02bba72ac14bca3d33","placeholder":"​","style":"IPY_MODEL_99ffde54bede4743a37a480b0e6f0762","tabbable":null,"tooltip":null,"value":"Pandas Apply: 100%"}},"db8b596a79bd484faa519095606a09d9":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"ProgressStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"eba26a02f23a4e859195f5e2a3b8c67f":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}}},"version_major":2,"version_minor":0}
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'alternate';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,15 @@
+---
+title: "주거상담기록 분석 (1): 개요"
+description: |
+  주거상담 주제 분석
+date: "2023-02-11"
+categories: [R, data analytics, topic modelling]
+---
+
+ssd
+
+sd
+
+sd
+
+sd

@@ -1,15 +1,15 @@
 ---
 title: "Juhyeon Park"
-image: profile.jpg
+image: index.jpg
 about:
   template: jolla
   links:
-    - icon: linkedin
-      text: LinkedIn
+    - text: E-mail
+      href: mailto:juhyeon92@unist.ac.kr
+    - text: LinkedIn
       href: https://linkedin.com/in/jhyeonpark/
-    - icon: github
-      text: Github
+    - text: Github
       href: https://github.com/jhyeonpark
 ---
 
-I'm an urban planner and data scientist. I am currently a postdoctoral researcher at the Urban Planning & Analytics Lab in UNIST. My interests include urban analytics, Data mining/visualization, and smart cities. I lead several projects that develop WiFi sensing systems that identify pedestrian behaviors and text-mining techniques exploring commercial visitors' experiences.
+I am an urban planner and data scientist. I am currently a postdoctoral researcher at the Urban Planning & Analytics Lab at UNIST. My interests include urban analytics, Data mining/visualization, and smart cities. With this blog, I intend to contribute to building the urban data and technology ecosystem.

@@ -13,9 +13,9 @@ website:
 format:
   html:
     theme:
-      dark: darkly
-      light: flatly
+        light: [cosmo, theme.scss, anari-custom.scss]
+        dark: [cosmo, theme-dark.scss, anari-custom.scss]
     css: styles.css
-
+    
 editor: visual
 

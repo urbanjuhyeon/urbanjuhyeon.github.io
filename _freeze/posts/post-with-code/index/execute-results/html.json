@@ -1,5 +1,5 @@
 {
-  "hash": "57078c0923f623fbc7611c83989df505",
+  "hash": "1fda23aa3202d59c7d0a15cbb316a557",
   "result": {
     "markdown": "---\ntitle: \"Post With Code\"\nauthor: \"Harlow Malloc\"\ndate: \"2023-02-10\"\ncategories: [news, code, analysis]\nimage: \"image.jpg\"\n---\n\n\nThis is a post with executable code.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
     "supporting": [],

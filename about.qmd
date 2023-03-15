@@ -1,3 +1,28 @@
 ---
-title: "about Me"
+title: "Juhyeon Park"
+image: "profile-2.jpg"
+about:
+  template: trestles
+  links:
+    - text: E-mail
+      href: mailto:juhyeon92@unist.ac.kr
+    - text: LinkedIn
+      href: https://www.linkedin.com/in/jhyeonpark/
+    - text: Github
+      href: https://github.com/jhyeonpark
 ---
+
+I am an urban planner and data scientist. I am currently a postdoctoral researcher at the Urban Planning & Analytics Lab at UNIST. My interests include urban analytics, Data mining/visualization, and smart cities. With this blog, I intend to contribute to building the urban data and technology ecosystem.
+
+## Education
+
+Ulsan National Institute of Science and Technology PhD in Urban and Environmental Engineering \| 2022
+
+Ulsan National Institute of Science and Technology B.S. in Urban and Environmental Engineering \| 2015
+
+## Experience
+
+Postdoctoral Researcher at Ulsan National Institute of Science and Technology \| February 2022 - present
+
+## CV
+Download [my resumé.](cv_jhyeon_v2.pdf)

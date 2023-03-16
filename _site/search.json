@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "Juhyeon Park",
     "section": "",
-    "text": "I am an urban planner and data scientist. I am currently a postdoctoral researcher at the Urban Planning & Analytics Lab at UNIST. My interests include urban analytics, Data mining/visualization, and smart cities. With this blog, I intend to contribute to building the urban data and technology ecosystem."
+    "text": "I am an urban planner and data scientist. I am currently a postdoctoral researcher at the Urban Planning & Analytics Lab at UNIST. My interests include urban analytics, Data mining/visualization, and smart cities.\nWith this blog, I intend to make a good quality of the blogs that have inspired me during my urban research and to provide valuable insights and resources for fellow enthusiasts of the field."
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "Juhyeon Park",
     "section": "",
-    "text": "I am an urban planner and data scientist. I am currently a postdoctoral researcher at the Urban Planning & Analytics Lab at UNIST. My interests include urban analytics, Data mining/visualization, and smart cities. With this blog, I intend to contribute to building the urban data and technology ecosystem."
+    "text": "I am an urban planner and data scientist working to improve the use of urban data as the evidence base for formulating urban policies, plans, strategies, and programs.\nMy particular areas of interest are:\n\nUrban analytics\nData mining/visualization\nSmart cities\n\nI use this site to showcase my recent work, and discuss new data-science and statistical tools and techniques on my blog.\n\n\nUlsan National Institute of Science and Technology PhD in Urban and Environmental Engineering | 2022\nUlsan National Institute of Science and Technology B.S. in Urban and Environmental Engineering | 2015\n\n\n\nPostdoctoral Researcher at Ulsan National Institute of Science and Technology | February 2022 - present\n\n\n\nDownload my resumé."
   },
   {
     "objectID": "posts/post-with-code/index.html",
@@ -32,7 +32,7 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "주거상담기록 텍스트 전처리\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n주거상담기록 분석 (1): 개요\n\n\n\n\n\n\n\nR\n\n\ndata analytics\n\n\ntopic modelling\n\n\n\n\n주거상담 주제 분석\n\n\n\n\n\n\nFeb 11, 2023\n\n\n\n\n\n\n  \n\n\n\n\n주거상담기록 분석 (2): 텍스트 전처리\n\n\n\n\n\n\n\npython\n\n\nMorphology analysis\n\n\n\n\n주거상담 주제 분석\n\n\n\n\n\n\nFeb 11, 2023\n\n\n\n\n\n\n  \n\n\n\n\nR를 활용하여 구글 지도 데이터 수집하기\n\n\n\n\n\n\n\nR\n\n\nGoogle Maps\n\n\n\n\n구글 지도에 등록된 POI 정보를 R을 활용하여 모아보자\n\n\n\n\n\n\nMay 5, 2022\n\n\n\n\n\n\nNo matching items"
+    "text": "주거상담기록 텍스트 전처리\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\n주거상담기록 분석 (2): 텍스트 전처리\n\n\n\n\n\n\n\npython\n\n\nMorphology analysis\n\n\n\n\n주거상담 주제 분석\n\n\n\n\n\n\nFeb 11, 2023\n\n\n\n\n\n\n  \n\n\n\n\nR를 활용하여 Open API로 공개된 데이터 수집하기\n\n\n\n\n\n\n\nR\n\n\nOpen API\n\n\n\n\nOpen API로 공개된 공공데이터를 R로 수집해보자\n\n\n\n\n\n\nJun 5, 2022\n\n\n\n\n\n\n  \n\n\n\n\nR를 활용하여 Open API로 공개된 데이터 수집하기\n\n\n\n\n\n\n\nR\n\n\nOpen API\n\n\n\n\nOpen API로 공개된 공공데이터를 R로 수집해보자\n\n\n\n\n\n\nJun 5, 2022\n\n\n\n\n\n\n  \n\n\n\n\nR를 활용하여 구글 지도 데이터 수집하기\n\n\n\n\n\n\n\nR\n\n\nGoogle Maps\n\n\n\n\n구글 지도에 등록된 POI 정보를 R을 활용하여 모아보자\n\n\n\n\n\n\nMay 5, 2022\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/housing-consultation-analysis-2/index.html",
@@ -51,9 +51,9 @@
   {
     "objectID": "posts/housing-consultation-analysis-1/index.html",
     "href": "posts/housing-consultation-analysis-1/index.html",
-    "title": "주거상담기록 분석 (1): 개요",
+    "title": "R를 활용하여 Open API로 공개된 데이터 수집하기",
     "section": "",
-    "text": "ssd\nsd\nsd\nsd"
+    "text": "서론\n공공데이터 등을 API로 공개한 경우가 최근 많아졌다. \n전국 점포 DB를 한번에 csv 파일로 다운받을 수 없고 상권이나 건물 등의 단위로 Open API를 통해 수집하도록 제공되고 있다."
   },
   {
     "objectID": "about.html#education",
@@ -145,5 +145,40 @@
     "title": "Juhyeon Park",
     "section": "CV",
     "text": "CV\nDownload my resumé."
+  },
+  {
+    "objectID": "posts/2022-04-15-how-to-use-open-api/index.html",
+    "href": "posts/2022-04-15-how-to-use-open-api/index.html",
+    "title": "R를 활용하여 Open API로 공개된 데이터 수집하기",
+    "section": "",
+    "text": "공공데이터 등을 API로 공개한 경우가 최근 많아졌다. 아래는 공공데이터포털에서 상권을 검색한 결과 중 오픈 API로 제공되는 데이터 목록이다. \n첫번째 데이터의 경우, 전국 점포 DB를 한번에 csv 파일로 다운 받을 수 없다. Open API 형태로 상권이나 건물 등의 단위로 Open API를 통해 수집해야 한다."
+  },
+  {
+    "objectID": "posts/2022-04-15-how-to-use-open-api/index.html#r를-활용한-open-api-활용하기",
+    "href": "posts/2022-04-15-how-to-use-open-api/index.html#r를-활용한-open-api-활용하기",
+    "title": "R를 활용하여 Open API로 공개된 데이터 수집하기",
+    "section": "R를 활용한 Open API 활용하기",
+    "text": "R를 활용한 Open API 활용하기\nR를 활용하여 소상공인진흥공단 상가(상권)정보 Open API를 활용하는 방법을 설명한다. 이때 다른 점은 데이터 타입을 json 형태로 응답 받는 것이다.\n\n패키지 및 작업 준비\n필요한 패키지를 먼저 불러온다.\n\n# Package reading\nPackages <- c(\"data.table\", \"httr\", \"knitr\", \"XML\", \"jsonlite\", \"dplyr\")\ninstall_pkgs <- function(pkgs) {\n  # 신규 패키지 설치 \n  new_pkgs <- pkgs[!(pkgs %in% installed.packages()[, \"Package\"])]\n  if (length(new_pkgs))\n    install.packages(new_pkgs, dependencies = TRUE)\n  \n  # 기존 패키지 library 불러오기\n  sapply(pkgs, require, character.only = TRUE)\n}\n\ninstall_pkgs(Packages)\n\n이용하고자 하는 Open API key를 입력한다.\n\n\n\n\nserviceKey <- \"\" # Key 입력\n\n\n\n예제 1: 건물단위 업소 조회\n앞서 open API 이해에서 활용한 건물단위 업소 조회를 활용해보자. #### 요청 검색창에 직접 입력하는 행위는 R에서는 아래와 같이 할 수 있다. ::: {.cell}\nreq_ex <- GET(I(\"https://apis.data.go.kr/B553077/api/open/sdsc2/storeListInBuilding?serviceKey=g6aqHarEoZ3mSMKdGDlDCAlogCuLu11s6RsGvuS%2FNLHnU0vNU1Bw9ep9wlRVLYIjQkAliRCYWe9HYE%2FLBdiGBA%3D%3D&key=3017011200113530000022216&indsLclsCd=Q&indsMclsCd=Q12&indsSclsCd=Q12A01&numOfRows=100&pageNo=1&type=json\"))\n:::\n위 요청을 R에서 구조화한 것은 다음과 같다.\n\nURL <- \"http://apis.data.go.kr/B553077/api/open/sdsc2\" # 소상공인시장진흥공단_상가(상권)정보_API\n\nex1_1a <- GET(\n  url = paste0(URL, \"/\", \"storeListInBuilding\"), # 건물 단위 상가업소 조회 서비스\n  query = \n    list(serviceKey = I(serviceKey), # 내 API 서비스 키 입력\n         key = \"3017011200113530000022216\", # 검색 대상 건물 코드\n         indsLclsCd = \"Q\", # 대분류 설정; 음식\n         indsMclsCd = \"Q12\", # 중분류 설정; 커피점/카페\n         indsSclsCd = \"Q12A01\", # 소분류 설정; 커피전문점/카페/다방\n         numOfRows = \"100\", # 최대 검색 항목 수 설정\n         pageNo = \"1\", #  페이지 설정\n         type = \"json\" # 응답 데이터 형태 설정\n         ) \n  )\n\n\n응답\n아래 코드로 json 형태로 응답된 결과를 처리한다.\n\ndir()\n\n[1] \"file\"            \"image\"           \"index.qmd\"       \"index.rmarkdown\"\n\n\n\nex1_1b <- ex1_1a %>%\n  content(as = \"text\", encoding = \"UTF-8\") %>%\n  fromJSON() \n\n\n\n\n응답한 정보로부터 API 서비스 설명과 정보를 확인하면 다음과 같다. ::: {.cell}\nex1_1b$header$description # API 서비스 설명\n\n[1] \"소상공인시장진흥공단 건물단위 상가업소정보\"\n\n::: ::: {.cell}\nex1_1b$body$items # 응답 정보\n\n   bizesId      bizesNm brchNm indsLclsCd indsLclsNm indsMclsCd  indsMclsNm\n1 16998056 아이엠일리터                 Q       음식        Q12 커피점/카페\n  indsSclsCd           indsSclsNm ksicCd          ksicNm ctprvnCd   ctprvnNm\n1     Q12A01 커피전문점/카페/다방 I56220 비알콜 음료점업       30 대전광역시\n  signguCd signguNm    adongCd adongNm    ldongCd ldongNm               lnoCd\n1    30170     서구 3017064000 둔산2동 3017011200  둔산동 3017011200113530000\n  plotSctCd plotSctNm lnoMnno lnoSlno                      lnoAdr       rdnmCd\n1         1      대지    1353         대전광역시 서구 둔산동 1353 301704298326\n                          rdnm bldMnno bldSlno                  bldMngNo bldNm\n1 대전광역시 서구 둔산로51번길      66         3017011200113530000022216      \n                          rdnmAdr oldZipcd newZipcd dongNo flrNo hoNo      lon\n1 대전광역시 서구 둔산로51번길 66   302830    35233                   127.3806\n       lat\n1 36.35413\n\n:::\n다른 응답과 요청 메세지 정보를 알고 싶다면 오퍼레이션 명세를 확인하면 된다. \n\n\n\n예제 2: 상권 내 업소 조회\n이대역 상권 내 모든 업소를 조회해보자.\n\n요청\n이대역 상권 내 모든 업소 조회를 요청하는 코드는 다음과 같다. ::: {.cell}\nURL <- \"http://apis.data.go.kr/B553077/api/open/sdsc2\" # 소상공인시장진흥공단_상가(상권)정보_API\n\nex2_1a <- GET(\n  url = paste0(URL, \"/\", \"storeListInArea\"), # 빌딩 내 업소 조회 서비스\n  query = \n    list(serviceKey = I(serviceKey), # 내 서비스 키 입력\n         key = \"9151\", # 이대역 상권번호\n         numOfRows = \"1000\", # 최대 검색 항목 수 설정\n         type = \"json\" # 응답 데이터 형태 설정\n         ) \n  )\n:::\n\n\n응답\n이때 요청한 결과는 다음과 같다. ::: {.cell}\nex2_1b <- ex2_1a %>%\n  content(as = \"text\", encoding = \"UTF-8\") %>%\n  fromJSON()  \n:::\n\n\n\n\ncbind(ex2_1b$body$items$bizesNm, ex2_1b$body$items$lnoAdr)[c(1:20), ] # 상위 20개 상호명과 주소\n\n      [,1]                     [,2]                               \n [1,] \"오피스디포\"             \"서울특별시 서대문구 대현동 60-8\"  \n [2,] \"메이퀸\"                 \"서울특별시 서대문구 대현동 56-126\"\n [3,] \"미미뷰티\"               \"서울특별시 서대문구 대현동 54-4\"  \n [4,] \"파파노다이닝돈부리\"     \"서울특별시 서대문구 대현동 56-110\"\n [5,] \"삼성전자판매이대점\"     \"서울특별시 서대문구 대현동 37-1\"  \n [6,] \"데몬헤어\"               \"서울특별시 서대문구 대현동 56-119\"\n [7,] \"파오\"                   \"서울특별시 서대문구 대현동 54-4\"  \n [8,] \"육쌈냉면\"               \"서울특별시 서대문구 대현동 34-34\" \n [9,] \"이대종합분식\"           \"서울특별시 서대문구 대현동 101-12\"\n[10,] \"네이처컬렉션이대점\"     \"서울특별시 서대문구 대현동 34-31\" \n[11,] \"삼청동궁물떡복이이대점\" \"서울특별시 서대문구 대현동 53-9\"  \n[12,] \"공차\"                   \"서울특별시 서대문구 대현동 54-1\"  \n[13,] \"올댓뷰티아카데미\"       \"서울특별시 서대문구 대현동 56-2\"  \n[14,] \"더페이스샵이대2호점\"    \"서울특별시 서대문구 대현동 37-5\"  \n[15,] \"니나키친\"               \"서울특별시 서대문구 대현동 54-6\"  \n[16,] \"BK민방경네일\"           \"서울특별시 서대문구 대현동 34-39\" \n[17,] \"지구별고양이\"           \"서울특별시 서대문구 대현동 90-30\" \n[18,] \"라비에벨헤어\"           \"서울특별시 서대문구 대현동 37-69\" \n[19,] \"다다\"                   \"서울특별시 서대문구 대현동 56-34\" \n[20,] \"109헤어\"                \"서울특별시 서대문구 대현동 40-39\" \n\n\n\n\n\n예제 3: 행정구역 단위 업소 조회\n울산 중구에 위치한 모든 업소 정보를 수집해보자.\n\n요청\n아래와 같이 요청을 해본다. ::: {.cell}\nURL <- \"http://apis.data.go.kr/B553077/api/open/sdsc2\" # 소상공인시장진흥공단_상가(상권)정보_API\n\nex3_1a <- GET(\n  url = paste0(URL, \"/\", \"storeListInDong\"), # 행정동 단위 상가업소 조회 오퍼레이션 명세\n  query = \n    list(serviceKey = I(serviceKey), # 내 서비스 키 입력\n         divId = \"signguCd\", # 시군구 행정구역 입력 설정\n         key = \"31110\", # 울산 중구 행정구역코드\n         numOfRows = \"1000\", # 최대 검색 항목 수 설정\n         type = \"json\" # 응답 데이터 형태 설정\n         ) \n  )\n:::\n\n\n응답\n응답한 결과를 보기전에, 보낸 요청 쿼리의 응답 개수를 확인해보자. ::: {.cell}\nex3_1b <- ex3_1a %>%\n  content(as = \"text\", encoding = \"UTF-8\") %>%\n  fromJSON() \n:::\n\n\n\n\nex3_1b$body$totalCount\n\n[1] 8907\n\n\n당연하게도 울산 중구에 위치한 업소 개수는 한 요청 쿼리에서 응답받을 수 있는 최대 항목인 1000개를 넘는다. 따라서 다음 1000개씩 모든 응답을 페이지를 넘어가며 수집하는 작업이 필요하고 아래 코드로 가능하다.\n\ndb_1a <- rbindlist(\n  lapply(1:ceiling(ex3_1b$body$totalCount/1000), # 페이지 번호 1부터 총 개수를 1000개로 나눈 값의 올림까지\n         function(i){\n           ex3_1b <- GET(\n             url = paste0(URL, \"/\", \"storeListInDong\"), # 행정동 단위 상가업소 조회 오퍼레이션 명세\n             query = \n               list(serviceKey = I(serviceKey), # 내 서비스 키 입력\n                    divId = \"signguCd\", # 시군구 행정구역 입력 설정\n                    key = \"31110\", # 울산 중구 행정구역코드\n                    numOfRows = \"1000\", # 최대 검색 항목 수 설정\n                    pageNo = i, # i 번째 페이지 항목 설정\n                    type = \"json\" # 응답 데이터 형태 설정\n                    ) \n             ) %>%\n             content(as = \"text\", encoding = \"UTF-8\") %>%\n             fromJSON() \n           \n           ex3_1b$body$items\n           }))\n\n\n\n\n\nlength(db_1a$bizesId) # 수집한 업소 총 개수\n\n[1] 8907\n\n\nkable(db_1a[1:3]) # 상위 3개 결과\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbizesId\nbizesNm\nbrchNm\nindsLclsCd\nindsLclsNm\nindsMclsCd\nindsMclsNm\nindsSclsCd\nindsSclsNm\nksicCd\nksicNm\nctprvnCd\nctprvnNm\nsignguCd\nsignguNm\nadongCd\nadongNm\nldongCd\nldongNm\nlnoCd\nplotSctCd\nplotSctNm\nlnoMnno\nlnoSlno\nlnoAdr\nrdnmCd\nrdnm\nbldMnno\nbldSlno\nbldMngNo\nbldNm\nrdnmAdr\noldZipcd\nnewZipcd\ndongNo\nflrNo\nhoNo\nlon\nlat\n\n\n\n\n10078174\n중앙농협하나로마트태화점\n태화점\nD\n소매\nD03\n종합소매점\nD03A02\n수퍼마켓\nG47121\n슈퍼마켓\n31\n울산광역시\n31110\n중구\n3111060000\n태화동\n3111011100\n태화동\n3111011100104730001\n1\n대지\n473\n1\n울산광역시 중구 태화동 473-1\n311103169020\n울산광역시 중구 태화로\n186\n\n3111011100104730001001410\n중앙농협태화지소\n울산광역시 중구 태화로 186\n681819\n44456\n\n1\n\n129.2961\n35.55191\n\n\n10295347\n헤펠레D.I.Y목공방남구점\n남구점\nD\n소매\nD15\n가구소매\nD15A01\n일반가구소매\nG47520\n가구 소매업\n31\n울산광역시\n31110\n중구\n3111065000\n성안동\n3111010900\n성안동\n3111010900104040002\n1\n대지\n404\n2\n울산광역시 중구 성안동 404-2\n311103169014\n울산광역시 중구 성안로\n232\n\n3111010900104040002000001\n\n울산광역시 중구 성안로 232\n681300\n44417\n\n1\n\n129.3205\n35.58005\n\n\n10536601\n예가네숯불갈비\n\nQ\n음식\nQ01\n한식\nQ01A02\n갈비/삼겹살\nI56111\n한식 음식점업\n31\n울산광역시\n31110\n중구\n3111055000\n복산2동\n3111010300\n복산동\n3111010300101950001\n1\n대지\n195\n1\n울산광역시 중구 복산동 195-1\n311104307154\n울산광역시 중구 도화골6길\n1\n\n3111010300101950001011330\n\n울산광역시 중구 도화골6길 1\n681220\n44477\n\n1\n\n129.3326\n35.56699"
+  },
+  {
+    "objectID": "posts/2022-04-15-how-to-use-open-api/index.html#step-1-open-api-활용-신청",
+    "href": "posts/2022-04-15-how-to-use-open-api/index.html#step-1-open-api-활용-신청",
+    "title": "R를 활용하여 Open API로 공개된 데이터 수집하기",
+    "section": "Step 1: Open API 활용 신청",
+    "text": "Step 1: Open API 활용 신청\nOpen API 예시는 공공데이터포털에서 제공하는 소상공인시장진흥공단_상가(상권)정보를 대상으로 한다. 이곳에서 먼저 해당 API 활용신청을 한다."
+  },
+  {
+    "objectID": "posts/2022-04-15-how-to-use-open-api/index.html#step-2-요청하기",
+    "href": "posts/2022-04-15-how-to-use-open-api/index.html#step-2-요청하기",
+    "title": "R를 활용하여 Open API로 공개된 데이터 수집하기",
+    "section": "Step 2: 요청하기",
+    "text": "Step 2: 요청하기\n신청을 완료하면 마이페이지로 이동하고, 해당 데이터 API를 클릭하고 요청 예시 중 하나인 건물 단위 상가업소 조회를 클릭하고 미리보기를 누른다."
+  },
+  {
+    "objectID": "posts/2022-04-15-how-to-use-open-api/index.html#step-3-요청에-따른-응답보기",
+    "href": "posts/2022-04-15-how-to-use-open-api/index.html#step-3-요청에-따른-응답보기",
+    "title": "R를 활용하여 Open API로 공개된 데이터 수집하기",
+    "section": "Step 3: 요청에 따른 응답보기",
+    "text": "Step 3: 요청에 따른 응답보기\n위의 요청에서 미리보기를 누르면 URL로 API 요청이 입력되어, URL에 따른 응답을 볼 수 있다.\n\n요청으로 만들어진 URL 주소는 세가지로 구분할 수 있다.\n\n서비스명(건물 단위 상가업소 조회)\n서비스 key\n요청 변수\n\n\n이를 자세히 설명하면,\n\nhttps://apis.data.go.kr/B553077/api/open/sdsc2/은 소상공인진흥공단 상가(상권)정보 API 주소\nstoreListInBuilding?은 건물 단위 상가업소 조회\nserviceKey=g6aqHarEo~은 부여받은 API 인증키\nkey=3017011200113530000022216&은 요청 변수 중 key(건물관리번호) 지정\nindsLclsCd=Q&은 대분류가 Q(음식)에 해당하는 것만 조회\nindsMclsCd=Q12&은 중분류가 Q12(커피점/카페)에 해당하는 것만 조회\nindsSclsCd=Q12A01&은 소분류가 Q12A01(커피전문점/카페/다방)에 해당하는 것만 조회\nnumOfRows=100&은 최대 100개 항목을 조회\npageNo=1&은 첫번째 페이지를 요청\ntype=xml은 조회를 xml 형식으로 응답"
   }
 ]

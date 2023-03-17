@@ -19,7 +19,7 @@ categories: [R, Open API]
 
 간단하게 API는 요청을 하는 주체인 `클라이언트`와 요청에 따른 응답을 하는 `서버`로 구성된다.
 
-![API-intro](image/api-intro.png){width= "85%"}
+![](image/api-intro.png){width="75%"}
 
 서버에게 요청할 때는 일반적으로 `http (url)`로 요청한다. 응답은 `JSON, HTML` 등 다양한 형태로 받을 수 있다.
 

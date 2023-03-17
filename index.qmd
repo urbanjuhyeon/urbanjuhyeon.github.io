@@ -14,4 +14,4 @@ about:
 
 I am an urban planner and data scientist. I am currently a postdoctoral researcher at the Urban Planning & Analytics Lab at UNIST. My interests include urban analytics, Data mining/visualization, and smart cities.
 
-With this blog, I intend to make a good quality of the blogs that have inspired me during my urban research. I hope it helps to provide valuable insights and resources for fellow enthusiasts of the field.
+With this blog, I intend to make a good quality of the blogs that have inspired me during my urban research.&nbsp;&nbsp; I hope it helps to provide valuable insights and resources for fellow enthusiasts of the field.

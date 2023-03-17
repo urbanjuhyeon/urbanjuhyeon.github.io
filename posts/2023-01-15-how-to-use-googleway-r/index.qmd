@@ -1,0 +1,389 @@
+---
+title: "R를 활용하여 구글 지도 데이터 수집하기"
+description: |
+  구글 지도에 등록된 POI 정보를 R을 활용하여 모아보자
+date: "2023-01-15"
+categories: [R, Google Maps]
+image: "image/yeonnam_cafe_POI.png"
+---
+
+# 서론
+
+구글 지도에는 도시 분석에 활용할 수 있는 다양한 정보가 등록되어 있다. 아래는 *서울 연남동*을 구글 지도에 검색한 결과다.
+
+![](image/googleMaps_yeonnam.png){width="75%"}
+
+이 범위 내, 음식점이 얼마나 많이 있을까? 평점이 높은 음식점은 어디에 몰려있을까? **구글 지도에 등록된 음식점, 카페와 같은 POI 정보를 수집**하면 이에 답할 수 있다. 구글 API와 R을 활용하여 이 구글 지도 POI를 수집하는 방법에 대해 아래 다루고자 한다.
+
+# 주의사항
+
+::: callout-important
+구글 API는 무료가 아니다.
+:::
+
+특히 이 블로그에서 활용하는 Place API는 쓴만큼 지불하는 모델[(pay-as-you-go pricing mdoel)](https://mapsplatform.google.com/pricing/)을 사용하므로, 사용하기 전 [비용 추정](https://developers.google.com/maps/documentation/places/web-service/usage-and-billing)을 철저하게 하는 것이 좋다. 무턱대고 돌리다가는 엄청난 비용이 부과될 수 있다.
+
+::: callout-tip
+구글 클라우드는 첫번째로 만드는 결제 계정에 한해 [300달러 클레딧](https://developers.google.com/maps/billing-credits?hl=ko)을 지급한다.
+:::
+
+다른 설정을 하지 않으면 무료 크레딧 사용 이후, 기입한 카드로 금액이 청구되는 일은 없었다. 추가로, 구글 API를 활용하는 목적이 [구글 사용 약관(Terms of Service)](https://developers.google.com/terms)에 위배되는지를 사전에 확인해야 한다.
+
+# 1. 구글 API key
+
+구글 지도에 정보를 요청하고 응답 받기 위해선 구글 API key를 만들고 설정하는 것이 필요하다.
+
+## 1.1. 클라우드 및 결제 설정
+
+-   [구글 클라우드](https://cloud.google.com/)에서 콘솔을 생성한다. ![Google](image/googleway_API-1.png){width="75%"}
+
+-   계정 정보와 본인 확인, 연락처 정보 및 결과 정보를 차례로 입력한다. ![Google Payment](image/googleway_API-2.png){width="75%"}
+
+-   이후, [구글 클라우드 플랫폼](https://console.cloud.google.com/)에서 결제 설정을 한다. ![Google33](image/googleway_API-3.png){width="75%"}
+
+## 1.2. API 생성 및 설정
+
+-   사용할 API를 생성한다. ![Google Payment5](image/googleway_API-4.png){width="75%"}
+
+-   사용할 서비스를 활성화시켜준다. ![Google Payment6](image/googleway_API-5.png){width="75%"}
+
+-   Places API 외 googleway R 패키지를 활용하기 위해서는 Geocoding API 등 자신이 원하는 기능을 설정해주어야 한다. ![Google Payment7](image/googleway_API-6.png){width="75%"}
+
+## 1.3. API 키 복사
+
+-   R에서 사용할 구글 API key는 아래에서 복사해서 사용한다. ![Google Payment8](image/get_final_key.png){width="75%"}
+
+# 2. 연습
+
+## 2.1. Googleway
+
+[Googleway](https://cran.r-project.org/web/packages/googleway/vignettes/googleway-vignette.html)은 R를 활용하여 Google API 요청과 응답 등을 도와주는 패키지다. 구글 지도 외 구글 스트리트뷰 이미지, 자전거 루트 검색 등 다양한 구글 API를 활용한 기능을 제공하며, 이 글에서는 Google Places API를 주로 활용한다.
+
+## 2.2. Google Places API
+
+[Google Places API](https://developers.google.com/maps/documentation/places/web-service/overview?hl=ko)는 전세계 구글 지도에 등록된 POI 정보를 수집하는 데 쓰인다. 이 POI 정보는 우리가 구글 지도에서 검색하는 것과 같으며, 구글은 검색 방식을 3가지로 구분한다.
+
+| 검색 방법    | 설명                           | 검색 예시                            |
+|----------------------|----------------------|----------------------------|
+| Text         | 텍스트 검색                    | 마포구 공원                          |
+| Nearby       | 특정 장소(위도/경도) 주변 검색 | `(37.557, 126.924)` 주변 500m 중식집 |
+| Place Detail | 특정 POI에 관한 구체적인 정보  | 연남동 소이연남 별점, 리뷰 수 등     |
+
+각 방법에 대해 `Googleway`로 요청하고 응답 받는 방법은 아래와 같다.
+
+### Text
+
+`text` 검색은 원하는 키워드를 구글 지도에서 검색하는 것이다. **마포구 공원**을 검색하는 것을 예시로 들어보자.
+
+```{r eval = FALSE}
+library(googleway)
+
+res <- google_places(
+  search_string = "마포구 공원", # 검색하는 키워드
+  key = key, # 자신의 구글 API key
+  language = "ko", # 한국어 설정
+  )
+
+```
+
+보낸 쿼리 응답에서 장소 이름과 평균 평점을 뽑아내면 다음과 같다.
+
+```{r eval = FALSE}
+> cbind(res$results$name, res$results$rating)
+      [,1]                  [,2] 
+ [1,] "경의선숲길공원"      "4.6"
+ [2,] "마포 어린이 공원"    "3.9"
+ [3,] "서울함 공원"         "4.2"
+ [4,] "노을공원"            "4.6"
+ [5,] "하늘공원"            "4.5"
+ [6,] "망원한강공원"        "4.4"
+ [7,] "경의선숲길"          "4.4"
+ [8,] "성산근린공원"        "4.2"
+ [9,] "평화의공원"          "4.5"
+[10,] "월드컵공원"          "4.5"
+[11,] "경의선공원길"        "4.6"
+[12,] "한강공원 마포나들목" "4.3"
+[13,] "경의선숲길공원"      "4.5"
+[14,] "근린공원"            "4"  
+[15,] "조각공원"            "3.8"
+[16,] "와우산체육공원"      "4.2"
+[17,] "복사꽃어린이공원"    "3.9"
+[18,] "한강공원망원지구"    "4.2"
+[19,] "합정공원"            "3.7"
+[20,] "윗잔다리공원"        "4"  
+
+```
+
+이외에도 user_ratings_total (구글 리뷰 총 개수), formatted_address (주소), geometry.location.lat/lng (위치좌표) 등이 수집된다.
+
+추가로, 쿼리 응답은 상위 20개만 받을 수 있다. 그 외 데이터를 수집하기 위해서는 `next_page_token`을 활용하면 된다.
+
+```{r eval = FALSE}
+res_next <- google_places(
+  search_string = "마포구 공원", # 검색하는 키워드
+  key = key, # 자신의 구글 API key
+  language = "ko", # 한국어 설정
+  page_token = res$next_page_token # 기존 쿼리의 next_page_token
+  )
+```
+
+### Nearby
+
+`nearby` 검색은 특정 좌표 기반 검색이며, [POI 유형](https://developers.google.com/maps/documentation/places/web-service/supported_types)과 주변 검색 범위 등을 설정할 수 있다. **홍대입구역(위도: 126.924, 경도: 37.557) 근처 50m 내 위치한 음식점**을 예시로 들어보자.
+
+```{r eval = FALSE}
+> res <- google_places(
++   location = c(37.557, 126.924), # 홍대입구역 위치 좌표
++   place_type = "restaurant", # POI type
++   radius = 50, # 주변 N meter
++   language = "ko", # 한국어
++   key = key # 자신의 구글 API key
++   ) 
+> 
+> cbind(res$results$name, res$results$rating, res$results$place_id)
+     [,1]                       [,2]  [,3]                         
+[1,] "스시메이진 홍대점"        "3.5" "ChIJR64R9cKYfDURFdUwoHMV9QI"
+[2,] "PASTA e PIZZA"            "4"   "ChIJt6EGjcKYfDURFFHDTbzzr7M"
+[3,] "애슐리"                   "4.5" "ChIJD5kR8MKYfDURrgorWW5NDqw"
+[4,] "서가엔쿡 홍대입구점"      "4"   "ChIJnYYHQcGZfDURU6FbPQ2VQGU"
+[5,] "아비꼬 홍대입구역 EXIT점" "3"   "ChIJG-v8wraZfDURKfxX4RBsfIk"
+```
+
+### Place Detail
+
+`Place Detail` 검색은 특정 POI에 대한 리뷰 정보를 수집하기 위해 활용된다. 구글에서 지정한 POI id인, `place_id` 기반이며, 위 예시에서 `스시메이진 홍대점`을 예시로 들어보자.
+
+```{r eval = FALSE}
+> det <- google_place_details(
++   place_id = "ChIJR64R9cKYfDURFdUwoHMV9QI", # 스시메이진 홍대점 id
++   key = key, 
++   language = "ko"
++   )
+> 
+> cbind(det$result$reviews$author_name, substr(det$result$reviews$text, 1, 20))
+     [,1]              [,2]                                  
+[1,] "김진억"          "평일 점심 가격대 가성비 좋다.\n다만" 
+[2,] "youngsun hong"   "개인적으로 다시 가진 않을 것 같습니" 
+[3,] "최석하"          "처음 가봤는데 음식도 맛있어서 좋았습"
+[4,] "케이린_게임세상" "홍대역 바로 앞이라 그런지 가격은 좀" 
+[5,] "불꽃의초롱이"    "홍대역 8번쪽에 있는 스시메이진 홍대" 
+```
+
+::: callout-important
+각 POI별 리뷰는 최대 5개까지만 응답받을 수 있다.
+:::
+
+# 3. 실습
+
+살펴본 `Googleway`로 실제 구글 지도 POI를 수집하는 과정을 다룬다.
+
+## 3.1. R 실습 전
+
+실습 질문은 아래와 같다.\
+**`"서울 연남동 내 카페은 몇 개고, 리뷰 개수와 평점이 가장 높은 곳은 어디인가?"`**
+
+간단하게 접근하면 `google_places`를 사용해서 연남동 중심 좌표를 기준으로 모든 `cafe` POI를 수집하는 쿼리를 보내고, 그 쿼리의 `next_page_token`를 계속해서 넣으며 수집하면 된다.
+
+하지만, **구글 API에서는 한 쿼리당 60개 이상 아이템을 수집하지 못한다.** ([link](https://stackoverflow.com/questions/68240071/python-google-places-api-next-page-token-works-once))
+
+해결 방법은 다음과 같다.
+
+1.  연남동 지역을 m (meter) 간격으로 grid 나누기
+2.  한 grid 중심에서 n (meter) 이내 cafe POI를 수집 ![](image/googleway-grid-concept.png){width="75%"}
+
+::: callout-important
+적절한 m과 n을 설정해야 한다. 아주 작은 값은 시간이 오래걸리고 구글 API 청구 비용이 증가하며, 너무 크다면 한 grid 내 POI가 60개가 넘어가 제대로 수집되지 않을 것이다.
+:::
+
+## 3.2. R 실습
+
+### 패키지 불러오기
+
+필요한 패키지를 불러오고 없다면 설치한다.
+
+```{r message = FALSE, results = 'hide', warning = FALSE}
+# Package reading
+Packages <- c("data.table", "stringr", "ggplot2", "sf", "tidyr", "sp", "googleway", "ggmap", "dplyr")
+install_pkgs <- function(pkgs) {
+  # 신규 패키지 설치 
+  new_pkgs <- pkgs[!(pkgs %in% installed.packages()[, "Package"])]
+  if (length(new_pkgs))
+    install.packages(new_pkgs, dependencies = TRUE)
+  
+  # 기존 패키지 library 불러오기
+  sapply(pkgs, require, character.only = TRUE)
+}
+
+install_pkgs(Packages)
+lapply(Packages, require, character.only = TRUE)
+
+## Projection
+proj_WGS84 <- CRS("+init=epsg:4326") 
+proj_TM <- CRS("+init=epsg:5186")
+
+```
+
+### Grid 만들기
+
+본 실습은 grid 간격(m)은 100m, 검색 범위(n)는 66.67으로 설정했으며, 이유는 아래와 같다.
+
+-   구글 지도에서 연남동을 검색하고 카페 POI를 살펴보았을 때, 100m X 100m grid 내 60개 이상 카페 POI가 존재하지 않아보인다. 따라서 **100m를 가로와 세로 변으로 하는 grid를 만든다.**
+-   100m X 100m grid 중심점에서 검색하는 범위는 변의 반지름(50m)보다 조금 더 크면 좋을 것이다. 따라서 **1/3을 더해서 66.67m (100 X (1/2) X (1 + 1/3)) 내 POI를 검색하게끔 한다.**
+
+위 작업을 그림으로 나타내면 다음과 같다. ![Grid_generator](image/yeonnam_grid.png){width="75%"}
+
+아래는 R로 위 방식을 나타내는 것이다. 연남동 shapefile은 [여기](data/boundary_yeonnam.zip)에서 다운받을 수 있다.
+
+```{r eval=FALSE}
+
+value_gridInterval <- 100 # Grid 간격
+value_radiusSearch <-
+  value_gridInterval * (2/3) # 실제 검색 범위, 검색 단위에서 1/3 더한 값
+
+shp_bdry <- st_read("data/boundary_yeonnam.shp")
+
+shp_bdry_grid <- shp_bdry %>%
+  st_make_grid(., value_gridInterval)
+
+```
+
+### Grid별 수집
+
+만든 grid는 구글 API에 활용되기 전 다음 과정을 거치고 각 grid별로 POI 정보를 수집한다.
+
+```{r eval=FALSE}
+shp_bdry_grid_split <- shp_bdry_grid %>% 
+  st_transform(proj_WGS84) %>% # 좌표계 변환
+  st_centroid() %>% # Grid 중심점
+  st_coordinates %>% as.data.table %>% # 중심점 좌표 정보
+  group_split(id_grid = row_number()) # 각 grid별로 list
+
+db_1a <- rbindlist(lapply(shp_bdry_grid_split, function(pnt){
+  
+  df_places_final <- NULL
+  
+  print(pnt$id_grid)
+  
+  df_places <- googleway::google_places(
+    location = c(pnt$Y, pnt$X),
+    place_type = "cafe",
+    radius = value_radiusSearch,
+    language = "ko",
+    key = key) 
+  
+  if(length(df_places$results) != 0){
+    
+    df_places_results <- df_places$results
+    geometry <- df_places_results$geometry$location
+    df_places_results <- df_places_results %>% 
+      select(one_of(c(
+        "name", "place_id", "types", 
+        "user_ratings_total", "rating", "vicinity", "business_status")))
+    df_places_results <- cbind(df_places_results, geometry)
+    
+    
+    while (!is.null(df_places$next_page_token)) {
+      print(df_places$next_page_token)
+      print(df_places$status)
+      Sys.sleep(5) # time to not overload the Google API
+      
+      df_places <- googleway::google_places(
+        location = c(pnt$Y, pnt$X),
+        place_type = "cafe",
+        radius = value_radiusSearch,
+        language = "ko",
+        page_token = df_places$next_page_token,
+        key = key) 
+      
+      df_places_next <- df_places$results
+      
+      if (length(df_places_next) > 0){
+        geometry <- df_places_next$geometry$location
+        df_places_next <- df_places_next %>%
+          select(one_of(c(
+            "name", "place_id", "types",
+            "user_ratings_total", "rating", "vicinity", "business_status")))
+        df_places_next <- cbind(df_places_next, geometry)
+        df_places_results <- bind_rows(
+          df_places_results, df_places_next)
+      }
+      Sys.sleep(2) # time to not overload the Google API
+    }
+    
+    # df_places_final <- bind_rows(
+    #   df_places_final, df_places_results)
+    
+    df_places_final <- cbind(df_places_results, pnt)
+  } 
+
+}), fill = TRUE)
+
+```
+
+### 데이터 전처리
+
+```{r include = FALSE}
+
+# source(paste(getwd(),"/R Scripts/Functions/Functions.R", sep=""))
+
+getwd()
+
+db_1a <- fread("data/yeonnam_cafe_POI.csv", encoding = "UTF-8")
+shp_bdry <- st_read("data/boundary_yeonnam.shp")
+sf::sf_use_s2(FALSE)
+
+
+```
+
+수집한 데이터는 다음과 같다. 811개 카페 POI가 수집되었고, types 중 `cafe`가 포함된 구글 POI가 모두 수집된 것이다.
+
+```{r}
+db_1a
+
+```
+
+이 데이터는 전처리 과정이 필요하다.
+
+-   연남동을 grid로 나눌 때, 끝점을 사각형으로 인지하고 grid로 생성했으므로 연남동 내 POI만 추출
+-   간단하게 리뷰가 5개 이상 존재하며 영업중인 POI만 추출
+
+```{r warning = FALSE, message = FALSE}
+db_1b <- db_1a %>%
+  # 영업 중이며 리뷰 5개 이상 추출
+  filter(business_status == "OPERATIONAL" & user_ratings_total >= 5) %>%
+  # 데이터를 sf 형태로 변환
+  st_as_sf(coords = c("lng", "lat"), crs = proj_WGS84) %>%
+  # 연남동 지역 내 POI만 추출
+  st_intersection(st_transform(shp_bdry, proj_WGS84)) %>%
+  # 좌표 정보 생성
+  mutate(lng = st_coordinates(.)[,1], 
+         lat = st_coordinates(.)[,2]) %>%
+  # 지리정보 삭제
+  st_drop_geometry() %>% as.data.table()
+
+```
+
+### 데이터 활용
+
+질문으로 돌아가보자.\
+**`"서울 연남동 내 카페은 몇 개고, 리뷰 개수와 평점이 가장 높은 곳은 어디인가?"`**
+
+전처리 이후 연남동 내 카페 개수는 다음과 같다.
+
+```{r }
+length(db_1b$place_id) # 필터링 후 총 개수
+```
+
+리뷰 개수가 가장 높은 곳은 이곳이다.
+
+```{r }
+db_1b[order(-user_ratings_total)][1,]
+```
+
+리뷰 평점이 가장 높은 곳(중에서 가장 리뷰 개수가 많은)은 이곳이다.
+
+```{r }
+db_1b[order(-rating, -user_ratings_total)][1,]
+```
+
+수집한 카페 위치 분포는 아래와 같다. ![Concept](image/yeonnam_cafe_POI.png){width="75%"}

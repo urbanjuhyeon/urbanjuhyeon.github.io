@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>jhyeonpark.com/blog.html</loc>
-    <lastmod>2023-03-17T00:17:01.030Z</lastmod>
+    <lastmod>2023-03-17T00:31:46.262Z</lastmod>
   </url>
   <url>
     <loc>jhyeonpark.com/about.html</loc>
@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>jhyeonpark.com/index.html</loc>
-    <lastmod>2023-03-17T00:17:00.485Z</lastmod>
+    <lastmod>2023-03-17T00:31:45.757Z</lastmod>
   </url>
   <url>
     <loc>jhyeonpark.com/posts/housing-consultation-analysis-1/index.html</loc>
@@ -34,6 +34,14 @@
   </url>
   <url>
     <loc>jhyeonpark.com/posts/2022-04-15-how-to-use-open-api/index.html</loc>
-    <lastmod>2023-03-17T00:17:04.511Z</lastmod>
+    <lastmod>2023-03-17T00:26:30.162Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2023-01-15-how-to-use-googleway-r/index.html</loc>
+    <lastmod>2023-03-17T00:29:05.856Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2023-02-11-how-to-use-open-api/index.html</loc>
+    <lastmod>2023-03-17T00:31:49.415Z</lastmod>
   </url>
 </urlset>

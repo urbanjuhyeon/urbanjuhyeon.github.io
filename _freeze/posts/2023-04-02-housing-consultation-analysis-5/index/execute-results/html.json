@@ -1,0 +1,14 @@
+{
+  "hash": "056fd4faba904758a15517af4a6354a1",
+  "result": {
+    "markdown": "---\ntitle: \"주거상담기록 분석 (5): 주제 정보\"\ndescription: |\n  stm 주제의 주요 단어나 분포 등을 살펴보자\ndate: \"2023-03-31\"\ncategories: [Python]\n---\n\n\n# 들어가기\n\n토픽모델링 주제 이름이 지어진 이후, 그 주제의 주요 단어나 분포 등을 살펴본다.\n\n------------------------------------------------------------------------\n\n# 1. 데이터 준비하기\n\n## 1.1. 패키지 불러오기\n\n필요한 패키지를 불러온다.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n## 패키지 불러오기\npacman::p_load(\n  \"tidyverse\",  \"tidytext\", \"stm\", \"data.table\", \"knitr\", \"gt\")\n```\n:::\n\n\n## 1.2. stm 모델 불러오기\n\n### 데이터 전처리\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

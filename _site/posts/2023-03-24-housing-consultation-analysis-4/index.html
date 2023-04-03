@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-03-31">
+<meta name="description" content="stm 모델이 제시한 주제 이름을 지어보자">
+
+<title>Juhyeon Park - 주거상담기록 분석 (4): 주제 명명</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Juhyeon Park</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">Juhyeon Park</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jhyeonpark"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">주거상담기록 분석 (4): 주제 명명</h1>
+                  <div>
+        <div class="description">
+          <p>stm 모델이 제시한 주제 이름을 지어보자</p>
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Python</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 31, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#들어가기" id="toc-들어가기" class="nav-link active" data-scroll-target="#들어가기">들어가기</a></li>
+  <li><a href="#토픽모델링" id="toc-토픽모델링" class="nav-link" data-scroll-target="#토픽모델링">1. 토픽모델링</a>
+  <ul class="collapse">
+  <li><a href="#모델링-사전-준비" id="toc-모델링-사전-준비" class="nav-link" data-scroll-target="#모델링-사전-준비">1.1. 모델링 사전 준비</a>
+  <ul class="collapse">
+  <li><a href="#패키지-불러오기" id="toc-패키지-불러오기" class="nav-link" data-scroll-target="#패키지-불러오기">패키지 불러오기</a></li>
+  <li><a href="#데이터-전처리" id="toc-데이터-전처리" class="nav-link" data-scroll-target="#데이터-전처리">데이터 전처리</a></li>
+  <li><a href="#모델링-준비" id="toc-모델링-준비" class="nav-link" data-scroll-target="#모델링-준비">모델링 준비</a></li>
+  </ul></li>
+  <li><a href="#토픽모델링-1" id="toc-토픽모델링-1" class="nav-link" data-scroll-target="#토픽모델링-1">1.2. 토픽모델링</a></li>
+  </ul></li>
+  <li><a href="#주제-이름-짓기" id="toc-주제-이름-짓기" class="nav-link" data-scroll-target="#주제-이름-짓기">2. 주제 이름 짓기</a>
+  <ul class="collapse">
+  <li><a href="#모델-불러오기" id="toc-모델-불러오기" class="nav-link" data-scroll-target="#모델-불러오기">2.1. 모델 불러오기</a></li>
+  <li><a href="#주요-단어" id="toc-주요-단어" class="nav-link" data-scroll-target="#주요-단어">2.2. 주요 단어</a></li>
+  <li><a href="#대표문서" id="toc-대표문서" class="nav-link" data-scroll-target="#대표문서">2.3. 대표문서</a></li>
+  <li><a href="#주제-명명" id="toc-주제-명명" class="nav-link" data-scroll-target="#주제-명명">2.4. 주제 명명</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="들어가기" class="level1">
+<h1>들어가기</h1>
+<p>토픽모델링 <strong>주제 이름을 짓는 과정</strong>을 다룬다. 주제 명명은 주제별 주요 단어와 대표문서를 참고한다.</p>
+<hr>
+</section>
+<section id="토픽모델링" class="level1">
+<h1>1. 토픽모델링</h1>
+<section id="모델링-사전-준비" class="level2">
+<h2 class="anchored" data-anchor-id="모델링-사전-준비">1.1. 모델링 사전 준비</h2>
+<section id="패키지-불러오기" class="level3">
+<h3 class="anchored" data-anchor-id="패키지-불러오기">패키지 불러오기</h3>
+<p>필요한 패키지를 불러온다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 패키지 불러오기</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tidyverse"</span>,  <span class="st">"tidytext"</span>, <span class="st">"stm"</span>, <span class="st">"data.table"</span>, <span class="st">"knitr"</span>, <span class="st">"gt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="데이터-전처리" class="level3">
+<h3 class="anchored" data-anchor-id="데이터-전처리">데이터 전처리</h3>
+<p>토픽모델링 전 데이터 불러오기와 정제 과정을 거친다. 예제 코드 따라하기 위해선 아래 샘플 데이터를 다운받으면 된다.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">샘플 데이터</th>
+<th style="text-align: left;">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="data/db_record_v1.csv">db_record_v1</a></td>
+<td style="text-align: left;">주거상담 메타데이터</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="data/db_record_v2.csv">db_record_v2.csv</a></td>
+<td style="text-align: left;">주거상담 형태소분석 결과</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="data/dict/dict_userDefined.txt">dict_userDefined.txt</a></td>
+<td style="text-align: left;">사용자정의 단어 사전</td>
+</tr>
+</tbody>
+</table>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>단, 아래 샘플 데이터는 전체 중 100개를 무작위로 추출한 DB며, 이후 토픽모델링에 활용한 전체 데이터와 다르다.</p>
+</div>
+</div>
+<p>먼저 데이터를 불러온다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 메타데이터 불러오기</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>db_recordMeta <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"Data/db_record_v1.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 형태소분석된 데이터 불러오기</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>db_record_1a <span class="ot">&lt;-</span> <span class="fu">fread</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/db_record_v2.csv"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">select =</span> <span class="fu">c</span>(<span class="st">"id_f"</span>, <span class="st">"cons_text"</span>, <span class="st">"cons_text_posJoined_main"</span>) <span class="co"># 필요한 열만 불러오기</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 사용자정의 사전 불러오기</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>list_userDefined <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"data/dict/dict_userDefined.txt"</span>)[<span class="fu">substr</span>(V2, <span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">%in%</span> <span class="st">"N"</span>]<span class="sc">$</span>V1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>희소단어 제거로 토픽모델링 전 정제를 해준다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 희소 단어 제거를 위한 단어빈도 표</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>word_count <span class="ot">&lt;-</span> db_record_1a <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, cons_text_posJoined_main, <span class="at">token =</span> stringr<span class="sc">::</span>str_split, <span class="at">pattern =</span> <span class="st">" "</span>) <span class="sc">%&gt;%</span> <span class="co"># 띄어쓰기 기준</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> <span class="fu">cumsum</span>(n) <span class="sc">/</span> <span class="fu">sum</span>(n))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 제거할 단어 리스트</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>list_wordRemoved <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(      <span class="co"># 차집합</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setDT</span>(word_count)[n <span class="sc">&lt;=</span> <span class="dv">1</span>]<span class="sc">$</span>word, <span class="co"># 빈도가 1개 이하인 단어 리스트</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  list_userDefined                <span class="co"># 사용자정의 단어  </span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 희소단어 제거</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>db_record_f <span class="ot">&lt;-</span> db_record_1a <span class="sc">%&gt;%</span> </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, cons_text_posJoined_main, <span class="at">token =</span> stringr<span class="sc">::</span>str_split, <span class="at">pattern =</span> <span class="st">" "</span>) <span class="sc">%&gt;%</span>  <span class="co"># 띄어쓰기 기준</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(word <span class="sc">%in%</span> list_wordRemoved)) <span class="sc">%&gt;%</span>                                                     <span class="co"># 희소단어 제거</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 제거 후 붙이기</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id_f)  <span class="sc">%&gt;%</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">cons_text_posJoined_main =</span> <span class="fu">toString</span>(word)) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span>                        </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cons_text_posJoined_main =</span> <span class="fu">str_remove_all</span>(cons_text_posJoined_main, <span class="at">pattern =</span> <span class="st">"//,|,"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(db_recordMeta, <span class="at">by =</span> <span class="st">"id_f"</span>) <span class="sc">%&gt;%</span>                                                    <span class="co"># 메타데이터와 붙이기</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 주요 품사가 한 개인 경우는 제외</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_count</span>(cons_text_posJoined_main, <span class="at">pattern =</span> <span class="st">" "</span>) <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="모델링-준비" class="level3">
+<h3 class="anchored" data-anchor-id="모델링-준비">모델링 준비</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 준비</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>processed <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(db_record_f) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textProcessor</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">documents =</span> .<span class="sc">$</span>cons_text_posJoined_main, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">metadata =</span> .,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">lowercase =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">removepunctuation =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">removenumbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">removestopwords =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">stem =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">wordLengths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">Inf</span>),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">language =</span> <span class="st">"na"</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">prepDocuments</span>(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  processed<span class="sc">$</span>documents,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  processed<span class="sc">$</span>vocab,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  processed<span class="sc">$</span>meta)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>docs <span class="ot">&lt;-</span> out<span class="sc">$</span>documents; vocab <span class="ot">&lt;-</span> out<span class="sc">$</span>vocab; meta <span class="ot">&lt;-</span> out<span class="sc">$</span>meta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="토픽모델링-1" class="level2">
+<h2 class="anchored" data-anchor-id="토픽모델링-1">1.2. 토픽모델링</h2>
+<p>앞서 결정한 주제 개수로 <code>stm</code> 토픽모델링을 수행한다. 주제 개수는 25개며, 투입하는 공변인<code>prevalence</code>은 상담센터와 상담연도, 상담사가 지정한 주요상담욕구다. 공변인은 주제 확률 모형에서 고려해야 할 변수를 말하며, 주거상담은 센터별, 연도별, 주요상담욕구별로 다를 것이라고 생각했다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>SET_TOPIC_NUMBER <span class="ot">&lt;-</span> <span class="dv">25</span>                                          <span class="co"># 최종 주제 개수 지정</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>tm_fiited <span class="ot">&lt;-</span> <span class="fu">stm</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">documents =</span> docs, </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">vocab =</span> vocab,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> meta,                                                   </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">prevalence =</span> <span class="sc">~</span> cons_center <span class="sc">+</span> cons_date_year <span class="sc">+</span> cons_type_adj,  <span class="co"># 공변인</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">K =</span> SET_TOPIC_NUMBER,                                         <span class="co"># 주제 개수</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">init.type =</span> <span class="st">"Spectral"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">max.em.its =</span> <span class="dv">500</span>                                              <span class="co"># 수렴까지 반복 횟수</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>모델링 한 결과 값은 <code>rds</code> 포맷으로 저장 가능하다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tm_fiited <span class="ot">&lt;-</span> <span class="fu">write_rds</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  tm_fiited, <span class="co"># stm model</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"result/stmFinal_fit.rds"</span> <span class="co"># 저장 루트</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="주제-이름-짓기" class="level1">
+<h1>2. 주제 이름 짓기</h1>
+<p>입력한 주제 수에 따라 나온 주제의 이름은 연구자가 지어주어야 한다. Topic 1, Topic 2와 같은 이름 없는 주제는 주제별 주요 단어와 대표문서를 참고해 명명할 수 있다.</p>
+<section id="모델-불러오기" class="level2">
+<h2 class="anchored" data-anchor-id="모델-불러오기">2.1. 모델 불러오기</h2>
+<p>정해진 최종 주제 개수로 모델링한 stm 모델을 불러오자. <a href="result/stmFinal_fit.rds">여기</a>에서 전체 데이터로 stm 모델링한 결과를 불러올 수 있다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tm_fiited <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"result/stmFinal_fit.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="주요-단어" class="level2">
+<h2 class="anchored" data-anchor-id="주요-단어">2.2. 주요 단어</h2>
+<p>주제별 주요 단어를 추출한다. 추출할 단어 개수를 설정하고 <code>labelTopics</code>로 단어를 확인한다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>wordNumber <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># 보여질 단어 개수</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>output_wordPerTopic_1a <span class="ot">&lt;-</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labelTopics</span>(tm_fiited, <span class="at">n =</span> wordNumber)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>주제 별로 4가지 종류에 따른 주요 단어를 볼 수 있다:</p>
+<ul>
+<li>Prob: 특정 토픽에서 나타날 확률이 높은 단어</li>
+<li>Frex: 특정 토픽에는 빈도가 높지만 다른 토픽엔 그렇지 않은 단어(가중 평균 적용)</li>
+<li>Lift: 특정 토픽에 고유한 단어 강조(다른 토픽 빈도 활용)</li>
+<li>Score: 특정 토픽에 고유한 단어(다른 토픽 로그 빈도 활용)</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Topic 1 Top Words:\n \t Highest Prob: 오후, 나누다, 후원, 건강, 나눔 \n \t FREX: 나눔, 점심, 참석, 추석, 행사 \n \t Lift: 물티슈, 사단, 사랑나눔재단, 송편, 행사 \n \t Score: 나눔, 나누다, 후원, 마스크, 참석 \nTopic 2 Top Words:\n \t Highest Prob: 지원, 임대료, 체납, 납부, 임차료 \n \t FREX: 임차료, 미납, 주거비, 납부, 고지서\n   ..."</code></pre>
+</div>
+</div>
+<p>주제별 주요 단어를 다루기 편한 word 파일로 내보내는 작업은 아래와 같다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">melt</span>(<span class="fu">data.table</span>(<span class="at">topicnums =</span> <span class="fu">c</span>(output_wordPerTopic_1a<span class="sc">$</span>topicnums), output_wordPerTopic_1a<span class="sc">$</span>prob), <span class="dv">1</span>)[</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>      , .(<span class="at">word_list =</span> <span class="fu">toString</span>(value)), .(topicnums)][, <span class="at">type :=</span> <span class="st">"Prob"</span>],</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">melt</span>(<span class="fu">data.table</span>(<span class="at">topicnums =</span> <span class="fu">c</span>(output_wordPerTopic_1a<span class="sc">$</span>topicnums), output_wordPerTopic_1a<span class="sc">$</span>frex), <span class="dv">1</span>)[</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>      , .(<span class="at">word_list =</span> <span class="fu">toString</span>(value)), .(topicnums)][, <span class="at">type :=</span> <span class="st">"Frex"</span>],</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">melt</span>(<span class="fu">data.table</span>(<span class="at">topicnums =</span> <span class="fu">c</span>(output_wordPerTopic_1a<span class="sc">$</span>topicnums), output_wordPerTopic_1a<span class="sc">$</span>lift), <span class="dv">1</span>)[</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>      , .(<span class="at">word_list =</span> <span class="fu">toString</span>(value)), .(topicnums)][, <span class="at">type :=</span> <span class="st">"Lift"</span>],</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">melt</span>(<span class="fu">data.table</span>(<span class="at">topicnums =</span> <span class="fu">c</span>(output_wordPerTopic_1a<span class="sc">$</span>topicnums), output_wordPerTopic_1a<span class="sc">$</span>score), <span class="dv">1</span>)[</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>      , .(<span class="at">word_list =</span> <span class="fu">toString</span>(value)), .(topicnums)][, <span class="at">type :=</span> <span class="st">"Score"</span>])[</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        , .(<span class="st">`</span><span class="at">주제 번호</span><span class="st">`</span> <span class="ot">=</span> topicnums,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at"> </span><span class="st">`</span> <span class="ot">=</span> <span class="st">" "</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">단어 가중치</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">factor</span>(type, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Prob"</span>, <span class="st">"Frex"</span>, <span class="st">"Lift"</span>, <span class="st">"Score"</span>)), </span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">주요 단어</span><span class="st">`</span> <span class="ot">=</span> word_list, <span class="at">topicnums =</span> <span class="cn">NULL</span>)][<span class="fu">order</span>(<span class="st">`</span><span class="at">주제 번호</span><span class="st">`</span>, <span class="st">`</span><span class="at">단어 가중치</span><span class="st">`</span>)] <span class="sc">%&gt;%</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"주제 번호"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="at">footnote =</span> <span class="st">"</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="st">  Prob: 특정 토픽에서 나타날 확률이 높은 단어, </span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="st">  Frex: 특정 토픽에는 빈도가 높지만 다른 토픽엔 그렇지 않은 단어(가중 평균 적용),</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="st">  Lift: 특정 토픽에 고유한 단어 강조(다른 토픽 빈도 활용), </span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="st">  Score: 특정 토픽에 고유한 단어(다른 토픽 로그 빈도 활용)</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="st">  "</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gtsave</span>(<span class="st">"result/주요단어_주제라벨링용.docx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>단어별 4가지 가중치에 대해 주요 단어를 word 파일로 볼 수 있다.</p>
+<p><img src="image/주요단어_f.png" class="img-fluid"></p>
+</section>
+<section id="대표문서" class="level2">
+<h2 class="anchored" data-anchor-id="대표문서">2.3. 대표문서</h2>
+<p>주제를 대표하는 문서를 추출하는 방법은 아래와 같다. 각 문서는 모든 토픽마다 <code>gamma</code>를 가지고, 이는 그 문서에 해당 토픽 출현 확률이다. 예를 들어 문서 1에 주제 2의 gamma 값이 0.612라면, 문서 2의 단어 중 약 61.2%가 주제 2에 속한다고 해석할 수 있다. 이를 반대로하면, 대표문서를 추출하기 위해선 주제별로 <code>gamma</code>가 높음 문서를 추출하면 된다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>output_mainDocumPerTopic_1a <span class="ot">&lt;-</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>(tm_fiited, <span class="at">matrix=</span><span class="st">"gamma"</span>, <span class="at">document_names=</span>meta<span class="sc">$</span>id_f) <span class="sc">%&gt;%</span>           <span class="co"># gamma 계산</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">topic=</span><span class="fu">paste0</span>(<span class="st">"Topic "</span>, topic), <span class="at">document=</span><span class="fu">as.factor</span>(document)) <span class="sc">%&gt;%</span> <span class="co"># 'Topic' 문자열 추가</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">topic=</span><span class="fu">fct_reorder</span>(topic, <span class="fu">parse_number</span>(topic))) <span class="sc">%&gt;%</span>               <span class="co"># Topic 순서 지정</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(meta, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"document"</span> <span class="ot">=</span> <span class="st">"id_f"</span>)) <span class="sc">%&gt;%</span>                        <span class="co"># 메타데이터와 결합</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(topic, cons_text_posJoined_main, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span>         <span class="co"># 주제별 상담 중복 제거</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(document) <span class="sc">%&gt;%</span> <span class="fu">slice_max</span>(gamma, <span class="at">n =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span>        <span class="co"># 각 문서별 gamma 최대값 주제만 남김</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(topic) <span class="sc">%&gt;%</span> <span class="fu">slice_max</span>(gamma, <span class="at">n =</span> <span class="dv">5</span>)                             <span class="co"># 주제별로 5개 문서 제시</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.table</span>(output_mainDocumPerTopic_1a)[</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  , .(<span class="st">`</span><span class="at">주제 번호</span><span class="st">`</span> <span class="ot">=</span> topic, </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">문서 번호</span><span class="st">`</span> <span class="ot">=</span> document, <span class="st">`</span><span class="at">상담기록</span><span class="st">`</span> <span class="ot">=</span> cons_text, </span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">정제상담기록</span><span class="st">`</span> <span class="ot">=</span> cons_text_posJoined_main, gamma)] <span class="sc">%&gt;%</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gtsave</span>(<span class="st">"result/대표문서_주제라벨링용.docx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="주제-명명" class="level2">
+<h2 class="anchored" data-anchor-id="주제-명명">2.4. 주제 명명</h2>
+<p>주요 단어와 대표 문서를 보고 주제 이름을 연구자가 직접 지어주어야 한다.</p>
+<p>여기서 예시로 든 샘플이 아닌 원데이터를 쓴 경우, 주제 12의 주요 단어와 대표 문서는 다음과 같았다.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 95%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">가중치</th>
+<th style="text-align: left;">주요 단어 15개</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Prob</td>
+<td style="text-align: left;">대출, 안내, 문의, 청년, 신청, 임차보증금, 소득, 가능, 은행, 서울시, 근로, 이자지원, 기준, 금액, 보험</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Frex</td>
+<td style="text-align: left;">이자지원, 임차보증금, 추천서, 전세자금, 대출, 버팀목전세대출, 은행, 융자, 청년전세임대, 서울주거포털, 청년, 하나은행, 득실, 청년월세지원, 증명</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lift</td>
+<td style="text-align: left;">한국주택금융공사, 근로계약서, 원천, 금리, 버팀목전세대출, 보금자리, 보람일자리, 서울주거포털, 이자지원, 임차보증금, 전세자금, 징수, 청년월세, 청년월세지원, 추천서</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Score</td>
+<td style="text-align: left;">대출, 청년, 임차보증금, 이자지원, 소득, 추천서, 은행, 버팀목전세대출, 전세자금, 증명, 근로, 문의, 신청, 보험, 발급</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 95%">
+<col style="width: 2%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">토픽 번호</th>
+<th style="text-align: left;">상담기록</th>
+<th style="text-align: right;">gamma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Topic 12</td>
+<td style="text-align: left;">* 청년임차보증금대출 1. 근로청년으로 지원, 소득증명원에 대한 문의 - 19년 7월 이직하여 소득증명원을 입력하려고 하는데 7월 이후 현직장 근로소득 원천징수영수증을 첨부하라고 함. - 전년도소득증명원과 현직장 근로소득 원천징수영수증 두가지 모두 첨부해야 하는지와 근로소득 기간에 대해 문의함. ㅡ&gt; 소득증명원에 대해서 더 구체적인 사항은 청년임차보증금 전월세팀(02-2133-7047)로 문의할 것을 안내함.</td>
+<td style="text-align: right;">0.9714335</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Topic 12</td>
+<td style="text-align: left;">* 서울시 청년 임차보증금 이자지원 사업 1. 연소득이 4천만원을 초과하면 아예 지원이 불가능한 것인지 문의함 ㅡ&gt; 연소득 4천만원 이하인 것이 신청 자격이기때문에 초과를 한다면 신청 불가능한 것이라고 안내함 2. 이것 말고 이용할 수 있는 상품이 있는지 문의함 ㅡ&gt; 청년전용 버팀목전세자금, 청년 맞춤형 전세자금 대출 안내함 3. 중복가능한 상품인지 문의함 ㅡ&gt; 중복이 가능한 것은 청년임차보증금 이자지원과 청년 맞춤형 전세자금 대출이라고 안내함</td>
+<td style="text-align: right;">0.9698277</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>주제 12은 주요 단어로 대출과 임차보증금, 이자지원, 추천서 등이 주로 나타났고 대표문서에서도 청년임차보증금 제도 문의가 드러났다. 따라서 주제 12의 주제 이름은 <strong>청년임차보증금 문의</strong>로 지었다.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2023-03-22">
-<meta name="description" content="주거상담 주제 분석">
+<meta name="description" content="텍스트 정제와 형태소분석을 포함한 텍스트 전처리 과정">
 
-<title>Juhyeon Park - 주거상담기록 분석 (2): 텍스트전처리</title>
+<title>Juhyeon Park - 주거상담기록 데이터 분석 (2): 형태소분석</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -176,10 +176,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">주거상담기록 분석 (2): 텍스트전처리</h1>
+      <h1 class="title">주거상담기록 데이터 분석 (2): 형태소분석</h1>
                   <div>
         <div class="description">
-          <p>주거상담 주제 분석</p>
+          <p>텍스트 정제와 형태소분석을 포함한 텍스트 전처리 과정</p>
         </div>
       </div>
                           <div class="quarto-categories">
@@ -240,7 +240,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#kiwi-형태소분석" id="toc-kiwi-형태소분석" class="nav-link" data-scroll-target="#kiwi-형태소분석">Kiwi 형태소분석</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#끝으로" id="toc-끝으로" class="nav-link" data-scroll-target="#끝으로">끝으로</a></li>
   </ul>
 </nav>
     </div>
@@ -289,17 +288,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <style type="text/css">
 </style>
-<table id="T_61ac5">
+<table id="T_da8be">
   <thead>
     <tr>
-      <th id="T_61ac5_level0_col0" class="col_heading level0 col0">id_f</th>
-      <th id="T_61ac5_level0_col1" class="col_heading level0 col1">cons_text</th>
+      <th id="T_da8be_level0_col0" class="col_heading level0 col0">id_f</th>
+      <th id="T_da8be_level0_col1" class="col_heading level0 col1">cons_text</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_61ac5_row0_col0" class="data row0 col0">1</td>
-      <td id="T_61ac5_row0_col1" class="data row0 col1">* 재개발 임대 아파트 거주중.
+      <td id="T_da8be_row0_col0" class="data row0 col0">1</td>
+      <td id="T_da8be_row0_col1" class="data row0 col1">* 재개발 임대 아파트 거주중.
 * 임대료 7개월 1,381,980원 체납
 * 일자리를 구하는 중으로 수입이 없어 경제적으로 어려운 상황으로 인함.
 * 작년 20.10.30 체납 상담했던 대상자로 현재 실업급여로 180만원이 나오고 있는데, 수급자 신청해 보려 했으나, 실업급여와 중복으로 받을 수 없다고 안내를 받았다 함. 
@@ -307,8 +306,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 * 일자리를 구하신다고 하셔서 임대주택 입주자 분들께 일자리 상담 연계해 드리고 있는데, 필요하신지 여쭤보았더니, 자신이 직접 알아보시겠다고 하심.</td>
     </tr>
     <tr>
-      <td id="T_61ac5_row1_col0" class="data row1 col0">2</td>
-      <td id="T_61ac5_row1_col1" class="data row1 col1">* 청년임차보증금 이자지원사업 추천서 관련 문의전화 주심(20대 추정)
+      <td id="T_da8be_row1_col0" class="data row1 col0">2</td>
+      <td id="T_da8be_row1_col1" class="data row1 col1">* 청년임차보증금 이자지원사업 추천서 관련 문의전화 주심(20대 추정)
 * 건강보험자격득실확인서 지역가입자이며 대학생으로 소득 없음. 국세청홈택스 소득금액증명원 조회결과 2019년 아르바이트 소득 조회됨. 취업준비생 유형으로 신청 가능한지 궁금
 · 취업준비생 유형으로 신청 가능
 * 서울주거포털에서 추천서 신청시 거주지 주소에 현주소 기입하는 것인지 궁금
@@ -333,32 +332,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <style type="text/css">
 </style>
-<table id="T_02433">
+<table id="T_2e999">
   <thead>
     <tr>
-      <th id="T_02433_level0_col0" class="col_heading level0 col0">cons_text</th>
-      <th id="T_02433_level0_col1" class="col_heading level0 col1">cons_text_cleaned_1</th>
+      <th id="T_2e999_level0_col0" class="col_heading level0 col0">cons_text</th>
+      <th id="T_2e999_level0_col1" class="col_heading level0 col1">cons_text_cleaned_1</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_02433_row0_col0" class="data row0 col0">* 재개발 임대 아파트 거주중.
+      <td id="T_2e999_row0_col0" class="data row0 col0">* 재개발 임대 아파트 거주중.
 * 임대료 7개월 1,381,980원 체납
 * 일자리를 구하는 중으로 수입이 없어 경제적으로 어려운 상황으로 인함.
 * 작년 20.10.30 체납 상담했던 대상자로 현재 실업급여로 180만원이 나오고 있는데, 수급자 신청해 보려 했으나, 실업급여와 중복으로 받을 수 없다고 안내를 받았다 함. 
 * 임대료 체납 기간이 길어질수록 나중에 퇴거 명령을 받으실 수도 있다고 안내드렸더니, 이번에 빌려서 어떻게든 해결해 보려 한다고 하심.  
 * 일자리를 구하신다고 하셔서 임대주택 입주자 분들께 일자리 상담 연계해 드리고 있는데, 필요하신지 여쭤보았더니, 자신이 직접 알아보시겠다고 하심.</td>
-      <td id="T_02433_row0_col1" class="data row0 col1">  재개발 임대 아파트 거주중    임대료 7개월 1 381 980원 체납   일자리를 구하는 중으로 수입이 없어 경제적으로 어려운 상황으로 인함    작년 20 10 30 체납 상담했던 대상자로 현재 실업급여로 180만원이 나오고 있는데  수급자 신청해 보려 했으나  실업급여와 중복으로 받을 수 없다고 안내를 받았다 함     임대료 체납 기간이 길어질수록 나중에 퇴거 명령을 받으실 수도 있다고 안내드렸더니  이번에 빌려서 어떻게든 해결해 보려 한다고 하심      일자리를 구하신다고 하셔서 임대주택 입주자 분들께 일자리 상담 연계해 드리고 있는데  필요하신지 여쭤보았더니  자신이 직접 알아보시겠다고 하심 </td>
+      <td id="T_2e999_row0_col1" class="data row0 col1">  재개발 임대 아파트 거주중    임대료 7개월 1 381 980원 체납   일자리를 구하는 중으로 수입이 없어 경제적으로 어려운 상황으로 인함    작년 20 10 30 체납 상담했던 대상자로 현재 실업급여로 180만원이 나오고 있는데  수급자 신청해 보려 했으나  실업급여와 중복으로 받을 수 없다고 안내를 받았다 함     임대료 체납 기간이 길어질수록 나중에 퇴거 명령을 받으실 수도 있다고 안내드렸더니  이번에 빌려서 어떻게든 해결해 보려 한다고 하심      일자리를 구하신다고 하셔서 임대주택 입주자 분들께 일자리 상담 연계해 드리고 있는데  필요하신지 여쭤보았더니  자신이 직접 알아보시겠다고 하심 </td>
     </tr>
     <tr>
-      <td id="T_02433_row1_col0" class="data row1 col0">* 청년임차보증금 이자지원사업 추천서 관련 문의전화 주심(20대 추정)
+      <td id="T_2e999_row1_col0" class="data row1 col0">* 청년임차보증금 이자지원사업 추천서 관련 문의전화 주심(20대 추정)
 * 건강보험자격득실확인서 지역가입자이며 대학생으로 소득 없음. 국세청홈택스 소득금액증명원 조회결과 2019년 아르바이트 소득 조회됨. 취업준비생 유형으로 신청 가능한지 궁금
 · 취업준비생 유형으로 신청 가능
 * 서울주거포털에서 추천서 신청시 거주지 주소에 현주소 기입하는 것인지 궁금
 · 서울주거포털 추천서 신청시 현주소 기입
 * 서울시추천서 신청과 이사 할 전월세주택 물색 중에서 어느것을 먼저 해야하는지 궁금
 · 서울시추천서 유효기간 발급일로부터 3개월임을 안내</td>
-      <td id="T_02433_row1_col1" class="data row1 col1">  청년임차보증금 이자지원사업 추천서 관련 문의전화 주심 20대 추정    건강보험자격득실확인서 지역가입자이며 대학생으로 소득 없음  국세청홈택스 소득금액증명원 조회결과 2019년 아르바이트 소득 조회됨  취업준비생 유형으로 신청 가능한지 궁금   취업준비생 유형으로 신청 가능   서울주거포털에서 추천서 신청시 거주지 주소에 현주소 기입하는 것인지 궁금   서울주거포털 추천서 신청시 현주소 기입   서울시추천서 신청과 이사 할 전월세주택 물색 중에서 어느것을 먼저 해야하는지 궁금   서울시추천서 유효기간 발급일로부터 3개월임을 안내</td>
+      <td id="T_2e999_row1_col1" class="data row1 col1">  청년임차보증금 이자지원사업 추천서 관련 문의전화 주심 20대 추정    건강보험자격득실확인서 지역가입자이며 대학생으로 소득 없음  국세청홈택스 소득금액증명원 조회결과 2019년 아르바이트 소득 조회됨  취업준비생 유형으로 신청 가능한지 궁금   취업준비생 유형으로 신청 가능   서울주거포털에서 추천서 신청시 거주지 주소에 현주소 기입하는 것인지 궁금   서울주거포털 추천서 신청시 현주소 기입   서울시추천서 신청과 이사 할 전월세주택 물색 중에서 어느것을 먼저 해야하는지 궁금   서울시추천서 유효기간 발급일로부터 3개월임을 안내</td>
     </tr>
   </tbody>
 </table>
@@ -374,49 +373,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <style type="text/css">
 </style>
-<table id="T_52509">
+<table id="T_c7bb0">
   <thead>
     <tr>
       <th class="blank level0">&nbsp;</th>
-      <th id="T_52509_level0_col0" class="col_heading level0 col0">beforeWord</th>
-      <th id="T_52509_level0_col1" class="col_heading level0 col1">afterWord</th>
+      <th id="T_c7bb0_level0_col0" class="col_heading level0 col0">beforeWord</th>
+      <th id="T_c7bb0_level0_col1" class="col_heading level0 col1">afterWord</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_52509_level0_row0" class="row_heading level0 row0">0</th>
-      <td id="T_52509_row0_col0" class="data row0 col0">재개발 임대</td>
-      <td id="T_52509_row0_col1" class="data row0 col1">재개발임대</td>
+      <th id="T_c7bb0_level0_row0" class="row_heading level0 row0">0</th>
+      <td id="T_c7bb0_row0_col0" class="data row0 col0">재개발 임대</td>
+      <td id="T_c7bb0_row0_col1" class="data row0 col1">재개발임대</td>
     </tr>
     <tr>
-      <th id="T_52509_level0_row1" class="row_heading level0 row1">1</th>
-      <td id="T_52509_row1_col0" class="data row1 col0">재개발임대주택</td>
-      <td id="T_52509_row1_col1" class="data row1 col1">재개발임대</td>
+      <th id="T_c7bb0_level0_row1" class="row_heading level0 row1">1</th>
+      <td id="T_c7bb0_row1_col0" class="data row1 col0">재개발임대주택</td>
+      <td id="T_c7bb0_row1_col1" class="data row1 col1">재개발임대</td>
     </tr>
     <tr>
-      <th id="T_52509_level0_row2" class="row_heading level0 row2">2</th>
-      <td id="T_52509_row2_col0" class="data row2 col0">서울 주거포털</td>
-      <td id="T_52509_row2_col1" class="data row2 col1">서울주거포털</td>
+      <th id="T_c7bb0_level0_row2" class="row_heading level0 row2">2</th>
+      <td id="T_c7bb0_row2_col0" class="data row2 col0">서울 주거포털</td>
+      <td id="T_c7bb0_row2_col1" class="data row2 col1">서울주거포털</td>
     </tr>
     <tr>
-      <th id="T_52509_level0_row3" class="row_heading level0 row3">3</th>
-      <td id="T_52509_row3_col0" class="data row3 col0">현대아산재단&nbsp;</td>
-      <td id="T_52509_row3_col1" class="data row3 col1">아산사회복지재단</td>
+      <th id="T_c7bb0_level0_row3" class="row_heading level0 row3">3</th>
+      <td id="T_c7bb0_row3_col0" class="data row3 col0">현대아산재단&nbsp;</td>
+      <td id="T_c7bb0_row3_col1" class="data row3 col1">아산사회복지재단</td>
     </tr>
     <tr>
-      <th id="T_52509_level0_row4" class="row_heading level0 row4">4</th>
-      <td id="T_52509_row4_col0" class="data row4 col0">아산재단</td>
-      <td id="T_52509_row4_col1" class="data row4 col1">아산사회복지재단</td>
+      <th id="T_c7bb0_level0_row4" class="row_heading level0 row4">4</th>
+      <td id="T_c7bb0_row4_col0" class="data row4 col0">아산재단</td>
+      <td id="T_c7bb0_row4_col1" class="data row4 col1">아산사회복지재단</td>
     </tr>
     <tr>
-      <th id="T_52509_level0_row5" class="row_heading level0 row5">5</th>
-      <td id="T_52509_row5_col0" class="data row5 col0">아산사회복지 재단</td>
-      <td id="T_52509_row5_col1" class="data row5 col1">아산사회복지재단</td>
+      <th id="T_c7bb0_level0_row5" class="row_heading level0 row5">5</th>
+      <td id="T_c7bb0_row5_col0" class="data row5 col0">아산사회복지 재단</td>
+      <td id="T_c7bb0_row5_col1" class="data row5 col1">아산사회복지재단</td>
     </tr>
     <tr>
-      <th id="T_52509_level0_row6" class="row_heading level0 row6">6</th>
-      <td id="T_52509_row6_col0" class="data row6 col0">아산복지재단</td>
-      <td id="T_52509_row6_col1" class="data row6 col1">아산사회복지재단</td>
+      <th id="T_c7bb0_level0_row6" class="row_heading level0 row6">6</th>
+      <td id="T_c7bb0_row6_col0" class="data row6 col0">아산복지재단</td>
+      <td id="T_c7bb0_row6_col1" class="data row6 col1">아산사회복지재단</td>
     </tr>
   </tbody>
 </table>
@@ -442,7 +441,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>db_record[<span class="st">'cons_text_cleaned_2'</span>] <span class="op">=</span> db_record[<span class="st">'cons_text_cleaned_1'</span>].swifter.set_npartitions(npartitions <span class="op">=</span> <span class="dv">12</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: replace_word(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"9e58f95ae7e84a8c86c9b7bf45c13a61","version_major":2,"version_minor":0}
+{"model_id":"a53ead3749a14171aa08715cc9a62330","version_major":2,"version_minor":0}
 </script>
 </div>
 </div>
@@ -451,32 +450,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <style type="text/css">
 </style>
-<table id="T_a15ba">
+<table id="T_23e2a">
   <thead>
     <tr>
-      <th id="T_a15ba_level0_col0" class="col_heading level0 col0">cons_text</th>
-      <th id="T_a15ba_level0_col1" class="col_heading level0 col1">cons_text_cleaned_2</th>
+      <th id="T_23e2a_level0_col0" class="col_heading level0 col0">cons_text</th>
+      <th id="T_23e2a_level0_col1" class="col_heading level0 col1">cons_text_cleaned_2</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_a15ba_row0_col0" class="data row0 col0">* 재개발 임대 아파트 거주중.
+      <td id="T_23e2a_row0_col0" class="data row0 col0">* 재개발 임대 아파트 거주중.
 * 임대료 7개월 1,381,980원 체납
 * 일자리를 구하는 중으로 수입이 없어 경제적으로 어려운 상황으로 인함.
 * 작년 20.10.30 체납 상담했던 대상자로 현재 실업급여로 180만원이 나오고 있는데, 수급자 신청해 보려 했으나, 실업급여와 중복으로 받을 수 없다고 안내를 받았다 함. 
 * 임대료 체납 기간이 길어질수록 나중에 퇴거 명령을 받으실 수도 있다고 안내드렸더니, 이번에 빌려서 어떻게든 해결해 보려 한다고 하심.  
 * 일자리를 구하신다고 하셔서 임대주택 입주자 분들께 일자리 상담 연계해 드리고 있는데, 필요하신지 여쭤보았더니, 자신이 직접 알아보시겠다고 하심.</td>
-      <td id="T_a15ba_row0_col1" class="data row0 col1">  재개발임대 아파트 거주중    임대료 7개월 1 381 980원 체납   일자리를 구하는 중으로 수입이 없어 경제적으로 어려운 상황으로 인함    작년 20 10 30 체납 상담했던 대상자로 현재 실업급여로 180만원이 나오고 있는데  수급자 신청해 보려 했으나  실업급여와 중복으로 받을 수 없다고 안내를 받았다 함     임대료 체납 기간이 길어질수록 나중에 퇴거 명령을 받으실 수도 있다고 안내드렸더니  이번에 빌려서 어떻게든 해결해 보려 한다고 하심      일자리를 구하신다고 하셔서 임대주택 입주자 분들께 일자리 상담 연계해 드리고 있는데  필요하신지 여쭤보았더니  자신이 직접 알아보시겠다고 하심 </td>
+      <td id="T_23e2a_row0_col1" class="data row0 col1">  재개발임대 아파트 거주중    임대료 7개월 1 381 980원 체납   일자리를 구하는 중으로 수입이 없어 경제적으로 어려운 상황으로 인함    작년 20 10 30 체납 상담했던 대상자로 현재 실업급여로 180만원이 나오고 있는데  수급자 신청해 보려 했으나  실업급여와 중복으로 받을 수 없다고 안내를 받았다 함     임대료 체납 기간이 길어질수록 나중에 퇴거 명령을 받으실 수도 있다고 안내드렸더니  이번에 빌려서 어떻게든 해결해 보려 한다고 하심      일자리를 구하신다고 하셔서 임대주택 입주자 분들께 일자리 상담 연계해 드리고 있는데  필요하신지 여쭤보았더니  자신이 직접 알아보시겠다고 하심 </td>
     </tr>
     <tr>
-      <td id="T_a15ba_row1_col0" class="data row1 col0">* 청년임차보증금 이자지원사업 추천서 관련 문의전화 주심(20대 추정)
+      <td id="T_23e2a_row1_col0" class="data row1 col0">* 청년임차보증금 이자지원사업 추천서 관련 문의전화 주심(20대 추정)
 * 건강보험자격득실확인서 지역가입자이며 대학생으로 소득 없음. 국세청홈택스 소득금액증명원 조회결과 2019년 아르바이트 소득 조회됨. 취업준비생 유형으로 신청 가능한지 궁금
 · 취업준비생 유형으로 신청 가능
 * 서울주거포털에서 추천서 신청시 거주지 주소에 현주소 기입하는 것인지 궁금
 · 서울주거포털 추천서 신청시 현주소 기입
 * 서울시추천서 신청과 이사 할 전월세주택 물색 중에서 어느것을 먼저 해야하는지 궁금
 · 서울시추천서 유효기간 발급일로부터 3개월임을 안내</td>
-      <td id="T_a15ba_row1_col1" class="data row1 col1">  청년임차보증금 이자지원 추천서 관련 문의전화 주심 20대 추정    건강보험자격득실확인서 지역가입자이며 대학생으로 소득 없음  국세청홈택스 소득금액증명원 조회결과 2019년 아르바이트 소득 조회됨  취업준비생 유형으로 신청 가능한지 궁금   취업준비생 유형으로 신청 가능   서울주거포털에서 추천서 신청시 거주지 주소에 현주소 기입하는 것인지 궁금   서울주거포털 추천서 신청시 현주소 기입   서울시추천서 신청과 이사 할 전월세주택물색 중에서 어느것을 먼저 해야하는지 궁금   서울시추천서 유효기간 발급일로부터 3개월임을 안내</td>
+      <td id="T_23e2a_row1_col1" class="data row1 col1">  청년임차보증금 이자지원 추천서 관련 문의전화 주심 20대 추정    건강보험자격득실확인서 지역가입자이며 대학생으로 소득 없음  국세청홈택스 소득금액증명원 조회결과 2019년 아르바이트 소득 조회됨  취업준비생 유형으로 신청 가능한지 궁금   취업준비생 유형으로 신청 가능   서울주거포털에서 추천서 신청시 거주지 주소에 현주소 기입하는 것인지 궁금   서울주거포털 추천서 신청시 현주소 기입   서울시추천서 신청과 이사 할 전월세주택물색 중에서 어느것을 먼저 해야하는지 궁금   서울시추천서 유효기간 발급일로부터 3개월임을 안내</td>
     </tr>
   </tbody>
 </table>
@@ -643,69 +642,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <style type="text/css">
 </style>
-<table id="T_71c65">
+<table id="T_558fc">
   <thead>
     <tr>
       <th class="blank level0">&nbsp;</th>
-      <th id="T_71c65_level0_col0" class="col_heading level0 col0">type</th>
-      <th id="T_71c65_level0_col1" class="col_heading level0 col1">word</th>
-      <th id="T_71c65_level0_col2" class="col_heading level0 col2">pos</th>
+      <th id="T_558fc_level0_col0" class="col_heading level0 col0">type</th>
+      <th id="T_558fc_level0_col1" class="col_heading level0 col1">word</th>
+      <th id="T_558fc_level0_col2" class="col_heading level0 col2">pos</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_71c65_level0_row0" class="row_heading level0 row0">0</th>
-      <td id="T_71c65_row0_col0" class="data row0 col0">일반</td>
-      <td id="T_71c65_row0_col1" class="data row0 col1">대상자</td>
-      <td id="T_71c65_row0_col2" class="data row0 col2">NNG</td>
+      <th id="T_558fc_level0_row0" class="row_heading level0 row0">0</th>
+      <td id="T_558fc_row0_col0" class="data row0 col0">일반</td>
+      <td id="T_558fc_row0_col1" class="data row0 col1">대상자</td>
+      <td id="T_558fc_row0_col2" class="data row0 col2">NNG</td>
     </tr>
     <tr>
-      <th id="T_71c65_level0_row1" class="row_heading level0 row1">1</th>
-      <td id="T_71c65_row1_col0" class="data row1 col0">일반</td>
-      <td id="T_71c65_row1_col1" class="data row1 col1">서비스</td>
-      <td id="T_71c65_row1_col2" class="data row1 col2">NNG</td>
+      <th id="T_558fc_level0_row1" class="row_heading level0 row1">1</th>
+      <td id="T_558fc_row1_col0" class="data row1 col0">일반</td>
+      <td id="T_558fc_row1_col1" class="data row1 col1">서비스</td>
+      <td id="T_558fc_row1_col2" class="data row1 col2">NNG</td>
     </tr>
     <tr>
-      <th id="T_71c65_level0_row2" class="row_heading level0 row2">2</th>
-      <td id="T_71c65_row2_col0" class="data row2 col0">일반</td>
-      <td id="T_71c65_row2_col1" class="data row2 col1">주거</td>
-      <td id="T_71c65_row2_col2" class="data row2 col2">NNG</td>
+      <th id="T_558fc_level0_row2" class="row_heading level0 row2">2</th>
+      <td id="T_558fc_row2_col0" class="data row2 col0">일반</td>
+      <td id="T_558fc_row2_col1" class="data row2 col1">주거</td>
+      <td id="T_558fc_row2_col2" class="data row2 col2">NNG</td>
     </tr>
     <tr>
-      <th id="T_71c65_level0_row3" class="row_heading level0 row3">3</th>
-      <td id="T_71c65_row3_col0" class="data row3 col0">일반</td>
-      <td id="T_71c65_row3_col1" class="data row3 col1">주택</td>
-      <td id="T_71c65_row3_col2" class="data row3 col2">NNG</td>
+      <th id="T_558fc_level0_row3" class="row_heading level0 row3">3</th>
+      <td id="T_558fc_row3_col0" class="data row3 col0">일반</td>
+      <td id="T_558fc_row3_col1" class="data row3 col1">주택</td>
+      <td id="T_558fc_row3_col2" class="data row3 col2">NNG</td>
     </tr>
     <tr>
-      <th id="T_71c65_level0_row4" class="row_heading level0 row4">4</th>
-      <td id="T_71c65_row4_col0" class="data row4 col0">일반</td>
-      <td id="T_71c65_row4_col1" class="data row4 col1">가구</td>
-      <td id="T_71c65_row4_col2" class="data row4 col2">NNG</td>
+      <th id="T_558fc_level0_row4" class="row_heading level0 row4">4</th>
+      <td id="T_558fc_row4_col0" class="data row4 col0">일반</td>
+      <td id="T_558fc_row4_col1" class="data row4 col1">가구</td>
+      <td id="T_558fc_row4_col2" class="data row4 col2">NNG</td>
     </tr>
     <tr>
-      <th id="T_71c65_level0_row5" class="row_heading level0 row5">5</th>
-      <td id="T_71c65_row5_col0" class="data row5 col0">지역명</td>
-      <td id="T_71c65_row5_col1" class="data row5 col1">잠실2동</td>
-      <td id="T_71c65_row5_col2" class="data row5 col2">NNG</td>
+      <th id="T_558fc_level0_row5" class="row_heading level0 row5">5</th>
+      <td id="T_558fc_row5_col0" class="data row5 col0">지역명</td>
+      <td id="T_558fc_row5_col1" class="data row5 col1">잠실2동</td>
+      <td id="T_558fc_row5_col2" class="data row5 col2">NNG</td>
     </tr>
     <tr>
-      <th id="T_71c65_level0_row6" class="row_heading level0 row6">6</th>
-      <td id="T_71c65_row6_col0" class="data row6 col0">지역명</td>
-      <td id="T_71c65_row6_col1" class="data row6 col1">잠실3동</td>
-      <td id="T_71c65_row6_col2" class="data row6 col2">NNG</td>
+      <th id="T_558fc_level0_row6" class="row_heading level0 row6">6</th>
+      <td id="T_558fc_row6_col0" class="data row6 col0">지역명</td>
+      <td id="T_558fc_row6_col1" class="data row6 col1">잠실3동</td>
+      <td id="T_558fc_row6_col2" class="data row6 col2">NNG</td>
     </tr>
     <tr>
-      <th id="T_71c65_level0_row7" class="row_heading level0 row7">7</th>
-      <td id="T_71c65_row7_col0" class="data row7 col0">상담사명</td>
-      <td id="T_71c65_row7_col1" class="data row7 col1">박상준</td>
-      <td id="T_71c65_row7_col2" class="data row7 col2">NNG</td>
+      <th id="T_558fc_level0_row7" class="row_heading level0 row7">7</th>
+      <td id="T_558fc_row7_col0" class="data row7 col0">상담사명</td>
+      <td id="T_558fc_row7_col1" class="data row7 col1">박상준</td>
+      <td id="T_558fc_row7_col2" class="data row7 col2">NNG</td>
     </tr>
     <tr>
-      <th id="T_71c65_level0_row8" class="row_heading level0 row8">8</th>
-      <td id="T_71c65_row8_col0" class="data row8 col0">상담사명</td>
-      <td id="T_71c65_row8_col1" class="data row8 col1">이종현</td>
-      <td id="T_71c65_row8_col2" class="data row8 col2">NNG</td>
+      <th id="T_558fc_level0_row8" class="row_heading level0 row8">8</th>
+      <td id="T_558fc_row8_col0" class="data row8 col0">상담사명</td>
+      <td id="T_558fc_row8_col1" class="data row8 col1">이종현</td>
+      <td id="T_558fc_row8_col2" class="data row8 col2">NNG</td>
     </tr>
   </tbody>
 </table>
@@ -719,37 +718,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <style type="text/css">
 </style>
-<table id="T_416e5">
+<table id="T_9426a">
   <thead>
     <tr>
       <th class="blank level0">&nbsp;</th>
-      <th id="T_416e5_level0_col0" class="col_heading level0 col0">word</th>
+      <th id="T_9426a_level0_col0" class="col_heading level0 col0">word</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_416e5_level0_row0" class="row_heading level0 row0">0</th>
-      <td id="T_416e5_row0_col0" class="data row0 col0">돈</td>
+      <th id="T_9426a_level0_row0" class="row_heading level0 row0">0</th>
+      <td id="T_9426a_row0_col0" class="data row0 col0">돈</td>
     </tr>
     <tr>
-      <th id="T_416e5_level0_row1" class="row_heading level0 row1">1</th>
-      <td id="T_416e5_row1_col0" class="data row1 col0">좁</td>
+      <th id="T_9426a_level0_row1" class="row_heading level0 row1">1</th>
+      <td id="T_9426a_row1_col0" class="data row1 col0">좁</td>
     </tr>
     <tr>
-      <th id="T_416e5_level0_row2" class="row_heading level0 row2">2</th>
-      <td id="T_416e5_row2_col0" class="data row2 col0">낡</td>
+      <th id="T_9426a_level0_row2" class="row_heading level0 row2">2</th>
+      <td id="T_9426a_row2_col0" class="data row2 col0">낡</td>
     </tr>
     <tr>
-      <th id="T_416e5_level0_row3" class="row_heading level0 row3">3</th>
-      <td id="T_416e5_row3_col0" class="data row3 col0">커</td>
+      <th id="T_9426a_level0_row3" class="row_heading level0 row3">3</th>
+      <td id="T_9426a_row3_col0" class="data row3 col0">커</td>
     </tr>
     <tr>
-      <th id="T_416e5_level0_row4" class="row_heading level0 row4">4</th>
-      <td id="T_416e5_row4_col0" class="data row4 col0">크</td>
+      <th id="T_9426a_level0_row4" class="row_heading level0 row4">4</th>
+      <td id="T_9426a_row4_col0" class="data row4 col0">크</td>
     </tr>
     <tr>
-      <th id="T_416e5_level0_row5" class="row_heading level0 row5">5</th>
-      <td id="T_416e5_row5_col0" class="data row5 col0">작</td>
+      <th id="T_9426a_level0_row5" class="row_heading level0 row5">5</th>
+      <td id="T_9426a_row5_col0" class="data row5 col0">작</td>
     </tr>
   </tbody>
 </table>
@@ -770,7 +769,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>db_record[<span class="st">'cons_text_posTagged_kiwi'</span>] <span class="op">=</span> db_record[<span class="st">'cons_text_cleaned_2'</span>].swifter.<span class="bu">apply</span>(morph_analysis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"37bd8cbc7c3b4e35a559e327c657278e","version_major":2,"version_minor":0}
+{"model_id":"10da4101255c4575852fcd3827c6566f","version_major":2,"version_minor":0}
 </script>
 </div>
 </div>
@@ -779,22 +778,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <style type="text/css">
 </style>
-<table id="T_f37ee">
+<table id="T_ff9c5">
   <thead>
     <tr>
-      <th id="T_f37ee_level0_col0" class="col_heading level0 col0">cons_text</th>
-      <th id="T_f37ee_level0_col1" class="col_heading level0 col1">cons_text_posTagged_kiwi</th>
+      <th id="T_ff9c5_level0_col0" class="col_heading level0 col0">cons_text</th>
+      <th id="T_ff9c5_level0_col1" class="col_heading level0 col1">cons_text_posTagged_kiwi</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_f37ee_row0_col0" class="data row0 col0">* 재개발 임대 아파트 거주중.
+      <td id="T_ff9c5_row0_col0" class="data row0 col0">* 재개발 임대 아파트 거주중.
 * 임대료 7개월 1,381,980원 체납
 * 일자리를 구하는 중으로 수입이 없어 경제적으로 어려운 상황으로 인함.
 * 작년 20.10.30 체납 상담했던 대상자로 현재 실업급여로 180만원이 나오고 있는데, 수급자 신청해 보려 했으나, 실업급여와 중복으로 받을 수 없다고 안내를 받았다 함. 
 * 임대료 체납 기간이 길어질수록 나중에 퇴거 명령을 받으실 수도 있다고 안내드렸더니, 이번에 빌려서 어떻게든 해결해 보려 한다고 하심.  
 * 일자리를 구하신다고 하셔서 임대주택 입주자 분들께 일자리 상담 연계해 드리고 있는데, 필요하신지 여쭤보았더니, 자신이 직접 알아보시겠다고 하심.</td>
-      <td id="T_f37ee_row0_col1" class="data row0 col1">[Token(form='재개발임대', tag='NNG', start=2, len=5), Token(form='아파트', tag='NNG', start=8, len=3), Token(form='거주', tag='NNG', start=12, len=3), Token(form='임대료', tag='NNG', start=19, len=3), Token(form='7', tag='SN', start=23, len=1), Token(form='개월', tag='NNB', start=24, len=2), Token(form='1', tag='SN', start=27, len=1), Token(form='381', tag='SN', start=29, len=3), Token(form='980', tag='SN', start=33, len=3), Token(form='체납', tag='NNG', start=38, len=2), Token(form='일자리', tag='NNG', start=43, len=3), Token(form='구하', tag='VV', start=48, len=2), Token(form='중', tag='NNG', start=52, len=1), Token(form='수입', tag='NNG', start=56, len=2), Token(form='경제', tag='NNG', start=63, len=2), Token(form='어렵', tag='VA-I', start=69, len=3), Token(form='상황', tag='NNG', start=73, len=2), Token(form='인하', tag='VV', start=78, len=2), Token(form='ᆷ', tag='ETM', start=79, len=1), Token(form='작년', tag='NNG', start=84, len=2), Token(form='20', tag='SN', start=87, len=2), Token(form='10', tag='SN', start=90, len=2), Token(form='30', tag='SN', start=93, len=2), Token(form='체납', tag='NNG', start=96, len=2), Token(form='상담', tag='NNG', start=99, len=2), Token(form='대상자', tag='NNG', start=104, len=3), Token(form='현재', tag='MAG', start=109, len=2), Token(form='실업급여', tag='NNG', start=112, len=4), Token(form='180', tag='SN', start=118, len=3), Token(form='나오', tag='VV', start=125, len=2), Token(form='데', tag='NNB', start=131, len=1), Token(form='수급자', tag='NNG', start=134, len=3), Token(form='신청', tag='NNG', start=138, len=2), Token(form='보', tag='VX', start=142, len=1), Token(form='려', tag='EC', start=143, len=1), Token(form='으나', tag='EC', start=146, len=2), Token(form='실업급여', tag='NNG', start=150, len=4), Token(form='중복', tag='NNG', start=156, len=2), Token(form='받', tag='VV-R', start=161, len=1), Token(form='안내', tag='NNG', start=170, len=2), Token(form='받', tag='VV-R', start=174, len=1), Token(form='함', tag='NNP', start=178, len=1), Token(form='임대료', tag='NNG', start=184, len=3), Token(form='체납', tag='NNG', start=188, len=2), Token(form='기간', tag='NNG', start=191, len=2), Token(form='길어지', tag='VV', start=195, len=3), Token(form='ᆯ수록', tag='EC', start=197, len=3), Token(form='나중', tag='NNG', start=201, len=2), Token(form='퇴거', tag='NNG', start=205, len=2), Token(form='명령', tag='NNG', start=208, len=2), Token(form='받', tag='VV-R', start=212, len=1), Token(form='으시', tag='EP', start=213, len=2), Token(form='있', tag='VA', start=219, len=1), Token(form='안내', tag='NNG', start=223, len=2), Token(form='드리', tag='VV', start=225, len=2), Token(form='더니', tag='EC', start=227, len=2), Token(form='이번', tag='NNG', start=231, len=2), Token(form='빌리', tag='VV', start=235, len=2), Token(form='어떻게', tag='MAG', start=239, len=3), Token(form='든', tag='JX', start=242, len=1), Token(form='해결', tag='NNG', start=244, len=2), Token(form='보', tag='VX', start=248, len=1), Token(form='려', tag='EC', start=249, len=1), Token(form='ᆫ다고', tag='EC', start=251, len=3), Token(form='시', tag='EP', start=255, len=2), Token(form='일자리', tag='NNG', start=263, len=3), Token(form='구하', tag='VV', start=268, len=2), Token(form='시', tag='EP', start=270, len=1), Token(form='ᆫ다고', tag='EC', start=270, len=3), Token(form='시', tag='EP', start=275, len=1), Token(form='임대주택', tag='NNG', start=278, len=4), Token(form='입주자', tag='NNG', start=283, len=3), Token(form='분', tag='NNB', start=287, len=1), Token(form='께', tag='JKB', start=289, len=1), Token(form='일자리', tag='NNG', start=291, len=3), Token(form='상담', tag='NNG', start=295, len=2), Token(form='연계', tag='NNG', start=298, len=2), Token(form='드리', tag='VX', start=302, len=2), Token(form='데', tag='NNB', start=308, len=1), Token(form='필요', tag='NNG', start=311, len=2), Token(form='시', tag='EP', start=314, len=1), Token(form='ᆫ지', tag='EC', start=314, len=2), Token(form='여쭈', tag='VV', start=317, len=2), Token(form='보', tag='VX', start=319, len=1), Token(form='더니', tag='EC', start=321, len=2), Token(form='자신', tag='NNG', start=325, len=2), Token(form='직접', tag='MAG', start=329, len=2), Token(form='알아보', tag='VV', start=332, len=3), Token(form='시', tag='EP', start=335, len=1), Token(form='시', tag='EP', start=340, len=2)]</td>
+      <td id="T_ff9c5_row0_col1" class="data row0 col1">[Token(form='재개발임대', tag='NNG', start=2, len=5), Token(form='아파트', tag='NNG', start=8, len=3), Token(form='거주', tag='NNG', start=12, len=3), Token(form='임대료', tag='NNG', start=19, len=3), Token(form='7', tag='SN', start=23, len=1), Token(form='개월', tag='NNB', start=24, len=2), Token(form='1', tag='SN', start=27, len=1), Token(form='381', tag='SN', start=29, len=3), Token(form='980', tag='SN', start=33, len=3), Token(form='체납', tag='NNG', start=38, len=2), Token(form='일자리', tag='NNG', start=43, len=3), Token(form='구하', tag='VV', start=48, len=2), Token(form='중', tag='NNG', start=52, len=1), Token(form='수입', tag='NNG', start=56, len=2), Token(form='경제', tag='NNG', start=63, len=2), Token(form='어렵', tag='VA-I', start=69, len=3), Token(form='상황', tag='NNG', start=73, len=2), Token(form='인하', tag='VV', start=78, len=2), Token(form='ᆷ', tag='ETM', start=79, len=1), Token(form='작년', tag='NNG', start=84, len=2), Token(form='20', tag='SN', start=87, len=2), Token(form='10', tag='SN', start=90, len=2), Token(form='30', tag='SN', start=93, len=2), Token(form='체납', tag='NNG', start=96, len=2), Token(form='상담', tag='NNG', start=99, len=2), Token(form='대상자', tag='NNG', start=104, len=3), Token(form='현재', tag='MAG', start=109, len=2), Token(form='실업급여', tag='NNG', start=112, len=4), Token(form='180', tag='SN', start=118, len=3), Token(form='나오', tag='VV', start=125, len=2), Token(form='데', tag='NNB', start=131, len=1), Token(form='수급자', tag='NNG', start=134, len=3), Token(form='신청', tag='NNG', start=138, len=2), Token(form='보', tag='VX', start=142, len=1), Token(form='려', tag='EC', start=143, len=1), Token(form='으나', tag='EC', start=146, len=2), Token(form='실업급여', tag='NNG', start=150, len=4), Token(form='중복', tag='NNG', start=156, len=2), Token(form='받', tag='VV-R', start=161, len=1), Token(form='안내', tag='NNG', start=170, len=2), Token(form='받', tag='VV-R', start=174, len=1), Token(form='함', tag='NNP', start=178, len=1), Token(form='임대료', tag='NNG', start=184, len=3), Token(form='체납', tag='NNG', start=188, len=2), Token(form='기간', tag='NNG', start=191, len=2), Token(form='길어지', tag='VV', start=195, len=3), Token(form='ᆯ수록', tag='EC', start=197, len=3), Token(form='나중', tag='NNG', start=201, len=2), Token(form='퇴거', tag='NNG', start=205, len=2), Token(form='명령', tag='NNG', start=208, len=2), Token(form='받', tag='VV-R', start=212, len=1), Token(form='으시', tag='EP', start=213, len=2), Token(form='있', tag='VA', start=219, len=1), Token(form='안내', tag='NNG', start=223, len=2), Token(form='드리', tag='VV', start=225, len=2), Token(form='더니', tag='EC', start=227, len=2), Token(form='이번', tag='NNG', start=231, len=2), Token(form='빌리', tag='VV', start=235, len=2), Token(form='어떻게', tag='MAG', start=239, len=3), Token(form='든', tag='JX', start=242, len=1), Token(form='해결', tag='NNG', start=244, len=2), Token(form='보', tag='VX', start=248, len=1), Token(form='려', tag='EC', start=249, len=1), Token(form='ᆫ다고', tag='EC', start=251, len=3), Token(form='시', tag='EP', start=255, len=2), Token(form='일자리', tag='NNG', start=263, len=3), Token(form='구하', tag='VV', start=268, len=2), Token(form='시', tag='EP', start=270, len=1), Token(form='ᆫ다고', tag='EC', start=270, len=3), Token(form='시', tag='EP', start=275, len=1), Token(form='임대주택', tag='NNG', start=278, len=4), Token(form='입주자', tag='NNG', start=283, len=3), Token(form='분', tag='NNB', start=287, len=1), Token(form='께', tag='JKB', start=289, len=1), Token(form='일자리', tag='NNG', start=291, len=3), Token(form='상담', tag='NNG', start=295, len=2), Token(form='연계', tag='NNG', start=298, len=2), Token(form='드리', tag='VX', start=302, len=2), Token(form='데', tag='NNB', start=308, len=1), Token(form='필요', tag='NNG', start=311, len=2), Token(form='시', tag='EP', start=314, len=1), Token(form='ᆫ지', tag='EC', start=314, len=2), Token(form='여쭈', tag='VV', start=317, len=2), Token(form='보', tag='VX', start=319, len=1), Token(form='더니', tag='EC', start=321, len=2), Token(form='자신', tag='NNG', start=325, len=2), Token(form='직접', tag='MAG', start=329, len=2), Token(form='알아보', tag='VV', start=332, len=3), Token(form='시', tag='EP', start=335, len=1), Token(form='시', tag='EP', start=340, len=2)]</td>
     </tr>
   </tbody>
 </table>
@@ -826,7 +825,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>db_record[[<span class="st">'cons_text_posTagged_all'</span>, <span class="st">'cons_text_posTagged_main'</span>]] <span class="op">=</span> db_record[<span class="st">'cons_text_posTagged_kiwi'</span>].swifter.set_npartitions(npartitions <span class="op">=</span> <span class="dv">6</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: tokenToText(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"a4606fb6411f471a9f0f46d500596ccf","version_major":2,"version_minor":0}
+{"model_id":"a585e6721d9b4fa0be0a8581f612eaa1","version_major":2,"version_minor":0}
 </script>
 </div>
 </div>
@@ -835,40 +834,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <style type="text/css">
 </style>
-<table id="T_b604f">
+<table id="T_9371a">
   <thead>
     <tr>
-      <th id="T_b604f_level0_col0" class="col_heading level0 col0">cons_text</th>
-      <th id="T_b604f_level0_col1" class="col_heading level0 col1">cons_text_posTagged_main</th>
+      <th id="T_9371a_level0_col0" class="col_heading level0 col0">cons_text</th>
+      <th id="T_9371a_level0_col1" class="col_heading level0 col1">cons_text_posTagged_main</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_b604f_row0_col0" class="data row0 col0">* 재개발 임대 아파트 거주중.
+      <td id="T_9371a_row0_col0" class="data row0 col0">* 재개발 임대 아파트 거주중.
 * 임대료 7개월 1,381,980원 체납
 * 일자리를 구하는 중으로 수입이 없어 경제적으로 어려운 상황으로 인함.
 * 작년 20.10.30 체납 상담했던 대상자로 현재 실업급여로 180만원이 나오고 있는데, 수급자 신청해 보려 했으나, 실업급여와 중복으로 받을 수 없다고 안내를 받았다 함. 
 * 임대료 체납 기간이 길어질수록 나중에 퇴거 명령을 받으실 수도 있다고 안내드렸더니, 이번에 빌려서 어떻게든 해결해 보려 한다고 하심.  
 * 일자리를 구하신다고 하셔서 임대주택 입주자 분들께 일자리 상담 연계해 드리고 있는데, 필요하신지 여쭤보았더니, 자신이 직접 알아보시겠다고 하심.</td>
-      <td id="T_b604f_row0_col1" class="data row0 col1">재개발임대 아파트 거주 임대료 체납 일자리 구하다 수입 경제 어렵다 상황 인하다 작년 체납 상담 실업급여 나오다 수급자 신청 실업급여 중복 안내 임대료 체납 기간 길어지다 나중 퇴거 명령 안내 드리다 빌리다 해결 일자리 구하다 임대주택 입주자 일자리 상담 연계 드리다 필요 여쭈다 알아보다</td>
+      <td id="T_9371a_row0_col1" class="data row0 col1">재개발임대 아파트 거주 임대료 체납 일자리 구하다 수입 경제 어렵다 상황 인하다 작년 체납 상담 실업급여 나오다 수급자 신청 실업급여 중복 안내 임대료 체납 기간 길어지다 나중 퇴거 명령 안내 드리다 빌리다 해결 일자리 구하다 임대주택 입주자 일자리 상담 연계 드리다 필요 여쭈다 알아보다</td>
     </tr>
   </tbody>
 </table>
 </div>
 </div>
-</section>
-</section>
-</section>
-<section id="끝으로" class="level1">
-<h1>끝으로</h1>
-<p>위 과정을 종합한 코드는 <a href="../../posts/2023-03-22-housing-consultation-analysis-2/data/2. morphAnalysis.html">여기</a>에서 다운로드 가능하다.</p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
 <script type="application/vnd.jupyter.widget-state+json">
-{"state":{"18adbcdd84e245b6acb8fa44e545582d":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"1c1bc76ad03c48fabaeb9075788346bf":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"210fe150f05041f3ae498a6706ab2720":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"2696613636e84a5a897d0f5c3abf66e1":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"37bd8cbc7c3b4e35a559e327c657278e":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HBoxModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_63b981ac2a734f1dabce2994712cfb11","IPY_MODEL_97355166a1df4430a8a39f007862fd6d","IPY_MODEL_aabe836b57f04fbba3ad8fe6e28f5728"],"layout":"IPY_MODEL_7fda6d60108146049ee829a88b4fd3f9","tabbable":null,"tooltip":null}},"3b3c717b90a24323881c91691d5fe7d6":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"ProgressStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"3c267c77ec864c968ce2d8010d3c2ff6":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"42a1f15fab90447a9961d724a92329ea":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_ab00812867d648f991f98260ec5c572a","placeholder":"​","style":"IPY_MODEL_2696613636e84a5a897d0f5c3abf66e1","tabbable":null,"tooltip":null,"value":" 100/100 [00:00&lt;00:00, 218.04it/s]"}},"5ba2134f74054ad185f6551c98a26133":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_e664c149d10a4b93b88d7a306dbb2f2c","placeholder":"​","style":"IPY_MODEL_ede602afc5f84ba58b35dfdb5f9d1288","tabbable":null,"tooltip":null,"value":" 100/100 [00:00&lt;00:00, 536.69it/s]"}},"63b981ac2a734f1dabce2994712cfb11":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_8d235ed3e468485d9ae8da6a93bff110","placeholder":"​","style":"IPY_MODEL_3c267c77ec864c968ce2d8010d3c2ff6","tabbable":null,"tooltip":null,"value":"Pandas Apply: 100%"}},"652cac0864a340699cfba160b569cbc7":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"ProgressStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"672c2abbf49f4ca891389cc8894f457d":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"6786d1f41c4d4ec7b9aeeba5c546aa88":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"7ea1c1515d3e42809f52842c4d43c569":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"7fda6d60108146049ee829a88b4fd3f9":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"883b3b1f8d7c484bbdf79902a9f0377e":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"FloatProgressModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"ProgressView","bar_style":"success","description":"","description_allow_html":false,"layout":"IPY_MODEL_8d991f9ba23f41c9be76dc8cd9cc327a","max":100,"min":0,"orientation":"horizontal","style":"IPY_MODEL_3b3c717b90a24323881c91691d5fe7d6","tabbable":null,"tooltip":null,"value":100}},"886fc904dc914428bde23e3130c18444":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"887cf7f89b7144ebbbd20e16dff97e9f":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"8d235ed3e468485d9ae8da6a93bff110":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"8d3f61c1aa144ae8b93883d6725bcfbb":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"ProgressStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"8d991f9ba23f41c9be76dc8cd9cc327a":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"97355166a1df4430a8a39f007862fd6d":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"FloatProgressModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"ProgressView","bar_style":"success","description":"","description_allow_html":false,"layout":"IPY_MODEL_1c1bc76ad03c48fabaeb9075788346bf","max":100,"min":0,"orientation":"horizontal","style":"IPY_MODEL_652cac0864a340699cfba160b569cbc7","tabbable":null,"tooltip":null,"value":100}},"981d410e496641f7a4b772c128f838b3":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_672c2abbf49f4ca891389cc8894f457d","placeholder":"​","style":"IPY_MODEL_18adbcdd84e245b6acb8fa44e545582d","tabbable":null,"tooltip":null,"value":"Pandas Apply: 100%"}},"9bd0161413c24bbaa52b6b610d453429":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"FloatProgressModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"ProgressView","bar_style":"success","description":"","description_allow_html":false,"layout":"IPY_MODEL_7ea1c1515d3e42809f52842c4d43c569","max":100,"min":0,"orientation":"horizontal","style":"IPY_MODEL_8d3f61c1aa144ae8b93883d6725bcfbb","tabbable":null,"tooltip":null,"value":100}},"9e58f95ae7e84a8c86c9b7bf45c13a61":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HBoxModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_981d410e496641f7a4b772c128f838b3","IPY_MODEL_883b3b1f8d7c484bbdf79902a9f0377e","IPY_MODEL_5ba2134f74054ad185f6551c98a26133"],"layout":"IPY_MODEL_c71ec5a2dcf44969934c423b3b4d37ed","tabbable":null,"tooltip":null}},"a4606fb6411f471a9f0f46d500596ccf":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HBoxModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_fd4ebbdd2a004b76ac75cc8c154d3800","IPY_MODEL_9bd0161413c24bbaa52b6b610d453429","IPY_MODEL_42a1f15fab90447a9961d724a92329ea"],"layout":"IPY_MODEL_886fc904dc914428bde23e3130c18444","tabbable":null,"tooltip":null}},"aabe836b57f04fbba3ad8fe6e28f5728":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_cfd8f178feaa4c1d9111586637205c81","placeholder":"​","style":"IPY_MODEL_887cf7f89b7144ebbbd20e16dff97e9f","tabbable":null,"tooltip":null,"value":" 100/100 [00:00&lt;00:00, 142.01it/s]"}},"ab00812867d648f991f98260ec5c572a":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"c71ec5a2dcf44969934c423b3b4d37ed":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"cfd8f178feaa4c1d9111586637205c81":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"e664c149d10a4b93b88d7a306dbb2f2c":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"ede602afc5f84ba58b35dfdb5f9d1288":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"fd4ebbdd2a004b76ac75cc8c154d3800":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_210fe150f05041f3ae498a6706ab2720","placeholder":"​","style":"IPY_MODEL_6786d1f41c4d4ec7b9aeeba5c546aa88","tabbable":null,"tooltip":null,"value":"Pandas Apply: 100%"}}},"version_major":2,"version_minor":0}
+{"state":{"0003694c3144417796940482e4b20493":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"ProgressStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"037b282d2319492bba79389332c590a5":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"10722440ad3d45fc9292bf869ef5037a":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"FloatProgressModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"ProgressView","bar_style":"success","description":"","description_allow_html":false,"layout":"IPY_MODEL_dd5774d5e6964303bd4a3eef5cbadc87","max":100,"min":0,"orientation":"horizontal","style":"IPY_MODEL_baf6e24fc3d949bc8ca3eca3da85471f","tabbable":null,"tooltip":null,"value":100}},"10da4101255c4575852fcd3827c6566f":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HBoxModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_57f849a9f24f43b2baff2296086e8725","IPY_MODEL_2ecb626316f1428698f9c6e65f61e818","IPY_MODEL_cb1fefdcb66445f2a61d0de70275e6bb"],"layout":"IPY_MODEL_91ea842e91bc4d6d90410e07952738a5","tabbable":null,"tooltip":null}},"2ecb626316f1428698f9c6e65f61e818":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"FloatProgressModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"ProgressView","bar_style":"success","description":"","description_allow_html":false,"layout":"IPY_MODEL_63767859ef514188b19816889d5c9c0d","max":100,"min":0,"orientation":"horizontal","style":"IPY_MODEL_0003694c3144417796940482e4b20493","tabbable":null,"tooltip":null,"value":100}},"311954233de2407ba74d4c1ca7a9290f":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"4d701108f2104530baf8a7671a5dbd85":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"57f849a9f24f43b2baff2296086e8725":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_60a7730a7756413eb64f6c529281f530","placeholder":"​","style":"IPY_MODEL_d07cdb19c3254794bf2fefdff638658b","tabbable":null,"tooltip":null,"value":"Pandas Apply: 100%"}},"5dccb253775841bea04ec0e7c0bb7215":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_ca86210dcf1a49a78d8714b56085c38f","placeholder":"​","style":"IPY_MODEL_d7f07e197e394ea89d4cdfb829e97755","tabbable":null,"tooltip":null,"value":" 100/100 [00:00&lt;00:00, 520.89it/s]"}},"60a7730a7756413eb64f6c529281f530":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"63478aa97ec7417d91f829b7f9054d62":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"63767859ef514188b19816889d5c9c0d":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"71f256fbbe5a4393a327f5c442c94ab8":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"FloatProgressModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"ProgressView","bar_style":"success","description":"","description_allow_html":false,"layout":"IPY_MODEL_311954233de2407ba74d4c1ca7a9290f","max":100,"min":0,"orientation":"horizontal","style":"IPY_MODEL_ba5c45a4f8914cfdaa52cd685bd3a883","tabbable":null,"tooltip":null,"value":100}},"785befd7dd814bb186250ab805329270":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"8abc4bec03e74c139b73350aab72c945":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_c71bd04561a649dcba536733469d60c5","placeholder":"​","style":"IPY_MODEL_be943e53d65d4499808bc7a22b27670d","tabbable":null,"tooltip":null,"value":" 100/100 [00:00&lt;00:00, 210.42it/s]"}},"91ea842e91bc4d6d90410e07952738a5":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"a53ead3749a14171aa08715cc9a62330":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HBoxModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_cce259ab046148adaefbd1a9ed1919e9","IPY_MODEL_10722440ad3d45fc9292bf869ef5037a","IPY_MODEL_5dccb253775841bea04ec0e7c0bb7215"],"layout":"IPY_MODEL_63478aa97ec7417d91f829b7f9054d62","tabbable":null,"tooltip":null}},"a585e6721d9b4fa0be0a8581f612eaa1":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HBoxModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_d7823fa9d2d74541ad9699e4ee61035c","IPY_MODEL_71f256fbbe5a4393a327f5c442c94ab8","IPY_MODEL_8abc4bec03e74c139b73350aab72c945"],"layout":"IPY_MODEL_c98192f5c0b341adbbd9fd1810eb3f28","tabbable":null,"tooltip":null}},"a5dc6086218640759572d8fa6dc2076b":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"ba5c45a4f8914cfdaa52cd685bd3a883":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"ProgressStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"baf6e24fc3d949bc8ca3eca3da85471f":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"ProgressStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"be943e53d65d4499808bc7a22b27670d":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"c71bd04561a649dcba536733469d60c5":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"c98192f5c0b341adbbd9fd1810eb3f28":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"ca86210dcf1a49a78d8714b56085c38f":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"cb1fefdcb66445f2a61d0de70275e6bb":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_a5dc6086218640759572d8fa6dc2076b","placeholder":"​","style":"IPY_MODEL_e35bcbee45464b61b3d9944216619edc","tabbable":null,"tooltip":null,"value":" 100/100 [00:00&lt;00:00, 131.09it/s]"}},"cce259ab046148adaefbd1a9ed1919e9":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_785befd7dd814bb186250ab805329270","placeholder":"​","style":"IPY_MODEL_4d701108f2104530baf8a7671a5dbd85","tabbable":null,"tooltip":null,"value":"Pandas Apply: 100%"}},"d07cdb19c3254794bf2fefdff638658b":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"d7823fa9d2d74541ad9699e4ee61035c":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_037b282d2319492bba79389332c590a5","placeholder":"​","style":"IPY_MODEL_fced2104fb5f47a488655f16aaf044c9","tabbable":null,"tooltip":null,"value":"Pandas Apply: 100%"}},"d7f07e197e394ea89d4cdfb829e97755":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"dd5774d5e6964303bd4a3eef5cbadc87":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"e35bcbee45464b61b3d9944216619edc":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"fced2104fb5f47a488655f16aaf044c9":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}}},"version_major":2,"version_minor":0}
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

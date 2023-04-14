@@ -1,7 +1,7 @@
 ---
-title: "주거상담기록 분석 (2): 텍스트전처리"
+title: "주거상담기록 데이터 분석 (2): 형태소분석"
 description: |
-  주거상담 주제 분석
+  텍스트 정제와 형태소분석을 포함한 텍스트 전처리 과정
 date: "2023-03-22"
 categories: [Python]
 image: "image/overview.png"
@@ -326,7 +326,3 @@ db_record[['cons_text_posTagged_all', 'cons_text_posTagged_main']] = db_record['
 #| echo: false
 db_record[0:1][['cons_text', 'cons_text_posTagged_main']].style.hide_index()
 ```
-
-# 끝으로
-
-위 과정을 종합한 코드는 [여기](data/2.%20morphAnalysis.ipynb)에서 다운로드 가능하다.

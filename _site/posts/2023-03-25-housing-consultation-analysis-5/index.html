@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-03-31">
-<meta name="description" content="stm 주제의 주요 단어나 분포 등을 살펴보자">
+<meta name="dcterms.date" content="2023-03-25">
+<meta name="description" content="토픽모델링 주제의 비중과 분포 정보 추출">
 
-<title>Juhyeon Park - 주거상담기록 분석 (5): 주제 정보</title>
+<title>Juhyeon Park - 주거상담기록 데이터 분석 (5): 토픽모델링 주제 정보</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -172,10 +172,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">주거상담기록 분석 (5): 주제 정보</h1>
+      <h1 class="title">주거상담기록 데이터 분석 (5): 토픽모델링 주제 정보</h1>
                   <div>
         <div class="description">
-          <p>stm 주제의 주요 단어나 분포 등을 살펴보자</p>
+          <p>토픽모델링 주제의 비중과 분포 정보 추출</p>
         </div>
       </div>
                           <div class="quarto-categories">
@@ -191,7 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">March 31, 2023</p>
+        <p class="date">March 25, 2023</p>
       </div>
     </div>
     
@@ -211,10 +211,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#데이터-준비하기" id="toc-데이터-준비하기" class="nav-link" data-scroll-target="#데이터-준비하기">1. 데이터 준비하기</a>
   <ul class="collapse">
   <li><a href="#패키지-불러오기" id="toc-패키지-불러오기" class="nav-link" data-scroll-target="#패키지-불러오기">1.1. 패키지 불러오기</a></li>
-  <li><a href="#stm-모델-불러오기" id="toc-stm-모델-불러오기" class="nav-link" data-scroll-target="#stm-모델-불러오기">1.2. stm 모델 불러오기</a>
+  <li><a href="#stm-결과-불러오기" id="toc-stm-결과-불러오기" class="nav-link" data-scroll-target="#stm-결과-불러오기">1.2. stm 결과 불러오기</a>
   <ul class="collapse">
-  <li><a href="#데이터-전처리" id="toc-데이터-전처리" class="nav-link" data-scroll-target="#데이터-전처리">데이터 전처리</a></li>
+  <li><a href="#주제정보-불러오기" id="toc-주제정보-불러오기" class="nav-link" data-scroll-target="#주제정보-불러오기">주제정보 불러오기</a></li>
   </ul></li>
+  </ul></li>
+  <li><a href="#주제-정보" id="toc-주제-정보" class="nav-link" data-scroll-target="#주제-정보">2. 주제 정보</a>
+  <ul class="collapse">
+  <li><a href="#주요-단어" id="toc-주요-단어" class="nav-link" data-scroll-target="#주요-단어">2.1. 주요 단어</a></li>
+  <li><a href="#대표문서" id="toc-대표문서" class="nav-link" data-scroll-target="#대표문서">2.2. 대표문서</a></li>
+  </ul></li>
+  <li><a href="#주제분포" id="toc-주제분포" class="nav-link" data-scroll-target="#주제분포">3. 주제분포</a>
+  <ul class="collapse">
+  <li><a href="#주제-분포-정보" id="toc-주제-분포-정보" class="nav-link" data-scroll-target="#주제-분포-정보">3.1. 주제 분포 정보</a>
+  <ul class="collapse">
+  <li><a href="#문서-주제-출현율-matrix" id="toc-문서-주제-출현율-matrix" class="nav-link" data-scroll-target="#문서-주제-출현율-matrix">문서-주제 출현율 matrix</a></li>
+  <li><a href="#주제-출현율" id="toc-주제-출현율" class="nav-link" data-scroll-target="#주제-출현율">주제 출현율</a></li>
+  <li><a href="#대표문서-비율" id="toc-대표문서-비율" class="nav-link" data-scroll-target="#대표문서-비율">대표문서 비율</a></li>
+  <li><a href="#대표문서-gamma" id="toc-대표문서-gamma" class="nav-link" data-scroll-target="#대표문서-gamma">대표문서 gamma</a></li>
+  <li><a href="#주제-분포-통계" id="toc-주제-분포-통계" class="nav-link" data-scroll-target="#주제-분포-통계">주제 분포 통계</a></li>
+  </ul></li>
+  <li><a href="#대표문서-비율-시각화" id="toc-대표문서-비율-시각화" class="nav-link" data-scroll-target="#대표문서-비율-시각화">3.2. 대표문서 비율 시각화</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -227,27 +244,549 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="들어가기" class="level1">
 <h1>들어가기</h1>
-<p>토픽모델링 주제 이름이 지어진 이후, 그 주제의 주요 단어나 분포 등을 살펴본다.</p>
+<p>토픽모델링 후 <strong>주제의 주요 단어나 분포</strong> 등을 추출하고 시각화한다. stm 패키지의 결과물 추출하는 함수 사용 후, 표 형태는 <code>gt</code> 패키지로 편집이 편하게 워드 파일 형식으로, 시각화는 <code>ggplot2</code>, <code>treemapify</code> 등으로 이해를 돕는 그래프를 만든다.</p>
 <hr>
 </section>
 <section id="데이터-준비하기" class="level1">
 <h1>1. 데이터 준비하기</h1>
+<p>실습에 필요한 데이터를 먼저 다운 받는다.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">샘플 데이터</th>
+<th style="text-align: left;">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="result/stm_labelling/주제정보.csv">주제정보.csv</a></td>
+<td style="text-align: left;">주제정보를 담은 파일</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://drive.google.com/file/d/1iLltpGyhe4SbhCnSnTxo6eX0NED17V3D/view?usp=share_link">stmFinal_fit.rds</a></td>
+<td style="text-align: left;">stm 모델</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="result/stm_labelling/documPerTopic.csv">documPerTopic.csv</a></td>
+<td style="text-align: left;">선별한 대표문서 파일</td>
+</tr>
+</tbody>
+</table>
 <section id="패키지-불러오기" class="level2">
 <h2 class="anchored" data-anchor-id="패키지-불러오기">1.1. 패키지 불러오기</h2>
-<p>필요한 패키지를 불러온다.</p>
+<p>분석에 필요한 패키지를 불러온다.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 패키지 불러오기</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tidyverse"</span>,  <span class="st">"tidytext"</span>, <span class="st">"stm"</span>, <span class="st">"data.table"</span>, <span class="st">"knitr"</span>, <span class="st">"gt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tidyverse"</span>,  <span class="st">"tidytext"</span>, <span class="st">"stm"</span>, </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data.table"</span>, <span class="st">"knitr"</span>, <span class="st">"gt"</span>, <span class="st">"scales"</span>, <span class="st">"treemapify"</span>, <span class="st">"RColorBrewer"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="stm-모델-불러오기" class="level2">
-<h2 class="anchored" data-anchor-id="stm-모델-불러오기">1.2. stm 모델 불러오기</h2>
-<section id="데이터-전처리" class="level3">
-<h3 class="anchored" data-anchor-id="데이터-전처리">데이터 전처리</h3>
-
-
+<section id="stm-결과-불러오기" class="level2">
+<h2 class="anchored" data-anchor-id="stm-결과-불러오기">1.2. stm 결과 불러오기</h2>
+<section id="주제정보-불러오기" class="level3">
+<h3 class="anchored" data-anchor-id="주제정보-불러오기">주제정보 불러오기</h3>
+<p>이전 글에서 확정한 주제 정보를 불러온다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>list_topicLabled <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"result/stm_labelling/주제정보.csv"</span>)[</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  , <span class="st">`</span><span class="at">:=</span><span class="st">`</span> (</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">topicLabel_f =</span> <span class="fu">factor</span>(<span class="at">x =</span> <span class="fu">paste0</span>(<span class="st">"주제 "</span>, topicNumber_f, <span class="st">": "</span>, topicName_f),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">levels =</span> <span class="fu">paste0</span>(<span class="st">"주제 "</span>, topicNumber_f, <span class="st">": "</span>, topicName_f),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">labels =</span> <span class="fu">paste0</span>(<span class="st">"주제 "</span>, topicNumber_f, <span class="st">": "</span>, topicName_f)),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">topicGroup_f =</span> <span class="fu">factor</span>(topicGroup_f, </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"주거정보"</span>, <span class="st">"직접지원"</span>, <span class="st">"복지정보"</span>, <span class="st">"사례·상담관리"</span>, <span class="st">"기타"</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"주거정보"</span>, <span class="st">"직접지원"</span>, <span class="st">"복지정보"</span>, <span class="st">"사례·상담관리"</span>, <span class="st">"기타"</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    )]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>각 열에 대한 설명은 다음과 같다:</p>
+<ul>
+<li>topicNumber_model: stm 모델에서 생성한 주제 번호</li>
+<li>topicNumber_f: 실제로 쓰이는 주제 번호</li>
+<li>topicName_f: 주제 이름</li>
+<li>topicLabel_f: 주제 번호와 이름</li>
+<li>topicGroup_f: 주제 그룹</li>
+</ul>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>topicNumber_f</code>로 새로운 주제 번호를 부여하는 이유는 토픽모델링 주제 번호는 사실상 무작위라 보기 좋게 정렬하기 위함이다. 예를 들어, stm 모델의 주제 번호 6과 11, 7, 25, 8이 ‘주거정보’ 그룹에 속하며 차례로 제시하고 싶다면 이를 주제 번호 1과 2, 3, 4, 5로 바꿔주고 정렬하면 된다.</p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 23%">
+<col style="width: 12%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">topicNumber_model</th>
+<th style="text-align: right;">topicNumber_f</th>
+<th style="text-align: left;">topicName_f</th>
+<th style="text-align: left;">topicGroup_f</th>
+<th style="text-align: left;">topicLabel_f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">공공임대 공고 단순 정보</td>
+<td style="text-align: left;">주거정보</td>
+<td style="text-align: left;">주제 1: 공공임대 공고 단순 정보</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">공공임대 공고 상세 정보</td>
+<td style="text-align: left;">주거정보</td>
+<td style="text-align: left;">주제 2: 공공임대 공고 상세 정보</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">공공임대 자격기준 정보</td>
+<td style="text-align: left;">주거정보</td>
+<td style="text-align: left;">주제 3: 공공임대 자격기준 정보</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">공공임대 당첨 안내·상담</td>
+<td style="text-align: left;">주거정보</td>
+<td style="text-align: left;">주제 4: 공공임대 당첨 안내·상담</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">문자알림서비스 등록</td>
+<td style="text-align: left;">주거정보</td>
+<td style="text-align: left;">주제 5: 문자알림서비스 등록</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">제출서류 안내</td>
+<td style="text-align: left;">주거정보</td>
+<td style="text-align: left;">주제 6: 제출서류 안내</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">주택물색</td>
+<td style="text-align: left;">주거정보</td>
+<td style="text-align: left;">주제 7: 주택물색</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="stm-모델-불러오기" class="level4">
+<h4 class="anchored" data-anchor-id="stm-모델-불러오기">stm 모델 불러오기</h4>
+<p>확정된 주제로 수행한 모델을 불러온다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tm_fiited <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">paste0</span>(<span class="st">"Result/stm_f/stmFinal_fit.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>이 stm 모델은 전체 데이터로 수행한 것이다. 이전 글의 샘플 데이터만으로 수행한 모델 결과가 아니다.</p>
+</div>
+</div>
 </section>
+</section>
+</section>
+</section>
+<section id="주제-정보" class="level1">
+<h1>2. 주제 정보</h1>
+<section id="주요-단어" class="level2">
+<h2 class="anchored" data-anchor-id="주요-단어">2.1. 주요 단어</h2>
+<p>주제별 주요 단어를 추출한다. 단어 개수를 지정하고 <code>labelTopics</code>로 추출하면 다음과 같다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wordNumber <span class="ot">&lt;-</span> <span class="dv">7</span> <span class="co"># 보여질 단어 개수</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>output_wordPerTopic_1a <span class="ot">&lt;-</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labelTopics</span>(tm_fiited, <span class="at">n =</span> wordNumber)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>추출한 단어는 다음과 같다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>output_wordPerTopic_1a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="image/mainWords.png" class="img-fluid"></p>
+<p>list 형태인 이 결과물을 표로 만들어주고 저장한다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 각 가중치별 단어 표 생성</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>output_wordPerTopic_1b <span class="ot">&lt;-</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">melt</span>(<span class="fu">data.table</span>(<span class="at">topicnums =</span> <span class="fu">c</span>(output_wordPerTopic_1a<span class="sc">$</span>topicnums), output_wordPerTopic_1a<span class="sc">$</span>prob), <span class="dv">1</span>)[</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      , .(<span class="at">word_list =</span> <span class="fu">toString</span>(value)), .(topicnums)][, <span class="at">type :=</span> <span class="st">"Prob"</span>],</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">melt</span>(<span class="fu">data.table</span>(<span class="at">topicnums =</span> <span class="fu">c</span>(output_wordPerTopic_1a<span class="sc">$</span>topicnums), output_wordPerTopic_1a<span class="sc">$</span>frex), <span class="dv">1</span>)[</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      , .(<span class="at">word_list =</span> <span class="fu">toString</span>(value)), .(topicnums)][, <span class="at">type :=</span> <span class="st">"Frex"</span>],</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">melt</span>(<span class="fu">data.table</span>(<span class="at">topicnums =</span> <span class="fu">c</span>(output_wordPerTopic_1a<span class="sc">$</span>topicnums), output_wordPerTopic_1a<span class="sc">$</span>lift), <span class="dv">1</span>)[</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>      , .(<span class="at">word_list =</span> <span class="fu">toString</span>(value)), .(topicnums)][, <span class="at">type :=</span> <span class="st">"Lift"</span>],</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">melt</span>(<span class="fu">data.table</span>(<span class="at">topicnums =</span> <span class="fu">c</span>(output_wordPerTopic_1a<span class="sc">$</span>topicnums), output_wordPerTopic_1a<span class="sc">$</span>score), <span class="dv">1</span>)[</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>      , .(<span class="at">word_list =</span> <span class="fu">toString</span>(value)), .(topicnums)][, <span class="at">type :=</span> <span class="st">"Score"</span>])[</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        list_topicLabled, on <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"topicnums"</span> <span class="ot">=</span> <span class="st">"topicNumber_model"</span>), topicLabel_f <span class="sc">:</span><span class="er">=</span> topicLabel_f][</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>          , .(주제명 <span class="ot">=</span> topicLabel_f,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>              <span class="st">`</span><span class="at"> </span><span class="st">`</span> <span class="ot">=</span> <span class="st">" "</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">`</span><span class="at">단어 가중치</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">factor</span>(type, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Prob"</span>, <span class="st">"Frex"</span>, <span class="st">"Lift"</span>, <span class="st">"Score"</span>)), </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>              <span class="st">`</span><span class="at">주요 단어</span><span class="st">`</span> <span class="ot">=</span> word_list, <span class="at">topicnums =</span> <span class="cn">NULL</span>)][</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                <span class="fu">order</span>(주제명, <span class="st">`</span><span class="at">단어 가중치</span><span class="st">`</span>)] <span class="sc">%&gt;%</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"주제명"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_footnote</span>(<span class="at">footnote =</span> </span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Prob: 특정 토픽에서 나타날 확률이 높은 단어, </span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="st">  Frex: 특정 토픽에는 빈도가 높지만 다른 토픽엔 그렇지 않은 단어(가중 평균 적용),</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="st">  Lift: 특정 토픽에 고유한 단어 강조(다른 토픽 빈도 활용)</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="st">  Score: 특정 토픽에 고유한 단어(다른 토픽 로그 빈도 활용)"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gtsave</span>(<span class="fu">paste0</span>(<span class="st">"Result/stm_output/result_wordPerTopic.docx"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>저장한 파일을 열어보면 편집하기 편한 워드 파일로 정리된 것을 볼 수 있다.</p>
+<p><img src="image/mainWords_docx.png" class="img-fluid"></p>
+</section>
+<section id="대표문서" class="level2">
+<h2 class="anchored" data-anchor-id="대표문서">2.2. 대표문서</h2>
+<p>주제별 대표문서를 추출한다. 대표문서로 선정하는 문서는 코드로 추출하기 보다, 직접 선별한 문서로 제시하는 것이 낫다. 민감한 주제를 제거하기도 하고, 대표문서 선정의 기준인 gamma (문서-주제 확률)가 높더라도 사람이 보기에 대표하는 문서로 와닿지 않는 경우가 있기 때문이다. 위에서 받은 예시 파일로 아래 작업을 수행해보자.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fread</span>(<span class="st">"result/stm_labelling/documPerTopic.csv"</span>)[</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  list_topicLabled, on <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"topicnums"</span> <span class="ot">=</span> <span class="st">"topicNumber_model"</span>)][ <span class="co"># 주제 정보와 결합</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    , .(topicLabel_f, <span class="st">`</span><span class="at"> </span><span class="st">`</span> <span class="ot">=</span> <span class="st">" "</span>, 대표문서, <span class="fu">round</span>(gamma, <span class="dv">3</span>))] <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"topicLabel_f"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gtsave</span>(<span class="st">"result/stm_output/result_documPerTopic.docx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>대표문서도 편집하기 편하게 워드 파일로 저장된 것을 확인할 수 있다.</p>
+<p><img src="image/docum_docx.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="주제분포" class="level1">
+<h1>3. 주제분포</h1>
+<section id="주제-분포-정보" class="level2">
+<h2 class="anchored" data-anchor-id="주제-분포-정보">3.1. 주제 분포 정보</h2>
+<p>주제별로 얼마나 출현하는 지나 대표문서의 수와 비율, gamma 값 등을 살펴보고 결과물로 저장한다.</p>
+<section id="문서-주제-출현율-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="문서-주제-출현율-matrix">문서-주제 출현율 matrix</h3>
+<p><code>tidy</code>로 먼저 문서-주제 출현율(gamma)를 생성하고 주제 정보와 결합해준다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>td_gamma <span class="ot">&lt;-</span> <span class="fu">data.table</span>(<span class="fu">tidy</span>(tm_fiited, <span class="at">matrix =</span> <span class="st">"gamma"</span>))[</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  list_topicLabled, on <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"topic"</span> <span class="ot">=</span> <span class="st">"topicNumber_model"</span>)]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setnames</span>(td_gamma, <span class="st">"document"</span>, <span class="st">"id_f"</span>) <span class="co"># 문서의 ID 이름을 document에서 id_f로 변경</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="주제-출현율" class="level3">
+<h3 class="anchored" data-anchor-id="주제-출현율">주제 출현율</h3>
+<p>전체 문서에서 주제가 나타나는 비율은 각 주제별로 gamma의 평균을 구하면 된다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>td_gamma_topicRatio <span class="ot">&lt;-</span> td_gamma[</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  , .(<span class="at">prop_gamma =</span> <span class="fu">mean</span>(gamma)), .(topicLabel_f)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>주제 1은 전체 문서에서 약 7.65%, 주제 2는 3.89% 출현(분포)하고 있다.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">topicLabel_f</th>
+<th style="text-align: right;">prop_gamma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">주제 1: 공공임대 공고 단순 정보</td>
+<td style="text-align: right;">0.0759411</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">주제 2: 공공임대 공고 상세 정보</td>
+<td style="text-align: right;">0.0388192</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">주제 3: 공공임대 자격기준 정보</td>
+<td style="text-align: right;">0.0199404</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">주제 4: 공공임대 당첨 안내·상담</td>
+<td style="text-align: right;">0.0255691</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">주제 5: 문자알림서비스 등록</td>
+<td style="text-align: right;">0.0590426</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="대표문서-비율" class="level3">
+<h3 class="anchored" data-anchor-id="대표문서-비율">대표문서 비율</h3>
+<p>전체 문서 중 주제별 대표문서의 수와 비중을 구해본다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>td_gamma_documRatio <span class="ot">=</span> td_gamma[<span class="fu">order</span>(id_f, <span class="sc">-</span>gamma)][    <span class="co"># 문서별로 gamma가 높은 순으로 나열</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  , .SD[<span class="dv">1</span>], .(id_f)][                                   <span class="co"># 문서별로 가장 gamma가 높은 주제만 남김; 대표문서 추출</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    , .(<span class="at">n_docum =</span> .N), topicLabel_f][                   <span class="co"># 주제별 대표문서 개수 계산</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>      , prop_docum <span class="sc">:</span><span class="er">=</span> n_docum <span class="sc">/</span> <span class="fu">sum</span>(n_docum)]           <span class="co"># 전체 문서 중 주제별 대표문서 비중 계산</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>주제 9로 배정된 대표문서는 32,394건으로 310,675건의 전체 문서 중 10.42%를 차지한다.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">topicLabel_f</th>
+<th style="text-align: right;">n_docum</th>
+<th style="text-align: right;">prop_docum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">주제 9: 청약정보 안내</td>
+<td style="text-align: right;">32394</td>
+<td style="text-align: right;">0.1042697</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">주제 5: 문자알림서비스 등록</td>
+<td style="text-align: right;">18729</td>
+<td style="text-align: right;">0.0602849</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">주제 6: 제출서류 안내</td>
+<td style="text-align: right;">13256</td>
+<td style="text-align: right;">0.0426684</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">주제 2: 공공임대 공고 상세 정보</td>
+<td style="text-align: right;">11057</td>
+<td style="text-align: right;">0.0355902</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">주제 4: 공공임대 당첨 안내·상담</td>
+<td style="text-align: right;">1289</td>
+<td style="text-align: right;">0.0041490</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="대표문서-gamma" class="level3">
+<h3 class="anchored" data-anchor-id="대표문서-gamma">대표문서 gamma</h3>
+<p>대표문서로 지정된 주제의 gamma 평균 등을 살펴본다. 대표문서 주제 gamma는 대표문서에서 가장 출현율이 높은 주제의 확률을 말한다. 이를 살펴보면 어떤 주제가 대표문서를 지정할 때, 그 평균 값이 높은지 등을 통해 주제를 더 이해할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>td_gamma_DocumGamma <span class="ot">&lt;-</span> td_gamma[<span class="fu">order</span>(id_f, <span class="sc">-</span>gamma)][     <span class="co"># 문서별로 gamma가 높은 순으로 나열</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  , .SD[<span class="dv">1</span>], .(id_f)][                                     <span class="co"># 문서별로 가장 gamma가 높은 주제만 남김; 대표문서 추출</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    , .(<span class="at">mean_gamma_docum =</span> <span class="fu">mean</span>(gamma),                   <span class="co"># 주제별로 gamma의 통계값 산출</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">min_gamma_docum =</span> <span class="fu">min</span>(gamma), </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">max_gamma_docum =</span> <span class="fu">max</span>(gamma), </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">sd_gamma_docum =</span> <span class="fu">sd</span>(gamma)), .(topicLabel_f)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>주제 2로 배정된 문서에서, 평균 gamma 값은 0.651, 최대와 최소 값은 0.10과 0.977이다. 다른 주제와 비교하자면, 주제 10으로 배정된 문서의 주제 10 gamma 값은 주제 2의 경우와 다르게 0.250다. 이는 주제 2가 유사한 공고문 문구 및 형식을 문자 등으로 발송하는 경우가 대다수라 그 주제 단어 출현율이 높게 나타난 것이며(0.651), 주제 10의 경우는 주제 10의 출현율이 높아 주제 10의 대표문서로 배정되었더라도, 그 문서 내 주제 10 외 다른 주제도 섞인 경우가 많아 gamma 평균 값이 비교적 낮은 것(0.250)이다.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 15%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">topicLabel_f</th>
+<th style="text-align: right;">mean_gamma_docum</th>
+<th style="text-align: right;">min_gamma_docum</th>
+<th style="text-align: right;">max_gamma_docum</th>
+<th style="text-align: right;">sd_gamma_docum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">주제 2: 공공임대 공고 상세 정보</td>
+<td style="text-align: right;">0.6509847</td>
+<td style="text-align: right;">0.0984721</td>
+<td style="text-align: right;">0.9770741</td>
+<td style="text-align: right;">0.2668229</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">주제 10: 임대차 갈등 조정</td>
+<td style="text-align: right;">0.2502232</td>
+<td style="text-align: right;">0.0914454</td>
+<td style="text-align: right;">0.6585711</td>
+<td style="text-align: right;">0.0784729</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">주제 11: 비주택 주거상향사업 문의</td>
+<td style="text-align: right;">0.2772359</td>
+<td style="text-align: right;">0.0904835</td>
+<td style="text-align: right;">0.7864116</td>
+<td style="text-align: right;">0.0949464</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">주제 12: 주거비 체납 상담·지원</td>
+<td style="text-align: right;">0.3533641</td>
+<td style="text-align: right;">0.0939063</td>
+<td style="text-align: right;">0.8721365</td>
+<td style="text-align: right;">0.1318650</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">주제 13: 주거비 체납 안내</td>
+<td style="text-align: right;">0.4801685</td>
+<td style="text-align: right;">0.0938046</td>
+<td style="text-align: right;">0.9465828</td>
+<td style="text-align: right;">0.2312453</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">주제 14: 1인가구주택관리서비스(간편집수리)</td>
+<td style="text-align: right;">0.4459523</td>
+<td style="text-align: right;">0.1047969</td>
+<td style="text-align: right;">0.9506402</td>
+<td style="text-align: right;">0.1839126</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="주제-분포-통계" class="level3">
+<h3 class="anchored" data-anchor-id="주제-분포-통계">주제 분포 통계</h3>
+<p>위 주제 출현율과 대표문서 비율, 대표문서 gamma를 합치고 추출한다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Reduce</span>(merge, </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">list</span>(td_gamma_topicRatio, td_gamma_documRatio, td_gamma_DocumGamma))[ <span class="co"># 3개 DB를 합치기</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>         , .(주제명 <span class="ot">=</span> topicLabel_f,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">주제 출현율</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">percent</span>(prop_gamma, <span class="at">accuracy =</span> <span class="fl">0.01</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">대표문서 수(비율)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">paste0</span>(<span class="fu">comma</span>(n_docum), <span class="st">" ("</span>, prop_docum, <span class="st">")"</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">대표문서의 평균 gamma</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">number</span>(mean_gamma_docum, <span class="at">accuracy =</span> <span class="fl">0.01</span>),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">대표문서의 표준편차 gamma</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">number</span>(sd_gamma_docum, <span class="at">accuracy =</span> <span class="fl">0.01</span>),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">대표문서의 최소 gamma</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">number</span>(min_gamma_docum, <span class="at">accuracy =</span> <span class="fl">0.01</span>),</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">대표문서의 최대 gamma</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">number</span>(max_gamma_docum, <span class="at">accuracy =</span> <span class="fl">0.01</span>))</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>         ][<span class="fu">order</span>(주제명)] <span class="sc">%&gt;%</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fwrite</span>(<span class="st">"result/stm_output/result_distri_topic.csv"</span>, <span class="at">bom =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>아래 코드로 시각화한다.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 7%">
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">주제명</th>
+<th style="text-align: left;">주제 출현율</th>
+<th style="text-align: left;">대표문서 수(비율)</th>
+<th style="text-align: right;">대표문서의 평균 gamma</th>
+<th style="text-align: right;">대표문서의 표준편차 gamma</th>
+<th style="text-align: right;">대표문서의 최소 gamma</th>
+<th style="text-align: right;">대표문서의 최대 gamma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">주제 1: 공공임대 공고 단순 정보</td>
+<td style="text-align: left;">7.59%</td>
+<td style="text-align: left;">28,511 (0.091771143477911)</td>
+<td style="text-align: right;">0.39</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.89</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">주제 2: 공공임대 공고 상세 정보</td>
+<td style="text-align: left;">3.88%</td>
+<td style="text-align: left;">11,057 (0.0355902470427295)</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">0.27</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.98</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">주제 3: 공공임대 자격기준 정보</td>
+<td style="text-align: left;">1.99%</td>
+<td style="text-align: left;">4,146 (0.0133451355918564)</td>
+<td style="text-align: right;">0.54</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.97</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="대표문서-비율-시각화" class="level2">
+<h2 class="anchored" data-anchor-id="대표문서-비율-시각화">3.2. 대표문서 비율 시각화</h2>
+<p>주제별 대표문서가 차지하는 비율을 <code>treemapify</code> 패키지를 활용해서 시각화한다. 이 그래프는 특정 값을 면적으로 하는 사각형 형태로 보여준다. 아래는 각 나라 GDP를 대륙에 따라 만든 것이다. <img src="image/README-subgrouped_treemap-1.png" class="img-fluid" alt="https://wilkox.org/treemapify/"></p>
+<p>먼저 주제별 대표문서 수와 비중을 구한다. 위와 다른 점은 그래프에 표기할 label이 추가됐다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>td_gamma_documRatio <span class="ot">=</span> td_gamma[<span class="fu">order</span>(id_f, <span class="sc">-</span>gamma)][    <span class="co"># 문서별로 gamma가 높은 순으로 나열</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  , .SD[<span class="dv">1</span>], .(id_f)][                                   <span class="co"># 문서별로 가장 gamma가 높은 주제만 남김; 대표문서 추출</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    , .(<span class="at">n_docum =</span> .N), .(topicLabel_f, topicGroup_f)][  <span class="co"># 주제별 대표문서 개수 계산</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>      , prop_docum <span class="sc">:</span><span class="er">=</span> <span class="fu">percent</span>(n_docum <span class="sc">/</span> <span class="fu">sum</span>(n_docum),   <span class="co"># 전체 문서 중 주제별 대표문서 비중 계산</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">accuracy =</span> <span class="fl">0.1</span>)][ </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      , labels <span class="sc">:</span><span class="er">=</span> <span class="fu">paste0</span>(topicLabel_f,                  <span class="co"># 그래프에 표시할 label</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                         <span class="st">" ("</span>, prop_docum, <span class="st">")"</span>)] </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 대분류별 비중</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>list_topicGroup_prop <span class="ot">&lt;-</span> <span class="fu">toString</span>(td_gamma_documRatio[, .(<span class="at">n_docum =</span> <span class="fu">sum</span>(n_docum)), topicGroup_f][</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  , <span class="at">prop_docum :=</span> <span class="fu">percent</span>(n_docum <span class="sc">/</span> <span class="fu">sum</span>(n_docum), <span class="at">accuracy =</span> <span class="fl">0.1</span>)][ </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    , <span class="at">labels :=</span> <span class="fu">paste0</span>(topicGroup_f, <span class="st">" ("</span>, prop_docum, <span class="st">")"</span>)][<span class="fu">order</span>(topicGroup_f)]<span class="sc">$</span>labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(td_gamma_documRatio,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">area =</span> n_docum, <span class="at">fill =</span> topicGroup_f, <span class="at">label=</span>labels, <span class="at">subgroup=</span>topicGroup_f)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_treemap</span>(<span class="at">start =</span> <span class="st">"topleft"</span>, <span class="fu">aes</span>(<span class="at">alpha =</span> n_docum), <span class="at">show.legend =</span> F) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_treemap_subgroup_border</span>(<span class="at">start =</span> <span class="st">"topleft"</span>, <span class="at">colour=</span><span class="st">"white"</span>, <span class="at">show.legend =</span> F) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_treemap_text</span>(</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">start =</span> <span class="st">"topleft"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">fontface =</span> <span class="st">"italic"</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"white"</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">place =</span> <span class="st">"centre"</span>,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">grow =</span> F, <span class="at">show.legend =</span> F, <span class="at">reflow =</span> T)  <span class="sc">+</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_treemap_subgroup_text</span>(</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">start =</span> <span class="st">"topleft"</span>, <span class="at">place =</span> <span class="st">"centre"</span>,</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">grow =</span> T, <span class="at">show.legend =</span> F, <span class="at">fontface =</span> <span class="st">"italic"</span>, </span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"grey20"</span>,</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">min.size =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">brewer.pal</span>(<span class="at">name=</span><span class="st">"Set1"</span>, <span class="at">n =</span> <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"대분류, 중분류별 주제 대표문서 분포"</span>,</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"높은 비중일수록 불투명하며 좌측 상단 위치"</span>,</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">paste0</span>(<span class="st">"* 비중: "</span>, list_topicGroup_prop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="result/stm_output/result_distri_topic.png" class="img-fluid" style="width:85.0%"></p>
+<p>대분류별로 보면 주거정보가 전체 약 50%로 왼쪽에 가장 크게 빨간색으로 분포한다. 주거정보 중에서는 주제 9(청약정보 안내)가 전체 10.4%로 좌측 상단에 위치하며, 가장 불투명하다. 우측 하단으로 좀 더 투명해지며 주제 1과 주제 5, 주제 11 순으로 위치한다.</p>
+<p>아래 코드로 저장한다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"result/stm_output/result_distri_topic.png"</span>, <span class="at">dpi =</span> <span class="dv">400</span>, <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
 </section>
 </section>
 

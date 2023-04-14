@@ -1,28 +1,34 @@
 ---
-title: "주거상담기록 분석 (1): 개요"
+title: "주거상담기록 데이터 분석 (1): 개요"
 description: |
-  주거상담기록은 무엇을 말하고자 하는 건지 분석해보자
+  주거상담기록 텍스트 데이터를 분석하는 시리즈의 개요
 date: "2023-03-21"
 categories: [주거상담기록, 텍스트마이닝]
 image: "image/overview.png"
+fig-cap-location: bottom
 ---
 
 # 들어가며
 
-이 시리즈는 **텍스트 분석, 구체적으로는 토픽모델링 분석 과정**에 대해 다룹니다. 좋은 기회로 SH 서울주택도시공사에서 연구 용역을 수행하며, 주거상담소에서 상담한 기록을 다뤘습니다. 여기서 저는 `데이터 정제`와 분류할 카테고리를 지정하지 않고 분류하는 `토픽모델링`을 수행했고 이를 정리해 올리고자 합니다.
+이 시리즈는 **텍스트 분석, 특히 토픽모델링 분석 과정**에 대해 다룹니다. 
 
-![연구용역 개요](image/overview.png)
+SH 서울주택도시공사에서 연구 용역을 수행하며, 서울 주거 관련 상담사가 기록한 텍스트 데이터를 다룰 기회가 있었습니다. 쉽게 접하지 못하는 좋은 데이터를 가지고 저는 `데이터 정제`와 분류할 카테고리를 지정하지 않고 텍스트를 분류하는 `토픽모델링`을 수행했습니다.
+
+![연구용역 개요](image/overview.png){width=85%}
 
 # 시리즈 개요
 
-시리즈는 개요를 포함해 총 6개로 구성했습니다.
+제가 한 작업은 아래 그림과 같으며, 총 6개 블로그 글로 재구성했습니다.
 
-![블로그 시리즈 개요](image/overview_blog.png)
+![블로그 시리즈 개요](image/overview_blog.png){width=85%}
 
--   주거상담기록 분석 (2): 형태소분석 [(링크)](../2023-03-22-housing-consultation-analysis-2/index.qmd)
--   주거상담기록 분석 (3): 주제 수 결정 [(링크)](../2023-03-23-housing-consultation-analysis-3/index.qmd)
--   주거상담기록 분석 (4): 주제 명명 [(링크)](../2023-03-24-housing-consultation-analysis-4/index.qmd)
--   주거상담기록 분석 (5): 주제 분포 파악 [(링크)](../2023-03-25-housing-consultation-analysis-5/index.qmd)
--   주거상담기록 분석 (6): 주제 분석 [(링크)](../2023-03-26-housing-consultation-analysis-6/index.qmd)
+-   주거상담기록 데이터 분석 (2): 형태소분석 [(링크)](../2023-03-22-housing-consultation-analysis-2/index.qmd)
+-   주거상담기록 데이터 분석 (3): 주제 수 결정 [(링크)](../2023-03-23-housing-consultation-analysis-3/index.qmd)
+-   주거상담기록 데이터 분석 (4): 주제 명명 [(링크)](../2023-03-24-housing-consultation-analysis-4/index.qmd)
+-   주거상담기록 데이터 분석 (5): 주제 분석 [(링크)](../2023-03-25-housing-consultation-analysis-5/index.qmd)
+-   주거상담기록 데이터 분석 (6): 주제 공변량 분석 [(링크)](../2023-03-26-housing-consultation-analysis-6/index.qmd)
 
-주거상담 원데이터를 전처리하는 과정은 개인정보 보호 문제나 분석 목적에 따라 달라져야 하므로, 여기서는 다루지 않았습니다.
+:::{.callout-note}
+주거상담 원데이터를 전처리하는 과정은 개인정보 보호 문제나 분석 목적에 따라 달라지므로, 별도로 다루지 않았습니다.
+:::
+

@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-03-30">
-<meta name="description" content="주거상담 주제 분석">
+<meta name="dcterms.date" content="2023-03-23">
+<meta name="description" content="토픽모델링의 최종 주제 개수 결정">
 
-<title>Juhyeon Park - 주거상담기록 분석 (3): 토픽모델링 주제 수 결정</title>
+<title>Juhyeon Park - 주거상담기록 데이터 분석 (3): 토픽모델링 주제 수 결정</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -175,14 +175,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">주거상담기록 분석 (3): 토픽모델링 주제 수 결정</h1>
+      <h1 class="title">주거상담기록 데이터 분석 (3): 토픽모델링 주제 수 결정</h1>
                   <div>
         <div class="description">
-          <p>주거상담 주제 분석</p>
+          <p>토픽모델링의 최종 주제 개수 결정</p>
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">Python</div>
+                <div class="quarto-category">R</div>
               </div>
                   </div>
   </div>
@@ -194,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">March 30, 2023</p>
+        <p class="date">March 23, 2023</p>
       </div>
     </div>
     
@@ -251,9 +251,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>들어가기</h1>
 <p>토픽모델링에서 연구자가 사전에 지정하는 <strong>주제 개수를 결정</strong>하는 과정에 대해 다룬다.</p>
 <p><img src="image/overview.png" class="img-fluid"></p>
-<ol type="1">
-<li>문서 전처리: 토픽모델링 전에 문서 내 희소단어를 제거하고 샘플을 추출한다. 희소 단어 제거는</li>
-</ol>
 </section>
 <section id="문서-전처리" class="level1">
 <h1>1. 문서 전처리</h1>
@@ -355,19 +352,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">지하철</td>
+<td style="text-align: left;">연기</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">주거상황</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">사회복지사</td>
+<td style="text-align: left;">주거돌봄서비스</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">반복</td>
+<td style="text-align: left;">입주자격</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">달라지다</td>
+<td style="text-align: left;">자가</td>
 </tr>
 </tbody>
 </table>

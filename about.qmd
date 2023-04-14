@@ -12,15 +12,14 @@ about:
       href: https://github.com/jhyeonpark
 ---
 
-:::{#hero-heading}
-
+::: {#hero-heading}
 I am an urban planner and data scientist working to improve the use of urban data as the evidence base for formulating urban policies, plans, strategies, and programs.
 
 My particular areas of interest are:
 
-- Urban analytics
-- Data mining/visualization
-- Smart cities
+-   Urban analytics
+-   Data mining/visualization
+-   Smart cities
 
 I use this site to showcase my recent work, and discuss new data-science and statistical tools and techniques on my blog.
 
@@ -37,5 +36,4 @@ Postdoctoral Researcher at Ulsan National Institute of Science and Technology \|
 ## CV
 
 Download [my resumé.](cv_jhyeon_v2.pdf)
-
 :::

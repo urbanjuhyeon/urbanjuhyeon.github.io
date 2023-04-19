@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-04-19">
+<meta name="description" content="대표적인 한국어 감성 분석 API를 제공하는 구글과 네이버 성능 비교">
+
+<title>Juhyeon Park - 한국어 감성 분석 비교: 구글 대 네이버</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Juhyeon Park</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">Juhyeon Park</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jhyeonpark"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">한국어 감성 분석 비교: 구글 대 네이버</h1>
+                  <div>
+        <div class="description">
+          <p>대표적인 한국어 감성 분석 API를 제공하는 구글과 네이버 성능 비교</p>
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 19, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#들어가기" id="toc-들어가기" class="nav-link active" data-scroll-target="#들어가기">들어가기</a></li>
+  <li><a href="#데이터-준비하기" id="toc-데이터-준비하기" class="nav-link" data-scroll-target="#데이터-준비하기">1. 데이터 준비하기</a></li>
+  <li><a href="#감성분석" id="toc-감성분석" class="nav-link" data-scroll-target="#감성분석">2. 감성분석</a>
+  <ul class="collapse">
+  <li><a href="#네이버-감성분석" id="toc-네이버-감성분석" class="nav-link" data-scroll-target="#네이버-감성분석">2.1. 네이버 감성분석</a>
+  <ul class="collapse">
+  <li><a href="#감성분석-준비" id="toc-감성분석-준비" class="nav-link" data-scroll-target="#감성분석-준비">감성분석 준비</a></li>
+  <li><a href="#r을-활용한-네이버-감성분석" id="toc-r을-활용한-네이버-감성분석" class="nav-link" data-scroll-target="#r을-활용한-네이버-감성분석">R을 활용한 네이버 감성분석</a></li>
+  </ul></li>
+  <li><a href="#구글-감성분석" id="toc-구글-감성분석" class="nav-link" data-scroll-target="#구글-감성분석">2.2. 구글 감성분석</a></li>
+  </ul></li>
+  <li><a href="#감성분석-비교" id="toc-감성분석-비교" class="nav-link" data-scroll-target="#감성분석-비교">3. 감성분석 비교</a>
+  <ul class="collapse">
+  <li><a href="#분류-정확도-요약" id="toc-분류-정확도-요약" class="nav-link" data-scroll-target="#분류-정확도-요약">3.1. 분류 정확도 요약</a></li>
+  <li><a href="#비교-데이터셋-만들기" id="toc-비교-데이터셋-만들기" class="nav-link" data-scroll-target="#비교-데이터셋-만들기">3.2. 비교 데이터셋 만들기</a></li>
+  <li><a href="#감성분석-상세" id="toc-감성분석-상세" class="nav-link" data-scroll-target="#감성분석-상세">3.3. 감성분석 상세</a>
+  <ul class="collapse">
+  <li><a href="#구글-감성분석-1" id="toc-구글-감성분석-1" class="nav-link" data-scroll-target="#구글-감성분석-1">구글 감성분석</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="들어가기" class="level1">
+<h1>들어가기</h1>
+<p>한국어 감서서 <strong>토픽모델링 주제와 메타데이터 사이의 공변량</strong>를 분석한다. 메타데이터는 텍스트 외 주제와 관련될 수 있는 데이터를 말한다. 내담자 성별이나 상담 방법(유선상담 등)은 특정 주제가 많이 등장할 수도 있다. 이런 공변량(covariate)를 분석하며, 이는 stm 토픽모델링의 장점 중 하나다.</p>
+<hr>
+</section>
+<section id="데이터-준비하기" class="level1">
+<h1>1. 데이터 준비하기</h1>
+<p>분석에 필요할 패키지를 불러온다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tidyverse"</span>,  <span class="st">"tidytext"</span>, <span class="st">"data.table"</span>, <span class="st">"knitr"</span>, <span class="st">"gt"</span>, <span class="st">"scales"</span>, <span class="st">"cvms"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"httr"</span>, <span class="st">"jsonlite"</span>, <span class="st">"future"</span>, <span class="st">"furrr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>분석에 쓸 데이터를 <a href="data/sample.csv">여기</a>에서 다운 받아 불러온다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>db_sent_1a <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">'data/sample.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>데이터는 구글 리뷰 문장(sent_content)을 긍정과 중립, 부정으로 라벨링(label)하고 구글 자연어 처리의 감성분석 점수(score)로 구성된다.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">sent_content</th>
+<th style="text-align: left;">label</th>
+<th style="text-align: right;">senti_score_google</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">탁트인 한강 전망이 좋아요</td>
+<td style="text-align: left;">긍정</td>
+<td style="text-align: right;">0.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">물난리 후 첫주말에 갔는데</td>
+<td style="text-align: left;">중립</td>
+<td style="text-align: right;">-0.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">교통,주차 너무힘들어요</td>
+<td style="text-align: left;">부정</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>위 데이터에서 긍정과 중립, 부정을 각각 200개씩 무작위로 샘플링한다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">777</span>) <span class="co"># 난수 고정</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>db_sent_1b <span class="ot">&lt;-</span> db_sent_1a <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(label) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">200</span>) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(label) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">row_number</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="감성분석" class="level1">
+<h1>2. 감성분석</h1>
+<section id="네이버-감성분석" class="level2">
+<h2 class="anchored" data-anchor-id="네이버-감성분석">2.1. 네이버 감성분석</h2>
+<section id="감성분석-준비" class="level3">
+<h3 class="anchored" data-anchor-id="감성분석-준비">감성분석 준비</h3>
+<p>CLOVA Sentiment 서비스 설명과 가이드라인은 <a href="https://medium.com/naver-cloud-platform/%EC%9D%B4%EB%A0%87%EA%B2%8C-%EC%82%AC%EC%9A%A9%ED%95%98%EC%84%B8%EC%9A%94-%ED%85%8D%EC%8A%A4%ED%8A%B8-%EA%B0%90%EC%A0%95-%EB%B6%84%EC%84%9D-%EC%84%9C%EB%B9%84%EC%8A%A4-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-clova-sentiment-%ED%99%9C%EC%9A%A9%EA%B8%B0-5d9db7b0209b">여기</a>에서 볼 수 있다. 콘솔 접속과 서비스 활성화, 인증정보 등을 따라하면 된다.</p>
+</section>
+<section id="r을-활용한-네이버-감성분석" class="level3">
+<h3 class="anchored" data-anchor-id="r을-활용한-네이버-감성분석">R을 활용한 네이버 감성분석</h3>
+<p>아래 코드로 할당받은 네이버 감성분석 API를 활용하여 샘플 데이터를 감성분석한다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define API endpoint and headers</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://naveropenapi.apigw.ntruss.com/sentiment-analysis/v1/analyze"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>client_id <span class="ot">=</span> <span class="st">"nqbdvhltg0"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>client_secret <span class="ot">=</span> <span class="st">"32GT8wyL2jSoQVnq9QEsBkNI4BDrQztxONx8dVF2"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>headers_user <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"X-NCP-APIGW-API-KEY-ID"</span> <span class="ot">=</span> client_id,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"X-NCP-APIGW-API-KEY"</span> <span class="ot">=</span> client_secret,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Content-Type"</span> <span class="ot">=</span> <span class="st">"application/json"</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>db_sent_1c <span class="ot">&lt;-</span> db_sent_1b <span class="sc">%&gt;%</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_split</span>(id)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>db_sent_2a <span class="ot">&lt;-</span> <span class="fu">rbindlist</span>(</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">future_map</span>(db_sent_1c, <span class="cf">function</span>(x){</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    sent_content_input <span class="ot">&lt;-</span> x<span class="sc">$</span>sent_content</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    seti_analysis_respon <span class="ot">&lt;-</span> <span class="fu">POST</span>(</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">url =</span> <span class="st">"https://naveropenapi.apigw.ntruss.com/sentiment-analysis/v1/analyze"</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">body =</span> <span class="fu">toJSON</span>(<span class="fu">list</span>(<span class="at">content =</span> sent_content_input) , <span class="at">auto_unbox =</span> <span class="cn">TRUE</span>, <span class="at">pretty =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">add_headers</span>(<span class="at">.headers =</span> headers_user),</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">encode =</span> <span class="st">"json"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">content</span>()</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    doc_dt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">doc_content =</span> sent_content_input,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">doc_senti =</span> seti_analysis_respon<span class="sc">$</span>document<span class="sc">$</span>sentiment,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">doc_confi_neg =</span> seti_analysis_respon<span class="sc">$</span>document<span class="sc">$</span>confidence<span class="sc">$</span>negative,</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">doc_confi_posi =</span> seti_analysis_respon<span class="sc">$</span>document<span class="sc">$</span>confidence<span class="sc">$</span>positive,</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">doc_confi_neut =</span> seti_analysis_respon<span class="sc">$</span>document<span class="sc">$</span>confidence<span class="sc">$</span>neutral</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create a data.table of sentence-level information</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    sent_dt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">sent_content =</span> <span class="fu">sapply</span>(seti_analysis_respon<span class="sc">$</span>sentences, <span class="cf">function</span>(x) x<span class="sc">$</span>content),</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>      <span class="at">sent_offset =</span> <span class="fu">sapply</span>(seti_analysis_respon<span class="sc">$</span>sentences, <span class="cf">function</span>(x) x<span class="sc">$</span>offset),</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">sent_length =</span> <span class="fu">sapply</span>(seti_analysis_respon<span class="sc">$</span>sentences, <span class="cf">function</span>(x) x<span class="sc">$</span>length),</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>      <span class="at">sent_sentiment =</span> <span class="fu">sapply</span>(seti_analysis_respon<span class="sc">$</span>sentences, <span class="cf">function</span>(x) x<span class="sc">$</span>sentiment),</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">sent_confi_neg =</span> <span class="fu">sapply</span>(seti_analysis_respon<span class="sc">$</span>sentences, <span class="cf">function</span>(x) x<span class="sc">$</span>confidence<span class="sc">$</span>negative),</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>      <span class="at">sent_confi_posi =</span> <span class="fu">sapply</span>(seti_analysis_respon<span class="sc">$</span>sentences, <span class="cf">function</span>(x) x<span class="sc">$</span>confidence<span class="sc">$</span>positive),</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>      <span class="at">sent_confi_neut =</span> <span class="fu">sapply</span>(seti_analysis_respon<span class="sc">$</span>sentences, <span class="cf">function</span>(x) x<span class="sc">$</span>confidence<span class="sc">$</span>neutral),</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>      <span class="at">sent_highlight_offset =</span> <span class="fu">sapply</span>(seti_analysis_respon<span class="sc">$</span>sentences, <span class="cf">function</span>(x) x<span class="sc">$</span>highlights[[<span class="dv">1</span>]]<span class="sc">$</span>offset),</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>      <span class="at">sent_highlight_length =</span> <span class="fu">sapply</span>(seti_analysis_respon<span class="sc">$</span>sentences, <span class="cf">function</span>(x) x<span class="sc">$</span>highlights[[<span class="dv">1</span>]]<span class="sc">$</span>length)</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"end"</span>)</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    comb_dt <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">id =</span> x<span class="sc">$</span>id, doc_dt, sent_dt)</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>  }))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>감성분석 결과는 다음과 같다. 여기서 doc와 senti로 시작하면 각각 문서와 그 문서를 구성하는 문장으로 나타낸다. 네이버 클로버 감성분석은 분석하는 문서(doc)의 문장을 자동으로 분류해준다.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 1%">
+<col style="width: 11%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 11%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">id</th>
+<th style="text-align: left;">doc_content</th>
+<th style="text-align: left;">doc_senti</th>
+<th style="text-align: right;">doc_confi_neg</th>
+<th style="text-align: right;">doc_confi_posi</th>
+<th style="text-align: right;">doc_confi_neut</th>
+<th style="text-align: left;">sent_content</th>
+<th style="text-align: right;">sent_offset</th>
+<th style="text-align: right;">sent_length</th>
+<th style="text-align: left;">sent_sentiment</th>
+<th style="text-align: right;">sent_confi_neg</th>
+<th style="text-align: right;">sent_confi_posi</th>
+<th style="text-align: right;">sent_confi_neut</th>
+<th style="text-align: right;">sent_highlight_offset</th>
+<th style="text-align: right;">sent_highlight_length</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">그늘도 많고 쉴자리도 많아요.</td>
+<td style="text-align: left;">positive</td>
+<td style="text-align: right;">0.0002367</td>
+<td style="text-align: right;">99.99958</td>
+<td style="text-align: right;">0.0001859</td>
+<td style="text-align: left;">그늘도 많고 쉴자리도 많아요.</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">positive</td>
+<td style="text-align: right;">0.0000142</td>
+<td style="text-align: right;">0.9999746</td>
+<td style="text-align: right;">0.0000112</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">공기좋음</td>
+<td style="text-align: left;">positive</td>
+<td style="text-align: right;">0.0367223</td>
+<td style="text-align: right;">99.95812</td>
+<td style="text-align: right;">0.0051644</td>
+<td style="text-align: left;">공기좋음</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">positive</td>
+<td style="text-align: right;">0.0022033</td>
+<td style="text-align: right;">0.9974868</td>
+<td style="text-align: right;">0.0003099</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">맑은하늘을 맘껏볼수있는곳</td>
+<td style="text-align: left;">positive</td>
+<td style="text-align: right;">0.0001375</td>
+<td style="text-align: right;">99.99956</td>
+<td style="text-align: right;">0.0003061</td>
+<td style="text-align: left;">맑은하늘을 맘껏볼수있는곳</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">positive</td>
+<td style="text-align: right;">0.0000083</td>
+<td style="text-align: right;">0.9999734</td>
+<td style="text-align: right;">0.0000184</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">13</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="구글-감성분석" class="level2">
+<h2 class="anchored" data-anchor-id="구글-감성분석">2.2. 구글 감성분석</h2>
+<p>구글 감성 분석은 <a href="https://brunch.co.kr/@mapthecity/25">여기</a>에서 자세히 배울 수 있다. 네이버 감성분석과 같이 R를 활용하여 구글 감성 분석 API를 쓰는 방법은 추후에 업데이트하고자 한다.</p>
+</section>
+</section>
+<section id="감성분석-비교" class="level1">
+<h1>3. 감성분석 비교</h1>
+<section id="분류-정확도-요약" class="level2">
+<h2 class="anchored" data-anchor-id="분류-정확도-요약">3.1. 분류 정확도 요약</h2>
+<p>네이버 감성분석은 F1 점수가 0.84로 구글 감성분석 0.642보다 더 높았다.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">지표</th>
+<th style="text-align: right;">구글 감성분석</th>
+<th style="text-align: right;">네이버 감성분석</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">F1-score</td>
+<td style="text-align: right;">0.6423675</td>
+<td style="text-align: right;">0.8404454</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Balanced Accuracy</td>
+<td style="text-align: right;">0.7362500</td>
+<td style="text-align: right;">0.8787500</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="비교-데이터셋-만들기" class="level2">
+<h2 class="anchored" data-anchor-id="비교-데이터셋-만들기">3.2. 비교 데이터셋 만들기</h2>
+<p>분석할 감성분석 결과 DB를 만들어준다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>db_sent_2b <span class="ot">&lt;-</span> <span class="fu">unique</span>(db_sent_2a, <span class="at">by =</span> <span class="st">"id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, doc_senti)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>db_sent_f <span class="ot">&lt;-</span> db_sent_1b <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(db_sent_2b, <span class="at">by =</span> <span class="st">"id"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">senti_label_google =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">between</span>(senti_score_google, <span class="fl">0.25</span>, <span class="dv">1</span>) <span class="sc">~</span> <span class="st">"긍정"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">between</span>(senti_score_google, <span class="sc">-</span><span class="fl">0.25</span>, <span class="fl">0.25</span>) <span class="sc">~</span> <span class="st">"중립"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"부정"</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">senti_label_naver =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>      doc_senti <span class="sc">==</span> <span class="st">"positive"</span> <span class="sc">~</span> <span class="st">"긍정"</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>      doc_senti <span class="sc">==</span> <span class="st">"neutral"</span> <span class="sc">~</span> <span class="st">"중립"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"부정"</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, sent_content, senti_label_google, senti_label_naver, label) <span class="sc">%&gt;%</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate_at</span>(<span class="fu">c</span>(<span class="st">"senti_label_google"</span>, <span class="st">"senti_label_naver"</span>, <span class="st">"label"</span>), factor, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"부정"</span>, <span class="st">"중립"</span>, <span class="st">"긍정"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>conf_mat_google <span class="ot">&lt;-</span> <span class="fu">confusion_matrix</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">targets =</span> db_sent_f<span class="sc">$</span>label,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">predictions =</span> db_sent_f<span class="sc">$</span>senti_label_google</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>conf_mat_naver <span class="ot">&lt;-</span> <span class="fu">confusion_matrix</span>(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">targets =</span> db_sent_f<span class="sc">$</span>label,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">predictions =</span> db_sent_f<span class="sc">$</span>senti_label_naver</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="감성분석-상세" class="level2">
+<h2 class="anchored" data-anchor-id="감성분석-상세">3.3. 감성분석 상세</h2>
+<section id="구글-감성분석-1" class="level3">
+<h3 class="anchored" data-anchor-id="구글-감성분석-1">구글 감성분석</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_confusion_matrix</span>(conf_mat_google<span class="sc">$</span><span class="st">`</span><span class="at">Confusion Matrix</span><span class="st">`</span>[[<span class="dv">1</span>]], </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">class_order =</span> <span class="fu">c</span>(<span class="st">"긍정"</span>, <span class="st">"중립"</span>, <span class="st">"부정"</span>),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">add_sums =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot_confusion_matrix(conf_mat_google$`Confusion Matrix`[[1]], :
+'ggimage' is missing. Will not plot arrows and zero-shading.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot_confusion_matrix(conf_mat_google$`Confusion Matrix`[[1]], :
+'rsvg' is missing. Will not plot arrows and zero-shading.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot_confusion_matrix(conf_mat_google$`Confusion Matrix`[[1]], :
+'ggnewscale' is missing. Will not use palette for sum tiles.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_confusion_matrix</span>(conf_mat_naver<span class="sc">$</span><span class="st">`</span><span class="at">Confusion Matrix</span><span class="st">`</span>[[<span class="dv">1</span>]], </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">class_order =</span> <span class="fu">c</span>(<span class="st">"긍정"</span>, <span class="st">"중립"</span>, <span class="st">"부정"</span>),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">add_sums =</span> <span class="cn">TRUE</span>)  <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"네이버 감성분석 분류 정확도 결과"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot_confusion_matrix(conf_mat_naver$`Confusion Matrix`[[1]], :
+'ggimage' is missing. Will not plot arrows and zero-shading.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot_confusion_matrix(conf_mat_naver$`Confusion Matrix`[[1]], :
+'rsvg' is missing. Will not plot arrows and zero-shading.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot_confusion_matrix(conf_mat_naver$`Confusion Matrix`[[1]], :
+'ggnewscale' is missing. Will not use palette for sum tiles.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">'image/plot_conf_mat_naver.png'</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">width =</span> <span class="fl">5.5</span>, <span class="at">height =</span> <span class="fl">5.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

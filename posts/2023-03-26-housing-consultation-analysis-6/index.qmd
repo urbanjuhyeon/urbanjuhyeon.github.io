@@ -17,12 +17,11 @@ image: "image/주제분석_상담방법.png"
 
 여기서 쓸 데이터는 아래와 같다.
 
-| 샘플 데이터                                            | 설명                     |
+| 샘플 데이터                                                                                               | 설명                 |
 |:--------------------------------------------|:--------------------------|
-| [db_meta.csv](data/db_meta.csv)                  | 주거상담 메타데이터      |
-| [stmFinal_fit.rds](https://drive.google.com/file/d/1iLltpGyhe4SbhCnSnTxo6eX0NED17V3D/view?usp=share_link)              | stm 모델 |
-| [주제정보.csv](result/stm_labelling/주제정보.csv)           | 주제정보를 담은 파일   |
-
+| [db_meta.csv](data/db_meta.csv)                                                                           | 주거상담 메타데이터  |
+| [stmFinal_fit.rds](https://drive.google.com/file/d/1iLltpGyhe4SbhCnSnTxo6eX0NED17V3D/view?usp=share_link) | stm 모델             |
+| [주제정보.csv](result/stm_labelling/주제정보.csv)                                                         | 주제정보를 담은 파일 |
 
 ## 1.1. 패키지 불러오기
 
@@ -51,32 +50,36 @@ list_topicLabled <- fread("result/stm_labelling/주제정보.csv")[
 ```
 
 ## 1.2. stm 모델 불러오기
+
 최종 stm 모델을 불러온다.
 
-``` {r, eval = FALSE}
-tm_fiited <- readRDS(paste0("Result/stm_f/stmFinal_fit.rds"))
+```{r, eval = FALSE}
+tm_fiited <- readRDS("Result/stm_f/stmFinal_fit.rds")
 ```
 
 ## 1.3. 메타데이터 불러오기
-공변량 분석에 필요한 메타데이터를 불러온다. 
 
-``` {r, eval = FALSE}
+공변량 분석에 필요한 메타데이터를 불러온다.
+
+```{r, eval = FALSE}
 meta <- fread("data/db_meta.csv")
 ```
+
 모든 메타데이터가 아닌 이번 실습에선 성별(user_gender)과 상담유형(cons_class; depth-심층상담/basic-초기상담), 상담방법(cons_way)이 주거상담 기록과 관련 있다고 가정하고 메타데이터로 준비했다.
 
 ::: callout-note
 실제 연구 용역에선 위 성별, 상담유형, 상담방법 외 상담연도나 상담경로 등 다른 공변량 변수도 고려했다.
 :::
 
-``` {r, eval = FALSE}
+```{r, eval = FALSE}
 meta %>% slice(1:5) %>% kable()
 ```
 
 ## 1.4. 메타데이터 전처리
+
 메타데이터를 모델에 넣기 전, 정제하는 과정이다. 특히, 남자와 여자, 심층상담과 초기상담 등 범주형 변수는 바꿔줘야 한다.
 
-``` {r, eval = FALSE}
+```{r, eval = FALSE}
 meta_aj <- meta[
   , `:=` (user_gender = ifelse(user_gender %in% "남자", 0, 1), # 여성을 1, 남성을 0로 재정의
           cons_class = ifelse(cons_class %in% "depth", 0, 1),  # 초기상담을 1, 심층상담을 0으로 재정의
@@ -92,7 +95,7 @@ meta_aj <- meta[
 
 아래 코드로 공변량을 고려한 모델링을 해준다. 여기서 formula 공변량 함수다. 1:25는 주제 1번부터 25번을 고려한다는 것이고, +로 이어진 3개 공변량 변수와 관련됐을 거라는 의미다.
 
-``` {r, eval = FALSE}
+```{r, eval = FALSE}
 prep <- estimateEffect(
   formula = 1:25 ~ user_gender     # 공변량 모델링
   + cons_class + cons_way,
@@ -101,16 +104,13 @@ prep <- estimateEffect(
   uncertainty = "Global")
 ```
 
-``` {r, echo = FALSE}
-prep <- read_rds("result/stm_metaAnalysis/prep.rds")
-```
-
 # 3. 모델링 결과 해석
 
 ## 모델링 값 추출
-성별과 주거상담 주제가 어떤 관계가 있는 지를 예시로 살펴보자. `extract.estimateEffect`은 모델링 결과를 확인하는 데 도움을 준다. 
 
-``` {r, eval = FALSE}
+성별과 주거상담 주제가 어떤 관계가 있는 지를 예시로 살펴보자. `extract.estimateEffect`은 모델링 결과를 확인하는 데 도움을 준다.
+
+```{r, eval = FALSE}
 extract.estimateEffect(
   prep,                       # 공변량모델델
   covariate = "user_gender",  # 보려는 공변량 
@@ -122,15 +122,17 @@ extract.estimateEffect(
 
 여기서는 모델에서 할당한 주제 1은 남자가 여자에 비해 더 많은 것(estimate = 0.00587 > 0)으로 나타났다.
 
-``` {r, eval = FALSE}
+```{r, eval = FALSE}
 read_rds("result/t1.rds") %>% slice(1:3) %>% kable()
 ```
 
 ## 모델링 시각화
+
 ### 성별에 따른 주제 분석
+
 위 모델링 결과를 시각화하면 다음과 같다.
 
-``` {r, eval = FALSE}
+```{r, eval = FALSE}
 extract.estimateEffect(
   prep, 
   covariate = "user_gender", 
@@ -162,16 +164,14 @@ extract.estimateEffect(
 
 ```
 
-![](result/t2.png)
+![](image/주제분석_성별.png){width="80%"}
 
 위 결과를 해석하면, 남성 내담자에게 더 자주 등장하는 주제는 주제 16(이사비ˑ생활용품 지원)과 주제 11(비주택 주거상향사업 문의), 주제 7(주택물색)이다. 반면 여성 내담자는 주제 9(청약정보 안내)와 주제 5(문자알림서비스 등록) 등 주제가 자주 등장한다.
 
 ### 상담방법에 따른 주제 분석
+
 보고서에 쓴 상담방법에 따른 주제 분석 그래프는 다음과 같다.
 
-![])(image/주제분석_상담방법.png)
+![](image/주제분석_상담방법.png){width="80%"}
 
 상담방법이 기타인 경우, 주제 2 출현 확률이 높고 이는 주제 2(공공임대 공고 상세 정보) 주거상담을 문자로 보낼 때 기타로 주로 지정하는 것을 반영한다. 이동상담의 경우는 주제 9(청약정보 안내), 방문상담은 주제 14(1인가구주택관리서비스)가 자주 나타난다.
-
-
-

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -92,6 +92,7 @@ ul.task-list li input[type="checkbox"] {
   })
   </script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
@@ -108,29 +109,29 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">Juhyeon Park</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">
+    <a class="nav-link" href="./about.html" rel="" target="">
  <span class="menu-text">Juhyeon Park</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./blog.html" aria-current="page">
+    <a class="nav-link active" href="./blog.html" rel="" target="" aria-current="page">
  <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/jhyeonpark"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/jhyeonpark" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-              </div>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -157,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(10)</span></div><div class="category" data-category="Google Maps">Google Maps <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Open API">Open API <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(7)</span></div><div class="category" data-category="주거상담기록">주거상담기록 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="텍스트마이닝">텍스트마이닝 <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(11)</span></div><div class="category" data-category="ADP">ADP <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Google Maps">Google Maps <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Open API">Open API <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(7)</span></div><div class="category" data-category="주거상담기록">주거상담기록 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="텍스트마이닝">텍스트마이닝 <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -170,9 +171,44 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="R" data-listing-date-sort="1681830000000" data-listing-file-modified-sort="1681952819043" data-listing-reading-time-sort="7.88">
+<div class="quarto-post image-right" data-index="0" data-categories="ADP,R" data-listing-date-sort="1684076400000" data-listing-file-modified-sort="1684112421107" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
 <div class="thumbnail">
-<p><a href="./posts/2023-04-19-sentiment-analysis/index.html"> <img src="./posts/2023-04-19-sentiment-analysis/image/plot_conf_mat_naver.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/2023-05-15-adp-test-written/index.html"> <img src="./posts/2023-05-15-adp-test-written" class="thumbnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2023-05-15-adp-test-written/index.html">
+<h3 class="no-anchor listing-title">
+데이터 분석 전문가(ADP) 필기시험 준비
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('ADP'); return false;">
+ADP
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+R
+</div>
+</div>
+<a href="./posts/2023-05-15-adp-test-written/index.html">
+<div class="listing-description">
+<p>ADP 필기시험 준비 과정과 팁</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2023-05-15-adp-test-written/index.html">
+<div class="listing-date">
+May 15, 2023
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="R" data-listing-date-sort="1681830000000" data-listing-file-modified-sort="1681952819043" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8">
+<div class="thumbnail">
+<p><a href="./posts/2023-04-19-sentiment-analysis/index.html"> <img src="./posts/2023-04-19-sentiment-analysis/image/plot_conf_mat_naver.png" class="thumbnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/2023-04-19-sentiment-analysis/index.html">
@@ -202,9 +238,9 @@ Apr 19, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="R" data-listing-date-sort="1679756400000" data-listing-file-modified-sort="1681903553838" data-listing-reading-time-sort="6.44">
+<div class="quarto-post image-right" data-index="2" data-categories="R" data-listing-date-sort="1679756400000" data-listing-file-modified-sort="1681903553838" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7">
 <div class="thumbnail">
-<p><a href="./posts/2023-03-26-housing-consultation-analysis-6/index.html"> <img src="./posts/2023-03-26-housing-consultation-analysis-6/image/주제분석_상담방법.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/2023-03-26-housing-consultation-analysis-6/index.html"> <img src="./posts/2023-03-26-housing-consultation-analysis-6/image/주제분석_상담방법.png" class="thumbnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/2023-03-26-housing-consultation-analysis-6/index.html">
@@ -234,9 +270,9 @@ Mar 26, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Python" data-listing-date-sort="1679670000000" data-listing-file-modified-sort="1681461506078" data-listing-reading-time-sort="10.72">
+<div class="quarto-post image-right" data-index="3" data-categories="Python" data-listing-date-sort="1679670000000" data-listing-file-modified-sort="1681461506078" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11">
 <div class="thumbnail">
-<p><a href="./posts/2023-03-25-housing-consultation-analysis-5/index.html"> <img src="./posts/2023-03-25-housing-consultation-analysis-5/result/stm_output/result_distri_topic.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/2023-03-25-housing-consultation-analysis-5/index.html"> <img src="./posts/2023-03-25-housing-consultation-analysis-5/result/stm_output/result_distri_topic.png" class="thumbnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/2023-03-25-housing-consultation-analysis-5/index.html">
@@ -266,9 +302,9 @@ Mar 25, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="R" data-listing-date-sort="1679583600000" data-listing-file-modified-sort="1681458994890" data-listing-reading-time-sort="8.2">
+<div class="quarto-post image-right" data-index="4" data-categories="R" data-listing-date-sort="1679583600000" data-listing-file-modified-sort="1681458994890" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9">
 <div class="thumbnail">
-<p><a href="./posts/2023-03-24-housing-consultation-analysis-4/index.html"> <img src="./posts/2023-03-24-housing-consultation-analysis-4/image/front.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/2023-03-24-housing-consultation-analysis-4/index.html"> <img src="./posts/2023-03-24-housing-consultation-analysis-4/image/front.png" class="thumbnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/2023-03-24-housing-consultation-analysis-4/index.html">
@@ -298,9 +334,9 @@ Mar 24, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="R" data-listing-date-sort="1679497200000" data-listing-file-modified-sort="1681458902743" data-listing-reading-time-sort="5.75">
+<div class="quarto-post image-right" data-index="5" data-categories="R" data-listing-date-sort="1679497200000" data-listing-file-modified-sort="1681458902743" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6">
 <div class="thumbnail">
-<p><a href="./posts/2023-03-23-housing-consultation-analysis-3/index.html"> <img src="./posts/2023-03-23-housing-consultation-analysis-3/image/overview.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/2023-03-23-housing-consultation-analysis-3/index.html"> <img src="./posts/2023-03-23-housing-consultation-analysis-3/image/overview.png" class="thumbnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/2023-03-23-housing-consultation-analysis-3/index.html">
@@ -330,9 +366,9 @@ Mar 23, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="Python" data-listing-date-sort="1679410800000" data-listing-file-modified-sort="1681457962157" data-listing-reading-time-sort="6.87">
+<div class="quarto-post image-right" data-index="6" data-categories="Python" data-listing-date-sort="1679410800000" data-listing-file-modified-sort="1681457962157" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7">
 <div class="thumbnail">
-<p><a href="./posts/2023-03-22-housing-consultation-analysis-2/index.html"> <img src="./posts/2023-03-22-housing-consultation-analysis-2/image/overview.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/2023-03-22-housing-consultation-analysis-2/index.html"> <img src="./posts/2023-03-22-housing-consultation-analysis-2/image/overview.png" class="thumbnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/2023-03-22-housing-consultation-analysis-2/index.html">
@@ -362,9 +398,9 @@ Mar 22, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="주거상담기록,텍스트마이닝" data-listing-date-sort="1679324400000" data-listing-file-modified-sort="1681458923652" data-listing-reading-time-sort="0.58">
+<div class="quarto-post image-right" data-index="7" data-categories="주거상담기록,텍스트마이닝" data-listing-date-sort="1679324400000" data-listing-file-modified-sort="1681458923652" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
 <div class="thumbnail">
-<p><a href="./posts/2023-03-21-housing-consultation-analysis-1/index.html"> <img src="./posts/2023-03-21-housing-consultation-analysis-1/image/overview.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/2023-03-21-housing-consultation-analysis-1/index.html"> <img src="./posts/2023-03-21-housing-consultation-analysis-1/image/overview.png" class="thumbnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/2023-03-21-housing-consultation-analysis-1/index.html">
@@ -397,9 +433,9 @@ Mar 21, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="R,Open API" data-listing-date-sort="1676041200000" data-listing-file-modified-sort="1679015594422" data-listing-reading-time-sort="6.485">
+<div class="quarto-post image-right" data-index="8" data-categories="R,Open API" data-listing-date-sort="1676041200000" data-listing-file-modified-sort="1679015594422" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7">
 <div class="thumbnail">
-<p><a href="./posts/2023-02-11-how-to-use-open-api/index.html"> <img src="./posts/2023-02-11-how-to-use-open-api/image/api-intro.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/2023-02-11-how-to-use-open-api/index.html"> <img src="./posts/2023-02-11-how-to-use-open-api/image/api-intro.png" class="thumbnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/2023-02-11-how-to-use-open-api/index.html">
@@ -432,9 +468,9 @@ Feb 11, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="R,Google Maps" data-listing-date-sort="1673708400000" data-listing-file-modified-sort="1679015759919" data-listing-reading-time-sort="10.83">
+<div class="quarto-post image-right" data-index="9" data-categories="R,Google Maps" data-listing-date-sort="1673708400000" data-listing-file-modified-sort="1679015759919" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11">
 <div class="thumbnail">
-<p><a href="./posts/2023-01-15-how-to-use-googleway-r/index.html"> <img src="./posts/2023-01-15-how-to-use-googleway-r/image/yeonnam_cafe_POI.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/2023-01-15-how-to-use-googleway-r/index.html"> <img src="./posts/2023-01-15-how-to-use-googleway-r/image/yeonnam_cafe_POI.png" class="thumbnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/2023-01-15-how-to-use-googleway-r/index.html">
@@ -467,9 +503,9 @@ Jan 15, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="R" data-listing-date-sort="1660313594000" data-listing-file-modified-sort="1681866909204" data-listing-reading-time-sort="8.97">
+<div class="quarto-post image-right" data-index="10" data-categories="" data-listing-date-sort="1660230000000" data-listing-file-modified-sort="1689653407955" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9">
 <div class="thumbnail">
-<p><a href="./posts/2022-08-21-what-i-learn-startup-program/index.html"> <img src="./posts/2022-08-21-what-i-learn-startup-program/image/projectMainImage.png " class="thumnail-image"> </a></p>
+<p><a href="./posts/2022-08-21-what-i-learn-startup-program/index.html"> <img src="./posts/2022-08-21-what-i-learn-startup-program/image/basicEducation_assignment3_present.png" class="thumbnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/2022-08-21-what-i-learn-startup-program/index.html">
@@ -481,13 +517,11 @@ Jan 15, 2023
 </div>
 </a>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
+
 </div>
 <a href="./posts/2022-08-21-what-i-learn-startup-program/index.html">
 <div class="listing-description">
-이 글은 2022년 <strong>한국형 아이코어 사업</strong>에 참가한 여정을 돌아보고 느낀점을 정리한 포스트다. 겪었던 경험과 생각을 정리하는 것에서 나아가 이후 사업 참여를 계획하는 사람들이 참고한다면 좋을 것 같다. 창업을 생각하는 대학원생에게 아주 좋은 프로그램이라고 생각하지만 구체적인 사업 과정이나 후기가 없어서 아쉬웠다.
+<p>2022년 한국형 아이코어 사업(I-Corps) 후기</p>
 </div>
 </a>
 </div>
@@ -495,9 +529,6 @@ R
 <a href="./posts/2022-08-21-what-i-learn-startup-program/index.html">
 <div class="listing-date">
 Aug 12, 2022
-</div>
-<div class="listing-author">
-Juhyeon Park
 </div>
 </a>
 </div>
@@ -649,9 +680,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -716,6 +761,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

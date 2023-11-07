@@ -12,6 +12,6 @@ about:
       href: https://github.com/jhyeonpark
 ---
 
-I am an urban planner and data scientist. I am currently a postdoctoral researcher at the Urban Planning & Analytics Lab at UNIST. My interests include urban analytics, Data mining/visualization, and smart cities.
+I am a dedicated AI/Digital Specialist at the Gyeongbuk Development Institute, advancing public service through generative AI applications. My transition from a postdoctoral tenure in urban planning and analytics at UNIST to focusing on AI's potential marks a commitment to fostering smart, sustainable urban environments.
 
-With this blog, I intend to make a good quality of the blogs that have inspired me during my urban research.&nbsp;&nbsp; I hope it helps to provide valuable insights and resources for fellow enthusiasts of the field.
+Here, I'll share insights and progress on making city services smarter and more responsive with AI. Join me as we explore simple, smart solutions for better public services.

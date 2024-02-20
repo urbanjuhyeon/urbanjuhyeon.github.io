@@ -5,11 +5,11 @@ about:
   template: trestles
   links:
     - text: E-mail
-      href: mailto:juhyeon92@unist.ac.kr
+      href: mailto:urbanjuhyeon@gmail.ac.kr
     - text: LinkedIn
       href: https://www.linkedin.com/in/jhyeonpark/
     - text: Github
-      href: https://github.com/jhyeonpark
+      href: https://github.com/urbanjuhyeon
 ---
 
 ::: {#hero-heading}

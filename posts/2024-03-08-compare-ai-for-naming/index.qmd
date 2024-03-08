@@ -1,0 +1,29 @@
+---
+title: "AI 비교하기"
+description: |
+  생성형 AI를 활용하여 산업단지의 새로운 이름 지어보기
+date: "2024-03-08"
+image: "image/title.webp"
+categories: [AI, ChatGPT]
+---
+
+# 서론
+나는 생성형 AI, ChatGPT를 활용해서 산업단지 이름을 지어봤다. 다른 생성형 AI는 어떤 성능을 보일까?
+
+#
+
+## Google Jemini
+
+
+![](image/jemini.png)
+
+
+
+
+
+
+
+
+
+
+

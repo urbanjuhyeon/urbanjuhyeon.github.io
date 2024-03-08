@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -49,13 +49,7 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -64,10 +58,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 <script>
@@ -80,9 +72,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -103,43 +95,16 @@ ul.task-list li input[type="checkbox"] {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
 <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
+      <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Juhyeon Park</span>
     </a>
@@ -151,23 +116,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
-<span class="menu-text">Juhyeon Park</span></a>
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">Juhyeon Park</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./blog.html" aria-current="page"> 
-<span class="menu-text">Blog</span></a>
+    <a class="nav-link active" href="./blog.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/jhyeonpark"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/jhyeonpark" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
-<span class="menu-text"></span></a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
+          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -180,7 +145,7 @@ window.Quarto = {
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
       
     
@@ -193,7 +158,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(12)</span></div><div class="category" data-category="ADP">ADP <span class="quarto-category-count">(1)</span></div><div class="category" data-category="AI">AI <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ChatGPT">ChatGPT <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Google Maps">Google Maps <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Open API">Open API <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(7)</span></div><div class="category" data-category="주거상담기록">주거상담기록 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="텍스트마이닝">텍스트마이닝 <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(13)</span></div><div class="category" data-category="ADP">ADP <span class="quarto-category-count">(1)</span></div><div class="category" data-category="AI">AI <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ChatGPT">ChatGPT <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Google Maps">Google Maps <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Open API">Open API <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(7)</span></div><div class="category" data-category="주거상담기록">주거상담기록 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="텍스트마이닝">텍스트마이닝 <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -204,22 +169,18 @@ window.Quarto = {
 
 
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="AI,ChatGPT" data-listing-date-sort="1709823600000" data-listing-file-modified-sort="1709888316647" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="235">
-<div class="thumbnail">
-<p><a href="./posts/2024-03-08-ai-for-naming/index.html" class="no-external"></a></p><a href="./posts/2024-03-08-ai-for-naming/index.html" class="no-external">
-<p><img src="./posts/2024-03-08-ai-for-naming/image/title.webp" class="thumbnail-image"></p>
-</a><p><a href="./posts/2024-03-08-ai-for-naming/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2024-03-08-ai-for-naming/index.html" class="no-external">AI를 활용한 산업단지 이름 짓기</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2024-03-08-ai-for-naming/index.html" class="no-external"></a>
-</div>
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="AI,ChatGPT" data-listing-date-sort="1709823600000" data-listing-file-modified-sort="1709897242804" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2">
+<a href="./posts/2024-03-08-ai-for-naming/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/2024-03-08-ai-for-naming/image/title.webp" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+AI를 활용한 산업단지 이름 짓기
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('AI'); return false;">
 AI
@@ -228,31 +189,64 @@ AI
 ChatGPT
 </div>
 </div>
-<div class="listing-description">
-<a href="./posts/2024-03-08-ai-for-naming/index.html" class="no-external">생성형 AI를 활용하여 산업단지의 새로운 이름 지어보기 </a>
+<div class="card-text listing-description">
+<p>생성형 AI를 활용하여 산업단지의 새로운 이름 지어보기</p>
 </div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
 </div>
-<div class="metadata">
-<a href="./posts/2024-03-08-ai-for-naming/index.html" class="no-external">
 <div class="listing-date">
 Mar 8, 2024
 </div>
+</div>
+</div>
+</div>
 </a>
 </div>
+<div class="g-col-1" data-index="1" data-categories="AI,ChatGPT" data-listing-date-sort="1709823600000" data-listing-file-modified-sort="1709898896605" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<a href="./posts/2024-03-08-compare-ai-for-naming/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/2024-03-08-compare-ai-for-naming/image/title.webp" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+AI 비교하기
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('AI'); return false;">
+AI
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="ADP,R" data-listing-date-sort="1684076400000" data-listing-file-modified-sort="1709859738840" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="548">
-<div class="thumbnail">
-<p><a href="./posts/2023-05-15-adp-test-written/index.html" class="no-external"></a></p><a href="./posts/2023-05-15-adp-test-written/index.html" class="no-external">
-<p><img src="./posts/2023-05-15-adp-test-written" class="thumbnail-image"></p>
-</a><p><a href="./posts/2023-05-15-adp-test-written/index.html" class="no-external"></a></p>
+<div class="listing-category" onclick="window.quartoListingCategory('ChatGPT'); return false;">
+ChatGPT
 </div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-05-15-adp-test-written/index.html" class="no-external">데이터 분석 전문가(ADP) 필기시험 준비</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-05-15-adp-test-written/index.html" class="no-external"></a>
 </div>
+<div class="card-text listing-description">
+<p>생성형 AI를 활용하여 산업단지의 새로운 이름 지어보기</p>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Mar 8, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="ADP,R" data-listing-date-sort="1684076400000" data-listing-file-modified-sort="1709897242734" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
+<a href="./posts/2023-05-15-adp-test-written/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/2023-05-15-adp-test-written" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+데이터 분석 전문가(ADP) 필기시험 준비
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('ADP'); return false;">
 ADP
@@ -261,211 +255,211 @@ ADP
 R
 </div>
 </div>
-<div class="listing-description">
-<a href="./posts/2023-05-15-adp-test-written/index.html" class="no-external">ADP 필기시험 준비 과정과 팁 </a>
+<div class="card-text listing-description">
+<p>ADP 필기시험 준비 과정과 팁</p>
 </div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
 </div>
-<div class="metadata">
-<a href="./posts/2023-05-15-adp-test-written/index.html" class="no-external">
 <div class="listing-date">
 May 15, 2023
 </div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="R" data-listing-date-sort="1681830000000" data-listing-file-modified-sort="1709859738834" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1576">
-<div class="thumbnail">
-<p><a href="./posts/2023-04-19-sentiment-analysis/index.html" class="no-external"></a></p><a href="./posts/2023-04-19-sentiment-analysis/index.html" class="no-external">
-<p><img src="./posts/2023-04-19-sentiment-analysis/image/plot_conf_mat_naver.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2023-04-19-sentiment-analysis/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-04-19-sentiment-analysis/index.html" class="no-external">한국어 감성 분석 비교: 네이버 vs 구글</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-04-19-sentiment-analysis/index.html" class="no-external"></a>
-</div>
+<div class="g-col-1" data-index="3" data-categories="R" data-listing-date-sort="1681830000000" data-listing-file-modified-sort="1709897242726" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8">
+<a href="./posts/2023-04-19-sentiment-analysis/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/2023-04-19-sentiment-analysis/image/plot_conf_mat_naver.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+한국어 감성 분석 비교: 네이버 vs 구글
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
 R
 </div>
 </div>
-<div class="listing-description">
-<a href="./posts/2023-04-19-sentiment-analysis/index.html" class="no-external">대표적인 한국어 감성 분석 API를 제공하는 구글과 네이버 성능 비교 </a>
+<div class="card-text listing-description">
+<p>대표적인 한국어 감성 분석 API를 제공하는 구글과 네이버 성능 비교</p>
 </div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
 </div>
-<div class="metadata">
-<a href="./posts/2023-04-19-sentiment-analysis/index.html" class="no-external">
 <div class="listing-date">
 Apr 19, 2023
 </div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="R" data-listing-date-sort="1679756400000" data-listing-file-modified-sort="1709859738829" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1288">
-<div class="thumbnail">
-<p><a href="./posts/2023-03-26-housing-consultation-analysis-6/index.html" class="no-external"></a></p><a href="./posts/2023-03-26-housing-consultation-analysis-6/index.html" class="no-external">
-<p><img src="./posts/2023-03-26-housing-consultation-analysis-6/image/주제분석_상담방법.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2023-03-26-housing-consultation-analysis-6/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-03-26-housing-consultation-analysis-6/index.html" class="no-external">주거상담기록 데이터 분석 (6): 주제 공변량 분석</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-03-26-housing-consultation-analysis-6/index.html" class="no-external"></a>
-</div>
+<div class="g-col-1" data-index="4" data-categories="R" data-listing-date-sort="1679756400000" data-listing-file-modified-sort="1709897242713" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7">
+<a href="./posts/2023-03-26-housing-consultation-analysis-6/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/2023-03-26-housing-consultation-analysis-6/image/주제분석_상담방법.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+주거상담기록 데이터 분석 (6): 주제 공변량 분석
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
 R
 </div>
 </div>
-<div class="listing-description">
-<a href="./posts/2023-03-26-housing-consultation-analysis-6/index.html" class="no-external">토픽모델링 주제와 메타데이터 간 분석 </a>
+<div class="card-text listing-description">
+<p>토픽모델링 주제와 메타데이터 간 분석</p>
 </div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
 </div>
-<div class="metadata">
-<a href="./posts/2023-03-26-housing-consultation-analysis-6/index.html" class="no-external">
 <div class="listing-date">
 Mar 26, 2023
 </div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="Python" data-listing-date-sort="1679670000000" data-listing-file-modified-sort="1709859738784" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2144">
-<div class="thumbnail">
-<p><a href="./posts/2023-03-25-housing-consultation-analysis-5/index.html" class="no-external"></a></p><a href="./posts/2023-03-25-housing-consultation-analysis-5/index.html" class="no-external">
-<p><img src="./posts/2023-03-25-housing-consultation-analysis-5/result/stm_output/result_distri_topic.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2023-03-25-housing-consultation-analysis-5/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-03-25-housing-consultation-analysis-5/index.html" class="no-external">주거상담기록 데이터 분석 (5): 토픽모델링 주제 정보</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-03-25-housing-consultation-analysis-5/index.html" class="no-external"></a>
-</div>
+<div class="g-col-1" data-index="5" data-categories="Python" data-listing-date-sort="1679670000000" data-listing-file-modified-sort="1709897242638" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11">
+<a href="./posts/2023-03-25-housing-consultation-analysis-5/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/2023-03-25-housing-consultation-analysis-5/result/stm_output/result_distri_topic.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+주거상담기록 데이터 분석 (5): 토픽모델링 주제 정보
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
 Python
 </div>
 </div>
-<div class="listing-description">
-<a href="./posts/2023-03-25-housing-consultation-analysis-5/index.html" class="no-external">토픽모델링 주제의 비중과 분포 정보 추출 </a>
+<div class="card-text listing-description">
+<p>토픽모델링 주제의 비중과 분포 정보 추출</p>
 </div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
 </div>
-<div class="metadata">
-<a href="./posts/2023-03-25-housing-consultation-analysis-5/index.html" class="no-external">
 <div class="listing-date">
 Mar 25, 2023
 </div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="R" data-listing-date-sort="1679583600000" data-listing-file-modified-sort="1709859738775" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1640">
-<div class="thumbnail">
-<p><a href="./posts/2023-03-24-housing-consultation-analysis-4/index.html" class="no-external"></a></p><a href="./posts/2023-03-24-housing-consultation-analysis-4/index.html" class="no-external">
-<p><img src="./posts/2023-03-24-housing-consultation-analysis-4/image/front.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2023-03-24-housing-consultation-analysis-4/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-03-24-housing-consultation-analysis-4/index.html" class="no-external">주거상담기록 데이터 분석 (4): 토픽모델링 주제 명명</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-03-24-housing-consultation-analysis-4/index.html" class="no-external"></a>
-</div>
+<div class="g-col-1" data-index="6" data-categories="R" data-listing-date-sort="1679583600000" data-listing-file-modified-sort="1709897242617" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9">
+<a href="./posts/2023-03-24-housing-consultation-analysis-4/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/2023-03-24-housing-consultation-analysis-4/image/front.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+주거상담기록 데이터 분석 (4): 토픽모델링 주제 명명
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
 R
 </div>
 </div>
-<div class="listing-description">
-<a href="./posts/2023-03-24-housing-consultation-analysis-4/index.html" class="no-external">토픽모델링의 주제 이름을 주요 단어, 대표문서를 참고하여 명명 </a>
+<div class="card-text listing-description">
+<p>토픽모델링의 주제 이름을 주요 단어, 대표문서를 참고하여 명명</p>
 </div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
 </div>
-<div class="metadata">
-<a href="./posts/2023-03-24-housing-consultation-analysis-4/index.html" class="no-external">
 <div class="listing-date">
 Mar 24, 2023
 </div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="R" data-listing-date-sort="1679497200000" data-listing-file-modified-sort="1709859738749" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1150">
-<div class="thumbnail">
-<p><a href="./posts/2023-03-23-housing-consultation-analysis-3/index.html" class="no-external"></a></p><a href="./posts/2023-03-23-housing-consultation-analysis-3/index.html" class="no-external">
-<p><img src="./posts/2023-03-23-housing-consultation-analysis-3/image/overview.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2023-03-23-housing-consultation-analysis-3/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-03-23-housing-consultation-analysis-3/index.html" class="no-external">주거상담기록 데이터 분석 (3): 토픽모델링 주제 수 결정</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-03-23-housing-consultation-analysis-3/index.html" class="no-external"></a>
-</div>
+<div class="g-col-1" data-index="7" data-categories="R" data-listing-date-sort="1679497200000" data-listing-file-modified-sort="1709897242546" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6">
+<a href="./posts/2023-03-23-housing-consultation-analysis-3/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/2023-03-23-housing-consultation-analysis-3/image/overview.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+주거상담기록 데이터 분석 (3): 토픽모델링 주제 수 결정
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
 R
 </div>
 </div>
-<div class="listing-description">
-<a href="./posts/2023-03-23-housing-consultation-analysis-3/index.html" class="no-external">토픽모델링의 최종 주제 개수 결정 </a>
+<div class="card-text listing-description">
+<p>토픽모델링의 최종 주제 개수 결정</p>
 </div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
 </div>
-<div class="metadata">
-<a href="./posts/2023-03-23-housing-consultation-analysis-3/index.html" class="no-external">
 <div class="listing-date">
 Mar 23, 2023
 </div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="Python" data-listing-date-sort="1679410800000" data-listing-file-modified-sort="1709859738736" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1374">
-<div class="thumbnail">
-<p><a href="./posts/2023-03-22-housing-consultation-analysis-2/index.html" class="no-external"></a></p><a href="./posts/2023-03-22-housing-consultation-analysis-2/index.html" class="no-external">
-<p><img src="./posts/2023-03-22-housing-consultation-analysis-2/image/overview.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2023-03-22-housing-consultation-analysis-2/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-03-22-housing-consultation-analysis-2/index.html" class="no-external">주거상담기록 데이터 분석 (2): 형태소분석</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-03-22-housing-consultation-analysis-2/index.html" class="no-external"></a>
-</div>
+<div class="g-col-1" data-index="8" data-categories="Python" data-listing-date-sort="1679410800000" data-listing-file-modified-sort="1709897242528" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7">
+<a href="./posts/2023-03-22-housing-consultation-analysis-2/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/2023-03-22-housing-consultation-analysis-2/image/overview.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+주거상담기록 데이터 분석 (2): 형태소분석
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
 Python
 </div>
 </div>
-<div class="listing-description">
-<a href="./posts/2023-03-22-housing-consultation-analysis-2/index.html" class="no-external">텍스트 정제와 형태소분석을 포함한 텍스트 전처리 과정 </a>
+<div class="card-text listing-description">
+<p>텍스트 정제와 형태소분석을 포함한 텍스트 전처리 과정</p>
 </div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
 </div>
-<div class="metadata">
-<a href="./posts/2023-03-22-housing-consultation-analysis-2/index.html" class="no-external">
 <div class="listing-date">
 Mar 22, 2023
 </div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-categories="주거상담기록,텍스트마이닝" data-listing-date-sort="1679324400000" data-listing-file-modified-sort="1709859738713" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="116">
-<div class="thumbnail">
-<p><a href="./posts/2023-03-21-housing-consultation-analysis-1/index.html" class="no-external"></a></p><a href="./posts/2023-03-21-housing-consultation-analysis-1/index.html" class="no-external">
-<p><img src="./posts/2023-03-21-housing-consultation-analysis-1/image/overview.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2023-03-21-housing-consultation-analysis-1/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-03-21-housing-consultation-analysis-1/index.html" class="no-external">주거상담기록 데이터 분석 (1): 개요</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-03-21-housing-consultation-analysis-1/index.html" class="no-external"></a>
-</div>
+<div class="g-col-1" data-index="9" data-categories="주거상담기록,텍스트마이닝" data-listing-date-sort="1679324400000" data-listing-file-modified-sort="1709897242486" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<a href="./posts/2023-03-21-housing-consultation-analysis-1/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/2023-03-21-housing-consultation-analysis-1/image/overview.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+주거상담기록 데이터 분석 (1): 개요
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('주거상담기록'); return false;">
 주거상담기록
@@ -474,31 +468,31 @@ Mar 22, 2023
 텍스트마이닝
 </div>
 </div>
-<div class="listing-description">
-<a href="./posts/2023-03-21-housing-consultation-analysis-1/index.html" class="no-external">주거상담기록 텍스트 데이터를 분석하는 시리즈의 개요 </a>
+<div class="card-text listing-description">
+<p>주거상담기록 텍스트 데이터를 분석하는 시리즈의 개요</p>
 </div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
 </div>
-<div class="metadata">
-<a href="./posts/2023-03-21-housing-consultation-analysis-1/index.html" class="no-external">
 <div class="listing-date">
 Mar 21, 2023
 </div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-categories="R,Open API" data-listing-date-sort="1676041200000" data-listing-file-modified-sort="1709859738676" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1297">
-<div class="thumbnail">
-<p><a href="./posts/2023-02-11-how-to-use-open-api/index.html" class="no-external"></a></p><a href="./posts/2023-02-11-how-to-use-open-api/index.html" class="no-external">
-<p><img src="./posts/2023-02-11-how-to-use-open-api/image/api-intro.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2023-02-11-how-to-use-open-api/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-02-11-how-to-use-open-api/index.html" class="no-external">R를 활용하여 Open API로 공개된 데이터 수집하기</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-02-11-how-to-use-open-api/index.html" class="no-external"></a>
-</div>
+<div class="g-col-1" data-index="10" data-categories="R,Open API" data-listing-date-sort="1676041200000" data-listing-file-modified-sort="1709897242427" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7">
+<a href="./posts/2023-02-11-how-to-use-open-api/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/2023-02-11-how-to-use-open-api/image/api-intro.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+R를 활용하여 Open API로 공개된 데이터 수집하기
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
 R
@@ -507,31 +501,31 @@ R
 Open API
 </div>
 </div>
-<div class="listing-description">
-<a href="./posts/2023-02-11-how-to-use-open-api/index.html" class="no-external">Open API로 공개된 공공데이터를 R로 수집해보자 </a>
+<div class="card-text listing-description">
+<p>Open API로 공개된 공공데이터를 R로 수집해보자</p>
 </div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
 </div>
-<div class="metadata">
-<a href="./posts/2023-02-11-how-to-use-open-api/index.html" class="no-external">
 <div class="listing-date">
 Feb 11, 2023
 </div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="10" data-categories="R,Google Maps" data-listing-date-sort="1673708400000" data-listing-file-modified-sort="1709859738570" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2166">
-<div class="thumbnail">
-<p><a href="./posts/2023-01-15-how-to-use-googleway-r/index.html" class="no-external"></a></p><a href="./posts/2023-01-15-how-to-use-googleway-r/index.html" class="no-external">
-<p><img src="./posts/2023-01-15-how-to-use-googleway-r/image/yeonnam_cafe_POI.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2023-01-15-how-to-use-googleway-r/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2023-01-15-how-to-use-googleway-r/index.html" class="no-external">R를 활용하여 구글 지도 데이터 수집하기</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2023-01-15-how-to-use-googleway-r/index.html" class="no-external"></a>
-</div>
+<div class="g-col-1" data-index="11" data-categories="R,Google Maps" data-listing-date-sort="1673708400000" data-listing-file-modified-sort="1709897242256" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11">
+<a href="./posts/2023-01-15-how-to-use-googleway-r/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/2023-01-15-how-to-use-googleway-r/image/yeonnam_cafe_POI.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+R를 활용하여 구글 지도 데이터 수집하기
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
 R
@@ -540,45 +534,48 @@ R
 Google Maps
 </div>
 </div>
-<div class="listing-description">
-<a href="./posts/2023-01-15-how-to-use-googleway-r/index.html" class="no-external">구글 지도에 등록된 POI 정보를 R을 활용하여 모아보자 </a>
+<div class="card-text listing-description">
+<p>구글 지도에 등록된 POI 정보를 R을 활용하여 모아보자</p>
 </div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
 </div>
-<div class="metadata">
-<a href="./posts/2023-01-15-how-to-use-googleway-r/index.html" class="no-external">
 <div class="listing-date">
 Jan 15, 2023
 </div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="11" data-categories="" data-listing-date-sort="1660230000000" data-listing-file-modified-sort="1709859738481" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2153">
-<div class="thumbnail">
-<p><a href="./posts/2022-08-21-what-i-learn-startup-program/index.html" class="no-external"></a></p><a href="./posts/2022-08-21-what-i-learn-startup-program/index.html" class="no-external">
-<p><img src="./posts/2022-08-21-what-i-learn-startup-program/image/basicEducation_assignment3_present.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2022-08-21-what-i-learn-startup-program/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2022-08-21-what-i-learn-startup-program/index.html" class="no-external">창업 맛보기: 2022년 한국형 아이코어 프로그램 참가 후기</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2022-08-21-what-i-learn-startup-program/index.html" class="no-external"></a>
-</div>
+<div class="g-col-1" data-index="12" data-categories="" data-listing-date-sort="1660230000000" data-listing-file-modified-sort="1709897242127" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11">
+<a href="./posts/2022-08-21-what-i-learn-startup-program/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/2022-08-21-what-i-learn-startup-program/image/basicEducation_assignment3_present.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+창업 맛보기: 2022년 한국형 아이코어 프로그램 참가 후기
+</h5>
 <div class="listing-categories">
 
 </div>
-<div class="listing-description">
-<a href="./posts/2022-08-21-what-i-learn-startup-program/index.html" class="no-external">2022년 한국형 아이코어 사업(I-Corps) 후기 </a>
+<div class="card-text listing-description">
+<p>2022년 한국형 아이코어 사업(I-Corps) 후기</p>
 </div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
 </div>
-<div class="metadata">
-<a href="./posts/2022-08-21-what-i-learn-startup-program/index.html" class="no-external">
 <div class="listing-date">
 Aug 12, 2022
 </div>
-</a>
 </div>
+</div>
+</div>
+</a>
 </div>
 </div>
 <div class="listing-no-matching d-none">
@@ -626,33 +623,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -721,15 +691,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  let localAlternateSentinel = 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -808,27 +776,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("jhyeonpark\.com");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -838,17 +789,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -860,130 +802,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -1027,7 +846,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1053,32 +871,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1139,7 +931,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-
 
 
 

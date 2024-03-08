@@ -1,63 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>jhyeonpark.com/posts/2024-03-08-ai-for-naming/index.html</loc>
-    <lastmod>2024-03-08T08:58:36.647Z</lastmod>
-  </url>
-  <url>
-    <loc>jhyeonpark.com/posts/2023-04-19-sentiment-analysis/index.html</loc>
-    <lastmod>2024-03-08T01:02:18.834Z</lastmod>
-  </url>
-  <url>
-    <loc>jhyeonpark.com/posts/2023-03-25-housing-consultation-analysis-5/index.html</loc>
-    <lastmod>2024-03-08T01:02:18.784Z</lastmod>
-  </url>
-  <url>
-    <loc>jhyeonpark.com/posts/2023-03-23-housing-consultation-analysis-3/index.html</loc>
-    <lastmod>2024-03-08T01:02:18.749Z</lastmod>
-  </url>
-  <url>
-    <loc>jhyeonpark.com/posts/2023-03-21-housing-consultation-analysis-1/index.html</loc>
-    <lastmod>2024-03-08T01:02:18.713Z</lastmod>
-  </url>
-  <url>
-    <loc>jhyeonpark.com/posts/2023-01-15-how-to-use-googleway-r/index.html</loc>
-    <lastmod>2024-03-08T01:02:18.570Z</lastmod>
-  </url>
-  <url>
-    <loc>jhyeonpark.com/index.html</loc>
-    <lastmod>2024-03-08T01:02:17.286Z</lastmod>
-  </url>
-  <url>
     <loc>jhyeonpark.com/about.html</loc>
-    <lastmod>2024-03-08T01:02:15.871Z</lastmod>
+    <lastmod>2024-03-08T11:55:32.013Z</lastmod>
   </url>
   <url>
     <loc>jhyeonpark.com/blog.html</loc>
-    <lastmod>2024-03-08T01:02:15.871Z</lastmod>
+    <lastmod>2024-03-08T11:55:36.796Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/index.html</loc>
+    <lastmod>2024-03-08T11:55:37.361Z</lastmod>
   </url>
   <url>
     <loc>jhyeonpark.com/posts/2022-08-21-what-i-learn-startup-program/index.html</loc>
-    <lastmod>2024-03-08T01:02:18.481Z</lastmod>
+    <lastmod>2024-03-08T11:55:38.762Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2023-01-15-how-to-use-googleway-r/index.html</loc>
+    <lastmod>2024-03-08T11:55:40.428Z</lastmod>
   </url>
   <url>
     <loc>jhyeonpark.com/posts/2023-02-11-how-to-use-open-api/index.html</loc>
-    <lastmod>2024-03-08T01:02:18.676Z</lastmod>
+    <lastmod>2024-03-08T11:55:41.909Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2023-03-21-housing-consultation-analysis-1/index.html</loc>
+    <lastmod>2024-03-08T11:55:42.524Z</lastmod>
   </url>
   <url>
     <loc>jhyeonpark.com/posts/2023-03-22-housing-consultation-analysis-2/index.html</loc>
-    <lastmod>2024-03-08T01:02:18.736Z</lastmod>
+    <lastmod>2024-03-08T11:55:46.358Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2023-03-23-housing-consultation-analysis-3/index.html</loc>
+    <lastmod>2024-03-08T11:55:47.611Z</lastmod>
   </url>
   <url>
     <loc>jhyeonpark.com/posts/2023-03-24-housing-consultation-analysis-4/index.html</loc>
-    <lastmod>2024-03-08T01:02:18.775Z</lastmod>
+    <lastmod>2024-03-08T11:55:48.935Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2023-03-25-housing-consultation-analysis-5/index.html</loc>
+    <lastmod>2024-03-08T11:55:50.664Z</lastmod>
   </url>
   <url>
     <loc>jhyeonpark.com/posts/2023-03-26-housing-consultation-analysis-6/index.html</loc>
-    <lastmod>2024-03-08T01:02:18.829Z</lastmod>
+    <lastmod>2024-03-08T11:55:51.843Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2023-04-19-sentiment-analysis/index.html</loc>
+    <lastmod>2024-03-08T11:55:53.439Z</lastmod>
   </url>
   <url>
     <loc>jhyeonpark.com/posts/2023-05-15-adp-test-written/index.html</loc>
-    <lastmod>2024-03-08T01:02:18.840Z</lastmod>
+    <lastmod>2024-03-08T11:55:54.095Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2024-03-08-ai-for-naming/index.html</loc>
+    <lastmod>2024-03-08T11:55:54.763Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2024-03-08-compare-ai-for-naming/index.html</loc>
+    <lastmod>2024-03-08T11:55:55.354Z</lastmod>
   </url>
 </urlset>

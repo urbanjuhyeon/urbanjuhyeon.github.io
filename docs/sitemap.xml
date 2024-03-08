@@ -1,59 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>jhyeonpark.com/about.html</loc>
-    <lastmod>2024-02-20T14:55:21.144Z</lastmod>
-  </url>
-  <url>
-    <loc>jhyeonpark.com/blog.html</loc>
-    <lastmod>2024-02-20T14:55:23.992Z</lastmod>
-  </url>
-  <url>
-    <loc>jhyeonpark.com/index.html</loc>
-    <lastmod>2024-02-20T14:55:24.722Z</lastmod>
-  </url>
-  <url>
-    <loc>jhyeonpark.com/posts/2022-08-21-what-i-learn-startup-program/index.html</loc>
-    <lastmod>2024-02-20T14:55:26.435Z</lastmod>
-  </url>
-  <url>
-    <loc>jhyeonpark.com/posts/2023-01-15-how-to-use-googleway-r/index.html</loc>
-    <lastmod>2024-02-20T14:55:28.458Z</lastmod>
-  </url>
-  <url>
-    <loc>jhyeonpark.com/posts/2023-02-11-how-to-use-open-api/index.html</loc>
-    <lastmod>2024-02-20T14:55:30.224Z</lastmod>
-  </url>
-  <url>
-    <loc>jhyeonpark.com/posts/2023-03-21-housing-consultation-analysis-1/index.html</loc>
-    <lastmod>2024-02-20T14:55:30.984Z</lastmod>
-  </url>
-  <url>
-    <loc>jhyeonpark.com/posts/2023-03-22-housing-consultation-analysis-2/index.html</loc>
-    <lastmod>2024-02-20T14:55:33.651Z</lastmod>
-  </url>
-  <url>
-    <loc>jhyeonpark.com/posts/2023-03-23-housing-consultation-analysis-3/index.html</loc>
-    <lastmod>2024-02-20T14:55:35.170Z</lastmod>
-  </url>
-  <url>
-    <loc>jhyeonpark.com/posts/2023-03-24-housing-consultation-analysis-4/index.html</loc>
-    <lastmod>2024-02-20T14:55:36.636Z</lastmod>
-  </url>
-  <url>
-    <loc>jhyeonpark.com/posts/2023-03-25-housing-consultation-analysis-5/index.html</loc>
-    <lastmod>2024-02-20T14:55:38.283Z</lastmod>
-  </url>
-  <url>
-    <loc>jhyeonpark.com/posts/2023-03-26-housing-consultation-analysis-6/index.html</loc>
-    <lastmod>2024-02-20T14:55:39.449Z</lastmod>
+    <loc>jhyeonpark.com/posts/2024-03-08-ai-for-naming/index.html</loc>
+    <lastmod>2024-03-08T08:58:36.647Z</lastmod>
   </url>
   <url>
     <loc>jhyeonpark.com/posts/2023-04-19-sentiment-analysis/index.html</loc>
-    <lastmod>2024-02-20T14:55:40.974Z</lastmod>
+    <lastmod>2024-03-08T01:02:18.834Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2023-03-25-housing-consultation-analysis-5/index.html</loc>
+    <lastmod>2024-03-08T01:02:18.784Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2023-03-23-housing-consultation-analysis-3/index.html</loc>
+    <lastmod>2024-03-08T01:02:18.749Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2023-03-21-housing-consultation-analysis-1/index.html</loc>
+    <lastmod>2024-03-08T01:02:18.713Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2023-01-15-how-to-use-googleway-r/index.html</loc>
+    <lastmod>2024-03-08T01:02:18.570Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/index.html</loc>
+    <lastmod>2024-03-08T01:02:17.286Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/about.html</loc>
+    <lastmod>2024-03-08T01:02:15.871Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/blog.html</loc>
+    <lastmod>2024-03-08T01:02:15.871Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2022-08-21-what-i-learn-startup-program/index.html</loc>
+    <lastmod>2024-03-08T01:02:18.481Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2023-02-11-how-to-use-open-api/index.html</loc>
+    <lastmod>2024-03-08T01:02:18.676Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2023-03-22-housing-consultation-analysis-2/index.html</loc>
+    <lastmod>2024-03-08T01:02:18.736Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2023-03-24-housing-consultation-analysis-4/index.html</loc>
+    <lastmod>2024-03-08T01:02:18.775Z</lastmod>
+  </url>
+  <url>
+    <loc>jhyeonpark.com/posts/2023-03-26-housing-consultation-analysis-6/index.html</loc>
+    <lastmod>2024-03-08T01:02:18.829Z</lastmod>
   </url>
   <url>
     <loc>jhyeonpark.com/posts/2023-05-15-adp-test-written/index.html</loc>
-    <lastmod>2024-02-20T14:55:41.626Z</lastmod>
+    <lastmod>2024-03-08T01:02:18.840Z</lastmod>
   </url>
 </urlset>

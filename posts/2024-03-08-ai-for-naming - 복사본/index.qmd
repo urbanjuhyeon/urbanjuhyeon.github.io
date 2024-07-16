@@ -5,19 +5,18 @@ description: |
 date: "2024-03-19"
 image: "image/title.webp"
 categories: [AI, ChatGPT]
+draft: true
 ---
 
 # 서론
+
 AI를 활용하여 텍스트인 경제자유구역 특화방안을 **시각화하는 작업**을 다룬다. 텍스트 기반의 특화방안도 좋지만, 이를 시각 자료로 변환하여 효과적으로 정보를 전달하고 이해할 수 있도록 하는 것이 중요하기 때문이다.
 
 이 작업에 활용한 A 경제자유구역 자료는 다음과 같다:
 
-1. 조감도  
-![https://www.dgfez.go.kr/page.php?mnu_uid=1509&](image/조감도_대구테크노폴리스.jpg){width="45%"}
+1.  조감도\
+    ![https://www.dgfez.go.kr/page.php?mnu_uid=1509&](image/조감도_대구테크노폴리스.jpg){width="45%"}
 
-2. 특화방안: Next-Generation Robotics Technology Research Cluster(차세대 로봇 기술 중심 연구 클러스터)
+2.  특화방안: Next-Generation Robotics Technology Research Cluster(차세대 로봇 기술 중심 연구 클러스터)
 
 ## DALL·E
-
-
-

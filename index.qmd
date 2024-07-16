@@ -5,13 +5,11 @@ about:
   template: jolla
   links:
     - text: E-mail
-      href: mailto:juhyeon92@unist.ac.kr
+      href: mailto:urbanjuhyeon@gmail.com
     - text: LinkedIn
       href: https://linkedin.com/in/jhyeonpark/
     - text: Github
       href: https://github.com/jhyeonpark
 ---
 
-I am a dedicated AI/Digital Specialist at the Gyeongbuk Development Institute, advancing public service through generative AI applications. My transition from a postdoctoral tenure in urban planning and analytics at UNIST to focusing on AI's potential marks a commitment to fostering smart, sustainable urban environments.
-
-Here, I'll share insights and progress on making city services smarter and more responsive with AI. Join me as we explore simple, smart solutions for better public services.
+I am a dedicated Data Analyst and AI Specialist at the Gyeonggi Credit Guarantee Foundation (GCGF), working to enhance support for small businesses and entrepreneurs through data-driven insights and AI applications. My transition from a postdoctoral tenure in urban planning and analytics at UNIST to focusing on data analysis in credit guarantee services marks a commitment to fostering a robust and sustainable local economy.

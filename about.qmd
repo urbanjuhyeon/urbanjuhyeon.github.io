@@ -5,7 +5,7 @@ about:
   template: trestles
   links:
     - text: E-mail
-      href: mailto:urbanjuhyeon@gmail.ac.kr
+      href: mailto:urbanjuhyeon@gmail.com
     - text: LinkedIn
       href: https://www.linkedin.com/in/jhyeonpark/
     - text: Github
@@ -33,7 +33,9 @@ Ulsan National Institute of Science and Technology B.S. in Urban and Environment
 
 Postdoctoral Researcher at Ulsan National Institute of Science and Technology \| 2022 - 2023
 
-Research Fellow at Gyeongbuk Development Institute \| 2023 - Present
+Research Fellow at Gyeongbuk Development Institute \| 2023 - 2024
+
+Research Fellow at Gyeonggi Credit Guarantee Foundation \| 2024 - Present
 
 ## CV
 

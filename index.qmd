@@ -12,4 +12,4 @@ about:
       href: https://github.com/jhyeonpark
 ---
 
-I am a dedicated Data Analyst and AI Specialist at the Gyeonggi Credit Guarantee Foundation (GCGF), working to enhance support for small businesses and entrepreneurs through data-driven insights and AI applications. My transition from a postdoctoral tenure in urban planning and analytics at UNIST to focusing on data analysis in credit guarantee services marks a commitment to fostering a robust and sustainable local economy.
+I am an Associate Research Fellow at the Housing & Urban Finance Research Institute of the Housing & Urban Guarantee Corporation (HUG). With a Ph.D. in Urban Planning from UNIST, I specialize in utilizing Big Data, AI, and Spatial Econometrics to address urban and financial challenges. My experience includes data-driven strategy development at the Gyeonggi Credit Guarantee Foundation and regional policy research at the Gyeongbuk Research Institute.

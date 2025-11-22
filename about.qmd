@@ -13,31 +13,33 @@ about:
 ---
 
 ::: {#hero-heading}
-I am an urban planner and data scientist working to improve the use of urban data as the evidence base for formulating urban policies, plans, strategies, and programs.
+I am an Associate Research Fellow at the Housing & Urban Finance Research Institute of the Housing & Urban Guarantee Corporation (HUG). With a Ph.D. in Urban Planning from UNIST, I specialize in utilizing Big Data, AI, and Spatial Econometrics to address urban and financial challenges.
 
 My particular areas of interest are:
 
--   Urban analytics
--   Data mining/visualization
--   Smart cities
+-   Urban Analytics & Spatial Econometrics
+-   Big Data & AI (NLP, LLM)
+-   Housing Finance & Regional Policy
 
 I use this site to showcase my recent work, and discuss new data-science and statistical tools and techniques on my blog.
 
 ## Education
 
-Ulsan National Institute of Science and Technology PhD in Urban and Environmental Engineering \| 2022
+Ulsan National Institute of Science and Technology (UNIST) | Ph.D. in Urban and Environmental Engineering | 2022
 
-Ulsan National Institute of Science and Technology B.S. in Urban and Environmental Engineering \| 2015
+Ulsan National Institute of Science and Technology (UNIST) | B.S. in Urban and Environmental Engineering | 2015
 
 ## Experience
 
-Postdoctoral Researcher at Ulsan National Institute of Science and Technology \| 2022 - 2023
+Associate Research Fellow at Housing & Urban Finance Research Institute, HUG | 2025 - Present
 
-Research Fellow at Gyeongbuk Development Institute \| 2023 - 2024
+Associate Research Fellow at Gyeonggi Credit Guarantee Foundation | 2024 - 2025
 
-Research Fellow at Gyeonggi Credit Guarantee Foundation \| 2024 - Present
+Associate Research Fellow at Gyeongbuk Research Institute | 2023 - 2024
+
+Postdoctoral Researcher at Ulsan National Institute of Science and Technology | 2022 - 2023
 
 ## CV
 
-Download [my resumé.](cv_jhyeon_v3.pdf)
+Download [my resumé.](cv_jhyeon_v10.pdf)
 :::

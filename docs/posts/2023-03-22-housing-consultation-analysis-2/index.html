@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2023-03-22">
 <meta name="description" content="텍스트 정제와 형태소분석을 포함한 텍스트 전처리 과정">
 
-<title>Juhyeon Park - 주거상담기록 데이터 분석 (2): 형태소분석</title>
+<title>주거상담기록 데이터 분석 (2): 형태소분석 – Juhyeon Park</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,8 +23,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,17 +67,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-b224e30b82ff02fa50abbbf86765d252.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-6957456fbe346d7a4bdbdb10c2b10e9e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-b224e30b82ff02fa50abbbf86765d252.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -117,19 +122,183 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Juhyeon Park</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -149,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
@@ -233,6 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+
 <section id="들어가기" class="level1">
 <h1>들어가기</h1>
 <p>비정형 텍스트 데이터는 정제와 토큰화 등 <strong>전처리 과정</strong>을 통해 텍스트 분석에 용이한 형태로 바꿔주어야 한다.</p>
@@ -245,9 +415,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="패키지-설치">1.1. 패키지 설치</h2>
 <p>필요한 패키지를 설치한다. 아래 코드를 Visual Studio Code 등 python 편집기에 입력하고 실행하면 된다.</p>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pandas</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pandas</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install tqdm</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install kiwipiepy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install kiwipiepy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><img src="image/vscode_pip.png" class="img-fluid"></p>
 </section>
@@ -255,25 +425,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="패키지-및-데이터-불러오기">1.2. 패키지 및 데이터 불러오기</h2>
 <p>설치 후, 필요한 패키지를 먼저 불러온다.</p>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 필요한 모듈 불러오기</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 필요한 모듈 불러오기</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json, random, re, os</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> swifter <span class="co"># 병렬처리</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm <span class="co"># 작업 프로세스 시각화</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> kiwipiepy <span class="im">import</span> Kiwi <span class="co"># 형태소분석기 모듈</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> kiwipiepy.utils <span class="im">import</span> Stopwords <span class="co"># 불용어사전 담겨있는 모듈 불러오기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> kiwipiepy.utils <span class="im">import</span> Stopwords <span class="co"># 불용어사전 담겨있는 모듈 불러오기</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>샘플 데이터를 불러온다. <a href="data/db_record_v1_sample.csv">여기</a>에서 다운로드 할 수 있다. <code>id_f</code>는 각 데이터 고유 ID, <code>cons_text</code>는 상담기록 원문이다.</p>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>db_record <span class="op">=</span> pd.read_csv(<span class="st">"data/db_record_v1_sample.csv"</span>) <span class="co"># 데이터 불러오기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>db_record <span class="op">=</span> pd.read_csv(<span class="st">"data/db_record_v1_sample.csv"</span>) <span class="co"># 데이터 불러오기</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display" data-execution_count="3">
-<div>
 <style type="text/css">
 </style>
 
-<table id="T_da8be" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table id="T_da8be" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th id="T_da8be_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">id_f</th>
@@ -293,22 +462,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-</div>
 </section>
 <section id="불필요한-토큰-제거" class="level2">
 <h2 class="anchored" data-anchor-id="불필요한-토큰-제거">1.3. 불필요한 토큰 제거</h2>
 <p>기호나 태그 등 불필요한 토큰을 삭제한다. 숫자나 영어도 불필요하다고 여길 수 있지만 ‘1인가구’, ‘2룸’, ‘LH’, ‘SH’ 등 의미있는 토큰이 많아 삭제하지 않았다.</p>
 <p>아래 코드로 먼저 텍스트 내 영어 표현을 모두 소문자화 한 후, 한글과 숫자, 영어 외 나머지를 공백 처리했다.</p>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>db_record[<span class="st">'cons_text_cleaned_1'</span>] <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> text: re.sub(<span class="vs">r"([^가-힣0-9a-z ])"</span>, <span class="st">" "</span>, text), db_record[<span class="st">'cons_text'</span>].<span class="bu">str</span>.lower()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>db_record[<span class="st">'cons_text_cleaned_1'</span>] <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> text: re.sub(<span class="vs">r"</span><span class="kw">(</span><span class="pp">[^가-힣0-9a-z ]</span><span class="kw">)</span><span class="vs">"</span>, <span class="st">" "</span>, text), db_record[<span class="st">'cons_text'</span>].<span class="bu">str</span>.lower()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display" data-execution_count="5">
-<div>
 <style type="text/css">
 </style>
 
-<table id="T_2e999" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table id="T_2e999" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th id="T_2e999_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">cons_text</th>
@@ -328,7 +495,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-</div>
 </section>
 <section id="동의어-사전" class="level2">
 <h2 class="anchored" data-anchor-id="동의어-사전">1.3. 동의어 사전</h2>
@@ -336,11 +502,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>예를 들어, 서울주거포털은 ‘서울 주거포털’과 ’서울주거포털’로, ’아산사회복지재단’은 ’현대아산재단’, ‘아산재단’ 등으로 상담사마다 같은 의미지만 다르게 쓰는 표현을 일치시켜준다.</p>
 <div class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display" data-execution_count="6">
-<div>
 <style type="text/css">
 </style>
 
-<table id="T_c7bb0" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table id="T_c7bb0" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
@@ -350,37 +515,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_c7bb0_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
+<th id="T_c7bb0_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</th>
 <td id="T_c7bb0_row0_col0" class="data row0 col0">재개발 임대</td>
 <td id="T_c7bb0_row0_col1" class="data row0 col1">재개발임대</td>
 </tr>
 <tr class="even">
-<td id="T_c7bb0_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</td>
+<th id="T_c7bb0_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</th>
 <td id="T_c7bb0_row1_col0" class="data row1 col0">재개발임대주택</td>
 <td id="T_c7bb0_row1_col1" class="data row1 col1">재개발임대</td>
 </tr>
 <tr class="odd">
-<td id="T_c7bb0_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</td>
+<th id="T_c7bb0_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</th>
 <td id="T_c7bb0_row2_col0" class="data row2 col0">서울 주거포털</td>
 <td id="T_c7bb0_row2_col1" class="data row2 col1">서울주거포털</td>
 </tr>
 <tr class="even">
-<td id="T_c7bb0_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</td>
+<th id="T_c7bb0_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</th>
 <td id="T_c7bb0_row3_col0" class="data row3 col0">현대아산재단&nbsp;</td>
 <td id="T_c7bb0_row3_col1" class="data row3 col1">아산사회복지재단</td>
 </tr>
 <tr class="odd">
-<td id="T_c7bb0_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</td>
+<th id="T_c7bb0_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</th>
 <td id="T_c7bb0_row4_col0" class="data row4 col0">아산재단</td>
 <td id="T_c7bb0_row4_col1" class="data row4 col1">아산사회복지재단</td>
 </tr>
 <tr class="even">
-<td id="T_c7bb0_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</td>
+<th id="T_c7bb0_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</th>
 <td id="T_c7bb0_row5_col0" class="data row5 col0">아산사회복지 재단</td>
 <td id="T_c7bb0_row5_col1" class="data row5 col1">아산사회복지재단</td>
 </tr>
 <tr class="odd">
-<td id="T_c7bb0_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</td>
+<th id="T_c7bb0_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</th>
 <td id="T_c7bb0_row6_col0" class="data row6 col0">아산복지재단</td>
 <td id="T_c7bb0_row6_col1" class="data row6 col1">아산사회복지재단</td>
 </tr>
@@ -388,10 +553,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-</div>
 <p>동의어 사전으로 상담 원문 내용을 바꾸는 코드는 아래와 같다. 함수 <code>replace_word</code>는 한 개의 상담 내용<code>cons_text</code> 열마다 동의어사전<code>dict_synonyms</code>에서 <code>beforeWord</code>와 일치하는 구간이 발견되면 <code>afterWord</code>로 바꾼다.</p>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 구축한 동의어사전 불러오기</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 구축한 동의어사전 불러오기</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dict_synonyms <span class="op">=</span> pd.read_csv(<span class="st">'data/dict/dict_synonyms.csv'</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">## 동의어사전을 적용하는 함수 정의</span></span>
@@ -406,7 +570,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(text)</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> text</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>db_record[<span class="st">'cons_text_cleaned_2'</span>] <span class="op">=</span> db_record[<span class="st">'cons_text_cleaned_1'</span>].swifter.set_npartitions(npartitions <span class="op">=</span> <span class="dv">12</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: replace_word(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>db_record[<span class="st">'cons_text_cleaned_2'</span>] <span class="op">=</span> db_record[<span class="st">'cons_text_cleaned_1'</span>].swifter.set_npartitions(npartitions <span class="op">=</span> <span class="dv">12</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: replace_word(x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"a53ead3749a14171aa08715cc9a62330","version_major":2,"version_minor":0}
@@ -415,11 +579,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display" data-execution_count="8">
-<div>
 <style type="text/css">
 </style>
 
-<table id="T_23e2a" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table id="T_23e2a" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th id="T_23e2a_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">cons_text</th>
@@ -439,7 +602,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-</div>
 </section>
 </section>
 <section id="텍스트-토큰화" class="level1">
@@ -451,8 +613,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="기본-설정">기본 설정</h3>
 <p><code>Kiwi()</code>에서 설정을 바꿔줄 수 있다. <code>kiwi.tokenize</code>는 텍스트 원문을 형태소분석하는 함수다. 기본 설정으로 예제를 토큰화해보자.</p>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>kiwi <span class="op">=</span> Kiwi() <span class="co"># Kiwi 기본값 설정</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>kiwi.tokenize(<span class="st">"서울주거포털에서 재개발임대 정보를 알아보셰요"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>kiwi <span class="op">=</span> Kiwi() <span class="co"># Kiwi 기본값 설정</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>kiwi.tokenize(<span class="st">"서울주거포털에서 재개발임대 정보를 알아보셰요"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>결과는 토큰 형태로 반환되며, 원형<code>form</code>과 형태소<code>tag</code>, 시작위치<code>start</code>, 길이<code>len</code>으로 구성된다.</p>
 <div class="cell" data-execution_count="11">
@@ -493,8 +655,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>사용자정의 사전은 별도로 구축한 <strong>사용자정의 단어가 형태소분석기 모델이 아닌 지정한 형태소로 구분</strong>되게끔 하기 위해 사용한다. Kiwi 설정 중 형태소분석기나 불용어사전 등은 기본적으로 제공하는 것을 사용해도 괜찮지만, 이 사용자정의 사전은 분석 목적과 데이터 특성에 맞게 개발하고 업데이트 해줘야 한다.</p>
 <p>사용자사전을 적용하지 않고 예제인 ’서울주거포털에서 확인하실 수 있습니다’를 토큰화해보자.</p>
 <div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>kiwi <span class="op">=</span> Kiwi(model_type <span class="op">=</span> <span class="st">'sbg'</span>, typos <span class="op">=</span> <span class="st">'basic'</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>kiwi.tokenize(<span class="st">'서울주거포털에서 확인하실 수 있습니다'</span>, stopwords <span class="op">=</span> Stopwords())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>kiwi <span class="op">=</span> Kiwi(model_type <span class="op">=</span> <span class="st">'sbg'</span>, typos <span class="op">=</span> <span class="st">'basic'</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>kiwi.tokenize(<span class="st">'서울주거포털에서 확인하실 수 있습니다'</span>, stopwords <span class="op">=</span> Stopwords())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>결과는 다음과 같다. Kiwi 형태소분석기는 ‘서울주거포털’은 ’서울’, ‘주거’, ’포털’로 각각 명사로 분리하여 결과를 내놓았다. 추후 텍스트 분석의 단위는 이렇게 분리된 토큰인 점을 감안하면, ’서울주거포털’은 이렇게 분리가 되선 안된다.</p>
 <div class="cell" data-execution_count="13">
@@ -510,9 +672,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>여기에서 사용자정의 사전으로 ’서울주거포털’을 하나의 명사로 취급하는 명령어를 <code>add_user_word</code>로 추가해보자.</p>
 <div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>kiwi <span class="op">=</span> Kiwi(model_type <span class="op">=</span> <span class="st">'sbg'</span>, typos <span class="op">=</span> <span class="st">'basic'</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>kiwi <span class="op">=</span> Kiwi(model_type <span class="op">=</span> <span class="st">'sbg'</span>, typos <span class="op">=</span> <span class="st">'basic'</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>kiwi.add_user_word(<span class="st">'서울주거포털'</span>, <span class="st">'NNP'</span>, <span class="dv">0</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>kiwi.tokenize(<span class="st">'서울주거포털에서 확인하실 수 있습니다'</span>, stopwords <span class="op">=</span> Stopwords())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>kiwi.tokenize(<span class="st">'서울주거포털에서 확인하실 수 있습니다'</span>, stopwords <span class="op">=</span> Stopwords())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>’서울주거포털’은 분리되지 않고 하나의 고유명사로 구분되었다.</p>
 <div class="cell" data-execution_count="15">
@@ -532,8 +694,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="동의어-사전-활용하기">동의어 사전 활용하기</h4>
 <p>동의어 사전에서 정의한 고유명사를 사용자정의사전 구축에 활용한다. 동의어사전을 불러오고, 치환한 단어의 고유값을 추출한 후, 각 명사를 고유명사<code>NNG</code>와 이 구문이 Kiwi 형태소분석기보다 더 높은 점수를 받게끔 <code>9</code>점을 부여한다.</p>
 <div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dict_synonyms <span class="op">=</span> pd.read_csv(<span class="st">'data/dict/dict_synonyms.csv'</span>) <span class="co"># 동의어사전 불러오기</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>list_userDefined_synonyms <span class="op">=</span> (dict_synonyms[<span class="st">'afterWord'</span>].<span class="bu">str</span>.strip().unique() <span class="op">+</span> <span class="st">"</span><span class="ch">\t</span><span class="st">NNG</span><span class="ch">\t</span><span class="st">9"</span>).tolist() <span class="co"># 사용자 정의 사전 포맷으로 변경</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dict_synonyms <span class="op">=</span> pd.read_csv(<span class="st">'data/dict/dict_synonyms.csv'</span>) <span class="co"># 동의어사전 불러오기</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>list_userDefined_synonyms <span class="op">=</span> (dict_synonyms[<span class="st">'afterWord'</span>].<span class="bu">str</span>.strip().unique() <span class="op">+</span> <span class="st">"</span><span class="ch">\t</span><span class="st">NNG</span><span class="ch">\t</span><span class="st">9"</span>).tolist() <span class="co"># 사용자 정의 사전 포맷으로 변경</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>위 코드 결과는 다음과 같다. 이 사전을 활용하면 ‘서울주거포털’은 ’서울’+‘주거’+‘포털’이 아니라 ’서울주거포털’로, ’일자리센터’는 ’일자리’+’센터’가 아니라 ’일자리센터’로 분석될 것이다.</p>
 <div class="cell" data-execution_count="17">
@@ -550,11 +712,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>동사 등 형태소는 따로 텍스트 파일을 만들어준다. 예를 들어, ‘주심’은 Kiwi 형태소분석기에서는 심판의 의미로 명사로 구분되지만 주거상담 기록에서는 ’서류를 주시다’를 줄여서 쓰는 경우가 많았다. 이 경우에는 ’주심’을 ’주’+‘시’+’다’로 분석되게 지정해야 한다.</p>
 <p><a href="data/dict_userDefined_madeByMe.txt">여기</a>에서 다운받은 파일을 먼저 불러온다.</p>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dict_add <span class="op">=</span> pd.read_table(<span class="st">"data/dict/dict_userDefined_madeByMe.txt"</span>) <span class="co"># 추가 사전 불러오기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dict_add <span class="op">=</span> pd.read_table(<span class="st">"data/dict/dict_userDefined_madeByMe.txt"</span>) <span class="co"># 추가 사전 불러오기</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>이 목록을 사용자정의 사전 포맷으로 바꿔준다. 위와 마찬가지로 높은 점수, 우선순위를 가지도록 <code>9</code>점을 가지게 만들어준다.</p>
 <div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>list_userDefined_add <span class="op">=</span> (pd.read_table(<span class="st">"data/dict/dict_userDefined_madeByMe.txt"</span>, header <span class="op">=</span> <span class="va">None</span>, sep <span class="op">=</span> <span class="st">"-"</span>)[<span class="dv">0</span>] <span class="op">+</span> <span class="st">"</span><span class="ch">\t</span><span class="st">9"</span>).tolist() <span class="co"># 사용자 정의 사전 포맷으로 변경</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>list_userDefined_add <span class="op">=</span> (pd.read_table(<span class="st">"data/dict/dict_userDefined_madeByMe.txt"</span>, header <span class="op">=</span> <span class="va">None</span>, sep <span class="op">=</span> <span class="st">"-"</span>)[<span class="dv">0</span>] <span class="op">+</span> <span class="st">"</span><span class="ch">\t</span><span class="st">9"</span>).tolist() <span class="co"># 사용자 정의 사전 포맷으로 변경</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>아와 같이 명사 외 형태소는 지정된다.</p>
 <div class="cell" data-execution_count="20">
@@ -570,17 +732,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="위-두-사전-결합">위 두 사전 결합</h4>
 <p>위 두 사전을 결합하여 최종 사용자정의 사전을 만들어준다.</p>
 <div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dict_userDefined <span class="op">=</span> pd.DataFrame(pd.DataFrame(list_userDefined_synonyms <span class="op">+</span> list_userDefined_add)[<span class="dv">0</span>].unique()) <span class="co"># 두 list 결합</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>dict_userDefined.to_csv(<span class="st">'data/dict/dict_userDefined.txt'</span>, index <span class="op">=</span> <span class="va">False</span>, header <span class="op">=</span> <span class="va">False</span>) <span class="co"># 새로운 사용자 정의 사전 저장하기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dict_userDefined <span class="op">=</span> pd.DataFrame(pd.DataFrame(list_userDefined_synonyms <span class="op">+</span> list_userDefined_add)[<span class="dv">0</span>].unique()) <span class="co"># 두 list 결합</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>dict_userDefined.to_csv(<span class="st">'data/dict/dict_userDefined.txt'</span>, index <span class="op">=</span> <span class="va">False</span>, header <span class="op">=</span> <span class="va">False</span>) <span class="co"># 새로운 사용자 정의 사전 저장하기</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="사용자정의사전-적용" class="level4">
 <h4 class="anchored" data-anchor-id="사용자정의사전-적용">사용자정의사전 적용</h4>
 <p>추가 설정을 한 형태소 분석의 결과는 다음과 같다. <a href="data/dict_userDefined.txt">여기</a>에서 만든 사전은 다운받을 수 있다.</p>
 <div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>kiwi <span class="op">=</span> Kiwi(model_type <span class="op">=</span> <span class="st">'sbg'</span>, typos <span class="op">=</span> <span class="st">'basic'</span>) <span class="co"># Kiwi 추가 설정</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>kiwi <span class="op">=</span> Kiwi(model_type <span class="op">=</span> <span class="st">'sbg'</span>, typos <span class="op">=</span> <span class="st">'basic'</span>) <span class="co"># Kiwi 추가 설정</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>kiwi.load_user_dictionary(<span class="st">'data/dict/dict_userDefined.txt'</span>) <span class="co"># 사용자사전 추가</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>kiwi.tokenize(<span class="st">"서울주거포털을 소개하며 종결키로 함"</span>, stopwords <span class="op">=</span> Stopwords())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>kiwi.tokenize(<span class="st">"서울주거포털을 소개하며 종결키로 함"</span>, stopwords <span class="op">=</span> Stopwords())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-execution_count="23">
 <div class="cell-output cell-output-stdout">
@@ -598,11 +760,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>kiwi 기본 불용어 사전에서 거르지 못한 불용어를 거르기 위해 사전을 만든다. ‘대상자’와 ’서비스’, ‘주거’ 등은 자주 등장하지만 분석에 유의미한 단어는 아니다. 지역명과 상담사명 등도 마찬가지로 제거하면 좋다. 구축한 사전은 <a href="data/dict/dict_stopword.csv">여기</a>에서 다운로드 할 수 있다.</p>
 <div class="cell" data-execution_count="24">
 <div class="cell-output cell-output-display" data-execution_count="15">
-<div>
 <style type="text/css">
 </style>
 
-<table id="T_558fc" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table id="T_558fc" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
@@ -613,55 +774,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_558fc_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
+<th id="T_558fc_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</th>
 <td id="T_558fc_row0_col0" class="data row0 col0">일반</td>
 <td id="T_558fc_row0_col1" class="data row0 col1">대상자</td>
 <td id="T_558fc_row0_col2" class="data row0 col2">NNG</td>
 </tr>
 <tr class="even">
-<td id="T_558fc_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</td>
+<th id="T_558fc_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</th>
 <td id="T_558fc_row1_col0" class="data row1 col0">일반</td>
 <td id="T_558fc_row1_col1" class="data row1 col1">서비스</td>
 <td id="T_558fc_row1_col2" class="data row1 col2">NNG</td>
 </tr>
 <tr class="odd">
-<td id="T_558fc_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</td>
+<th id="T_558fc_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</th>
 <td id="T_558fc_row2_col0" class="data row2 col0">일반</td>
 <td id="T_558fc_row2_col1" class="data row2 col1">주거</td>
 <td id="T_558fc_row2_col2" class="data row2 col2">NNG</td>
 </tr>
 <tr class="even">
-<td id="T_558fc_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</td>
+<th id="T_558fc_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</th>
 <td id="T_558fc_row3_col0" class="data row3 col0">일반</td>
 <td id="T_558fc_row3_col1" class="data row3 col1">주택</td>
 <td id="T_558fc_row3_col2" class="data row3 col2">NNG</td>
 </tr>
 <tr class="odd">
-<td id="T_558fc_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</td>
+<th id="T_558fc_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</th>
 <td id="T_558fc_row4_col0" class="data row4 col0">일반</td>
 <td id="T_558fc_row4_col1" class="data row4 col1">가구</td>
 <td id="T_558fc_row4_col2" class="data row4 col2">NNG</td>
 </tr>
 <tr class="even">
-<td id="T_558fc_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</td>
+<th id="T_558fc_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</th>
 <td id="T_558fc_row5_col0" class="data row5 col0">지역명</td>
 <td id="T_558fc_row5_col1" class="data row5 col1">잠실2동</td>
 <td id="T_558fc_row5_col2" class="data row5 col2">NNG</td>
 </tr>
 <tr class="odd">
-<td id="T_558fc_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</td>
+<th id="T_558fc_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</th>
 <td id="T_558fc_row6_col0" class="data row6 col0">지역명</td>
 <td id="T_558fc_row6_col1" class="data row6 col1">잠실3동</td>
 <td id="T_558fc_row6_col2" class="data row6 col2">NNG</td>
 </tr>
 <tr class="even">
-<td id="T_558fc_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">7</td>
+<th id="T_558fc_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">7</th>
 <td id="T_558fc_row7_col0" class="data row7 col0">상담사명</td>
 <td id="T_558fc_row7_col1" class="data row7 col1">박상준</td>
 <td id="T_558fc_row7_col2" class="data row7 col2">NNG</td>
 </tr>
 <tr class="odd">
-<td id="T_558fc_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">8</td>
+<th id="T_558fc_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">8</th>
 <td id="T_558fc_row8_col0" class="data row8 col0">상담사명</td>
 <td id="T_558fc_row8_col1" class="data row8 col1">이종현</td>
 <td id="T_558fc_row8_col2" class="data row8 col2">NNG</td>
@@ -670,17 +831,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-</div>
 <section id="한글자-사전" class="level3">
 <h3 class="anchored" data-anchor-id="한글자-사전">한글자 사전</h3>
 <p>단어가 한글자지만 중요한 것을 모아둔 사전이다. 보통 한글자는 의미가 잘 없다. 하지만 ‘돈’은 경제적 상황을 서술할 때 사용하며, ’좁’은 ’좁다’, ‘좁은 집’으로, ’낡’은 ’낡다’ 등으로 활용된다. 이 같은 중요한 한글자는 불용어로 걸러지지 않게끔 한다. 형태소 분석한 토큰이 아주 짧은 경우는 보통 제거한다. <a href="data/dict/dict_oneChar.csv">여기</a>에서 다운로드 할 수 있다.</p>
 <div class="cell" data-execution_count="25">
 <div class="cell-output cell-output-display" data-execution_count="16">
-<div>
 <style type="text/css">
 </style>
 
-<table id="T_9426a" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table id="T_9426a" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
@@ -689,32 +848,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_9426a_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
+<th id="T_9426a_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</th>
 <td id="T_9426a_row0_col0" class="data row0 col0">돈</td>
 </tr>
 <tr class="even">
-<td id="T_9426a_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</td>
+<th id="T_9426a_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</th>
 <td id="T_9426a_row1_col0" class="data row1 col0">좁</td>
 </tr>
 <tr class="odd">
-<td id="T_9426a_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</td>
+<th id="T_9426a_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</th>
 <td id="T_9426a_row2_col0" class="data row2 col0">낡</td>
 </tr>
 <tr class="even">
-<td id="T_9426a_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</td>
+<th id="T_9426a_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</th>
 <td id="T_9426a_row3_col0" class="data row3 col0">커</td>
 </tr>
 <tr class="odd">
-<td id="T_9426a_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</td>
+<th id="T_9426a_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</th>
 <td id="T_9426a_row4_col0" class="data row4 col0">크</td>
 </tr>
 <tr class="even">
-<td id="T_9426a_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</td>
+<th id="T_9426a_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</th>
 <td id="T_9426a_row5_col0" class="data row5 col0">작</td>
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 </section>
@@ -726,10 +884,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="kiwi-형태소분석">Kiwi 형태소분석</h3>
 <p>Kiwi 추가 설정과 사용자정의사전을 추가해서 예제 파일을 형태소분석 해준다.</p>
 <div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>kiwi <span class="op">=</span> Kiwi(model_type <span class="op">=</span> <span class="st">'sbg'</span>, typos <span class="op">=</span> <span class="st">'basic'</span>) <span class="co"># Kiwi 추가 설정</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>kiwi <span class="op">=</span> Kiwi(model_type <span class="op">=</span> <span class="st">'sbg'</span>, typos <span class="op">=</span> <span class="st">'basic'</span>) <span class="co"># Kiwi 추가 설정</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>kiwi.load_user_dictionary(<span class="st">'data/dict/dict_userDefined.txt'</span>) <span class="co"># 사용자사전 추가</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>morph_analysis <span class="op">=</span> <span class="kw">lambda</span> x: kiwi.tokenize(x, stopwords <span class="op">=</span> Stopwords()) <span class="cf">if</span> <span class="bu">type</span>(x) <span class="kw">is</span> <span class="bu">str</span> <span class="cf">else</span> <span class="va">None</span> <span class="co"># 형태소 분석</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>db_record[<span class="st">'cons_text_posTagged_kiwi'</span>] <span class="op">=</span> db_record[<span class="st">'cons_text_cleaned_2'</span>].swifter.<span class="bu">apply</span>(morph_analysis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>db_record[<span class="st">'cons_text_posTagged_kiwi'</span>] <span class="op">=</span> db_record[<span class="st">'cons_text_cleaned_2'</span>].swifter.<span class="bu">apply</span>(morph_analysis)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"10da4101255c4575852fcd3827c6566f","version_major":2,"version_minor":0}
@@ -738,11 +896,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell" data-execution_count="27">
 <div class="cell-output cell-output-display" data-execution_count="18">
-<div>
 <style type="text/css">
 </style>
 
-<table id="T_ff9c5" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table id="T_ff9c5" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th id="T_ff9c5_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">cons_text</th>
@@ -758,10 +915,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-</div>
 <p>형태소분석 한 결과를 이어준다. ‘Token(form=’서울주거포털’, tag=‘NNG’, start=0, len=6)’는 그대로 활용할 수 없으므로, Token의 form들을 <code>append</code>로 이어준다. 이어줄 때, 주요품사만 골라서 붙여준다.</p>
 <div class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 형태소분석된 것들을 join</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 형태소분석된 것들을 join</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>dict_stopword <span class="op">=</span> pd.read_csv(<span class="st">'data/dict/dict_stopword.csv'</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>dict_oneChar <span class="op">=</span> pd.read_csv(<span class="st">"data/dict/dict_oneChar.csv"</span>)</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -782,7 +938,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> pd.Series([<span class="st">' '</span>.join(textJoinedAll), <span class="st">' '</span>.join(textJoinedMain)])</span>
 <span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out</span>
 <span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>db_record[[<span class="st">'cons_text_posTagged_all'</span>, <span class="st">'cons_text_posTagged_main'</span>]] <span class="op">=</span> db_record[<span class="st">'cons_text_posTagged_kiwi'</span>].swifter.set_npartitions(npartitions <span class="op">=</span> <span class="dv">6</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: tokenToText(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>db_record[[<span class="st">'cons_text_posTagged_all'</span>, <span class="st">'cons_text_posTagged_main'</span>]] <span class="op">=</span> db_record[<span class="st">'cons_text_posTagged_kiwi'</span>].swifter.set_npartitions(npartitions <span class="op">=</span> <span class="dv">6</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: tokenToText(x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"a585e6721d9b4fa0be0a8581f612eaa1","version_major":2,"version_minor":0}
@@ -791,11 +947,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell" data-execution_count="29">
 <div class="cell-output cell-output-display" data-execution_count="20">
-<div>
 <style type="text/css">
 </style>
 
-<table id="T_9371a" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table id="T_9371a" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th id="T_9371a_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">cons_text</th>
@@ -809,7 +964,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 
@@ -826,187 +980,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
       return false;
     }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-    return false;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
@@ -1014,184 +1052,184 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
       return codeEl.innerText;
     }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("jhyeonpark\.com");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("jhyeonpark\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1199,185 +1237,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 
 

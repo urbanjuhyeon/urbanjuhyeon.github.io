@@ -6,13 +6,15 @@ project:
 
 website:
   title: "Juhyeon Park"
-  site-url: "jhyeonpark.com"
+  site-url: "https://juhyeonpark.com"
   navbar:
     right:
-      - about.qmd
+      - href: about.qmd
+        text: About
+      - research.qmd
       - blog.qmd
       - icon: github
-        href: https://github.com/jhyeonpark
+        href: https://github.com/urbanjuhyeon
 format:
   html:
     theme:

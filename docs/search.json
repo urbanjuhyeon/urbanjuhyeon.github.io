@@ -7,32 +7,18 @@
     "text": "My research uses urban big data, AI, and spatial econometrics to understand how cities and housing markets work — from WiFi-sensed public life to online housing market signals."
   },
   {
-    "objectID": "research.html#under-review",
-    "href": "research.html#under-review",
+    "objectID": "research.html#publications",
+    "href": "research.html#publications",
     "title": "Research",
-    "section": "Under Review",
-    "text": "Under Review\nPark, J., & Kim, J. “WiFi Sensing for Urban Analytics: An Open-Source R Toolkit.” Revise & resubmit at Environment and Planning B: Urban Analytics and City Science. [Toolkit website] [GitHub]\nPark, J., & Kim, J. “What Consumers Rate Highly and What Stays Open: Sensory Experience and Business Continuity in Seoul’s Commercial Districts.” Under review at Cities."
-  },
-  {
-    "objectID": "research.html#accepted-forthcoming",
-    "href": "research.html#accepted-forthcoming",
-    "title": "Research",
-    "section": "Accepted / Forthcoming",
-    "text": "Accepted / Forthcoming\n박주현. “온라인 아파트 매물량은 가격변동을 선행하는가?: 거래량의 역할과 매매·전세 시장 비교를 중심으로” [Does Online Apartment Listing Volume Lead Price Changes? The Role of Transaction Volume and a Comparison of Sale and Jeonse Markets]. 주택연구 (Housing Studies Review), 34(4). Accepted; forthcoming November 2026."
-  },
-  {
-    "objectID": "research.html#journal-articles",
-    "href": "research.html#journal-articles",
-    "title": "Research",
-    "section": "Journal Articles",
-    "text": "Journal Articles\nPark, J., & Kim, J. (2019). Economic impacts of a linear urban park on local businesses: The case of Gyeongui Line Forest Park in Seoul. Landscape and Urban Planning, 181, 139–147. https://doi.org/10.1016/j.landurbplan.2018.10.001\nPark, J., & Kim, J. (2018). Defining heatwave thresholds using an inductive machine learning approach. PLOS ONE, 13(11), e0206872. https://doi.org/10.1371/journal.pone.0206872\nYoon, D. K., Kang, J. E., & Park, J. (2017). Exploring environmental inequity in South Korea: An analysis of the distribution of toxic release inventory (TRI) facilities and toxic releases. Sustainability, 9(10), 1886. https://doi.org/10.3390/su9101886"
+    "section": "Publications",
+    "text": "Publications\n박주현. “온라인 아파트 매물량은 가격변동을 선행하는가?: 거래량의 역할과 매매·전세 시장 비교를 중심으로.” 주택연구, 34(4). (accepted; forthcoming November 2026)\n[Does Online Apartment Listing Volume Lead Price Changes? The Role of Transaction Volume and a Comparison of Sale and Jeonse Markets. Housing Studies Review]\nPark, J., & Kim, J. (2019). Economic impacts of a linear urban park on local businesses: The case of Gyeongui Line Forest Park in Seoul. Landscape and Urban Planning, 181, 139–147. https://doi.org/10.1016/j.landurbplan.2018.10.001\nPark, J., & Kim, J. (2018). Defining heatwave thresholds using an inductive machine learning approach. PLOS ONE, 13(11), e0206872. https://doi.org/10.1371/journal.pone.0206872\nYoon, D. K., Kang, J. E., & Park, J. (2017). Exploring environmental inequity in South Korea: An analysis of the distribution of toxic release inventory (TRI) facilities and toxic releases. Sustainability, 9(10), 1886. https://doi.org/10.3390/su9101886"
   },
   {
     "objectID": "research.html#working-papers",
     "href": "research.html#working-papers",
     "title": "Research",
     "section": "Working Papers",
-    "text": "Working Papers\n박주현 (2026). “임차가구의 전세–월세 전환이 가구 경제활동에 미치는 영향: 한국노동패널을 활용하여” [The Effect of Jeonse-to-Monthly-Rent Transitions on Household Economic Activity: Evidence from KLIPS]. 한국노동연구원 노동패널 워킹페이퍼; presented at the KLIPS Working Paper Conference, Sejong, July 2026."
+    "text": "Working Papers\nPark, J., & Kim, J. “WiFi Sensing for Urban Analytics: An Open-Source R Toolkit.” (revise & resubmit at Environment and Planning B: Urban Analytics and City Science) [Toolkit website] [GitHub]\nPark, J., & Kim, J. “What Consumers Rate Highly and What Stays Open: Sensory Experience and Business Continuity in Seoul’s Commercial Districts.” (submitted)\n박주현 (2026). “임차가구의 전세–월세 전환이 가구 경제활동에 미치는 영향: 한국노동패널을 활용하여.” 한국노동연구원 노동패널 워킹페이퍼. (presented at the KLIPS Working Paper Conference, July 2026)\n[The Effect of Jeonse-to-Monthly-Rent Transitions on Household Economic Activity: Evidence from KLIPS]"
   },
   {
     "objectID": "research.html#software",

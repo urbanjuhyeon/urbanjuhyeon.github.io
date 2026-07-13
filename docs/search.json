@@ -4,7 +4,7 @@
     "href": "research.html",
     "title": "Research",
     "section": "",
-    "text": "My research uses urban big data, AI, and spatial econometrics to understand how cities and housing markets work — from WiFi-sensed public life to online housing market signals."
+    "text": "I study how people use urban space and how housing markets move, combining new streams of urban data with spatial and econometric methods.\nOne idea runs through my work: measuring urban life through the technologies that observe it. It began with hard sensing, using WiFi signals to trace pedestrian activity in public space, and now extends to social sensing, reading online reviews and housing listings as signals of how commercial districts and markets change. A direction I am now exploring is agent-based simulation, using large language models to study how residents and policy interact. Across these shifts, housing markets and housing policy are the applied ground for my methods, informed by my work at Korea’s Housing and Urban Guarantee Corporation (HUG)."
   },
   {
     "objectID": "research.html#publications",
@@ -18,14 +18,14 @@
     "href": "research.html#working-papers",
     "title": "Research",
     "section": "Working Papers",
-    "text": "Working Papers\nPark, J., & Kim, J. “WiFi Sensing for Urban Analytics: An Open-Source R Toolkit.” (revise & resubmit at Environment and Planning B: Urban Analytics and City Science) [Toolkit website] [GitHub]\nPark, J., & Kim, J. “What Consumers Rate Highly and What Stays Open: Sensory Experience and Business Continuity in Seoul’s Commercial Districts.” (submitted)\n박주현 (2026). “임차가구의 전세–월세 전환이 가구 경제활동에 미치는 영향: 한국노동패널을 활용하여.” 한국노동연구원 노동패널 워킹페이퍼. (presented at the KLIPS Working Paper Conference, July 2026)\n[The Effect of Jeonse-to-Monthly-Rent Transitions on Household Economic Activity: Evidence from KLIPS]"
+    "text": "Working Papers\nPark, J., & Kim, J. “WiFi Sensing for Urban Analytics: An Open-Source R Toolkit.” (revise & resubmit at Environment and Planning B: Urban Analytics and City Science) Website GitHub\nPark, J., & Kim, J. “What Consumers Rate Highly and What Stays Open: Sensory Experience and Business Continuity in Seoul’s Commercial Districts.” (submitted)\n박주현 (2026). “임차가구의 전세–월세 전환이 가구 경제활동에 미치는 영향: 한국노동패널을 활용하여.” 한국노동연구원 노동패널 워킹페이퍼. (presented at the KLIPS Working Paper Conference, July 2026)\n[The Effect of Jeonse-to-Monthly-Rent Transitions on Household Economic Activity: Evidence from KLIPS]"
   },
   {
     "objectID": "research.html#software",
     "href": "research.html#software",
     "title": "Research",
     "section": "Software",
-    "text": "Software\nurban-wifi-sensing-toolkit — an open-source R toolkit covering the full WiFi sensing pipeline for urban research, from sensor construction and data collection to urban metrics. [Online book] [GitHub] [Zenodo]"
+    "text": "Software\nurban-wifi-sensing-toolkit is an open-source R toolkit covering the full WiFi sensing pipeline for urban research, from sensor construction and data collection to urban metrics. Online book GitHub https://doi.org/10.5281/zenodo.18831563"
   },
   {
     "objectID": "research.html#ph.d.-dissertation",

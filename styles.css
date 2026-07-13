@@ -1,4 +1,24 @@
 /* css styles */
+
+/* publication links (Research page) — cityform-style colored links */
+.pub {
+  color: #ef4444;
+  text-decoration: none;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.pub:hover { text-decoration: underline; }
+
+/* red Table of Contents (cityform-inspired) */
+nav[role="doc-toc"] a,
+#TOC a,
+#toc-title {
+  color: #ef4444 !important;
+}
+nav[role="doc-toc"] a:hover { color: #c92a2a !important; }
+nav[role="doc-toc"] a.active,
+nav[role="doc-toc"] a:hover { border-left-color: #ef4444 !important; }
+
 figure figcaption {
   text-align: center;
 }

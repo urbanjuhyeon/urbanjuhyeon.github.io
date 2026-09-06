@@ -22,8 +22,8 @@ I study how people use urban space and how housing markets move, combining new s
 
 ## Publications
 
-**박주현** (2026). "온라인 아파트 매물량은 가격변동을 선행하는가?: 거래량의 역할과 매매·전세 시장 비교를 중심으로." *주택연구*, 34(3). [PDF](https://www.kahps.org/data/hshd/pdf_495_10){.pub}\
-\[Does Online Apartment Listing Volume Lead Price Changes? The Role of Transaction Volume and a Comparison of Sale and Jeonse Markets. *Housing Studies Review*\]
+**박주현** (2026). "온라인 아파트 매물량은 가격변동을 선행하는가?: 거래량의 역할과 매매·전세 시장 비교를 중심으로." *주택연구*, 34(3), 267--296. [https://doi.org/10.24957/hsr.2026.34.3.267](https://doi.org/10.24957/hsr.2026.34.3.267){.pub}\
+\[Does Online Apartment Listing Volume Lead Price Changes?: The Role of Transaction Volume and a Comparison of Sale and Jeonse Markets. *Housing Studies Review*\]
 
 **Park, J.**, & Kim, J. (2019). Economic impacts of a linear urban park on local businesses: The case of Gyeongui Line Forest Park in Seoul. *Landscape and Urban Planning*, 181, 139--147. [https://doi.org/10.1016/j.landurbplan.2018.10.001](https://doi.org/10.1016/j.landurbplan.2018.10.001){.pub}
 

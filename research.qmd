@@ -16,7 +16,7 @@ include-in-header:
     </style>
 ---
 
-I study urban activity, local economic change, and housing markets. My work combines spatial and econometric methods with sensing, administrative, and online platform data, with particular attention to measurement, validation, and policy applications.
+I study how people use urban space, how commercial districts change, and how housing markets work. My work combines spatial and econometric methods with sensing, administrative, and online platform data, with particular attention to measurement, validation, and policy applications.
 
 ## Publications
 

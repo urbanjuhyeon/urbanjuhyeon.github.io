@@ -1,5 +1,7 @@
 ---
 title: "Research"
+date-modified: last-modified
+date-format: "MMMM YYYY"
 toc: true
 toc-location: left
 toc-title: "Table of Contents"
@@ -13,10 +15,22 @@ include-in-header:
         line-height: 0.9;
         padding-right: 0.03em;
       }
+      .quarto-title-meta { display: none !important; }
+      .last-updated {
+        margin-top: 3rem;
+        font-size: 0.85em;
+        font-style: italic;
+        color: #868e96;
+      }
     </style>
 ---
 
-I study how people use urban space, how commercial districts change, and how housing markets work. My work combines spatial and econometric methods with sensing, administrative, and online platform data, with particular attention to measurement, validation, and policy applications.
+I measure urban life with new forms of data, from WiFi signals to online reviews and listings, and test how well those measures hold up for policy.
+
+-   **Public space & pedestrian behavior**: WiFi sensing and open-source measurement tools
+-   **Commercial district change**: online reviews, sensory experience, and business continuity
+-   **Housing markets & policy**: online listings, *jeonse*–monthly rent transitions, and household outcomes
+-   **AI in urban research** *(exploring)*: LLM agents for simulating residents' responses to housing policy
 
 ## Publications
 
@@ -33,7 +47,7 @@ Yoon, D. K., Kang, J. E., & **Park, J.** (2017). Exploring environmental inequit
 
 ## Working Papers
 
-**Park, J.**, & Kim, J. "What Consumers Rate Highly and What Stays Open: Sensory Experience and Business Continuity in Seoul's Commercial Districts." (submitted)
+**Park, J.**, & Kim, J. "What Consumers Rate Highly and What Stays Open: Sensory Experience and Business Continuity in Seoul's Commercial Districts." (under revision at *Cities*)
 
 **박주현** (2026). "임차가구의 전세--월세 전환이 가구 경제활동에 미치는 영향: 한국노동패널을 활용하여." 한국노동연구원 노동패널 워킹페이퍼. (presented at the KLIPS Working Paper Conference, July 2026)\
 \[The Effect of *Jeonse*-to-Monthly-Rent Transitions on Household Economic Activity: Evidence from KLIPS\]
@@ -46,3 +60,7 @@ Yoon, D. K., Kang, J. E., & **Park, J.** (2017). Exploring environmental inequit
 ## Ph.D. Dissertation
 
 **Park, J.** (2022). *Measuring Public Life Through Digital Technologies: Investigating the Use of WiFi Sensing for Enhancing Public Space*. Ulsan National Institute of Science and Technology (UNIST). Advisor: Prof. Jeongseob Kim.
+
+::: last-updated
+Last updated: {{< meta date-modified >}}
+:::

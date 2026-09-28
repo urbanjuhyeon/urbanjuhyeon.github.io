@@ -54,8 +54,7 @@ Yoon, D. K., Kang, J. E., & **Park, J.** (2017). [Exploring environmental inequi
 
 ## Software
 
-**urban-wifi-sensing-toolkit**: An open-source R toolkit for measuring pedestrian activity with WiFi sensing, from sensor assembly to urban analytics metrics. Includes sample data from two field deployments.\
-[Online book](https://juhyeonpark.com/urban-wifi-sensing-toolkit/){.pub} [GitHub](https://github.com/urbanjuhyeon/urban-wifi-sensing-toolkit){.pub} [Zenodo](https://doi.org/10.5281/zenodo.21442378){.pub}
+**[urban-wifi-sensing-toolkit](https://juhyeonpark.com/urban-wifi-sensing-toolkit/){.ptitle}**: An open-source R toolkit for measuring pedestrian activity with WiFi sensing, from sensor assembly to urban analytics metrics. Includes sample data from two field deployments.
 
 ## Ph.D. Dissertation
 

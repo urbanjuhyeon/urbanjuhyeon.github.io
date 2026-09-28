@@ -3,22 +3,6 @@
 /* Korean text: break lines between words, not inside them */
 body { word-break: keep-all; }
 
-/* publication links (Research page) — small outlined buttons */
-.pub {
-  display: inline-block;
-  padding: 0 0.45em;
-  margin: 0.1em 0.15em;
-  border: 1px solid #ef4444;
-  border-radius: 4px;
-  color: #ef4444;
-  font-size: 0.78em;
-  font-weight: 500;
-  line-height: 1.6;
-  text-decoration: none;
-  vertical-align: 0.08em;
-}
-.pub:hover { background: #ef4444; color: #fff; text-decoration: none; }
-
 /* publication titles link to the paper */
 .ptitle {
   color: inherit;

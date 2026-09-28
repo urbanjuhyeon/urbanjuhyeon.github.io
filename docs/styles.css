@@ -19,6 +19,15 @@ body { word-break: keep-all; }
 }
 .pub:hover { background: #ef4444; color: #fff; text-decoration: none; }
 
+/* publication titles link to the paper */
+.ptitle {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 30%, transparent);
+  text-underline-offset: 3px;
+}
+.ptitle:hover { color: #ef4444; text-decoration-color: currentColor; }
+
 /* red Table of Contents (cityform-inspired) */
 nav[role="doc-toc"] a,
 #TOC a,

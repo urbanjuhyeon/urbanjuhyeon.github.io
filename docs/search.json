@@ -25,7 +25,7 @@
     "href": "research.html#software",
     "title": "Research",
     "section": "Software",
-    "text": "Software\nurban-wifi-sensing-toolkit is an open-source R toolkit covering the full WiFi sensing pipeline for urban research, from sensor construction and data collection to urban metrics. Online book GitHub https://doi.org/10.5281/zenodo.21442378"
+    "text": "Software\nurban-wifi-sensing-toolkit: An open-source R toolkit for measuring pedestrian activity with WiFi sensing, from sensor assembly to urban analytics metrics. Includes sample data from two field deployments.\nOnline book · GitHub · Zenodo"
   },
   {
     "objectID": "research.html#ph.d.-dissertation",

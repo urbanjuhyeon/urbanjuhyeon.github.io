@@ -1,5 +1,8 @@
 /* css styles */
 
+/* Korean text: break lines between words, not inside them */
+body { word-break: keep-all; }
+
 /* publication links (Research page) — cityform-style colored links */
 .pub {
   color: #ef4444;

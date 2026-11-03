@@ -51,6 +51,8 @@ Yoon, D. K., Kang, J. E., & **Park, J.** (2017). [Exploring environmental inequi
 
 **Park, J.** "Do renters spend and save less after they begin paying monthly rent? Evidence from South Korea's deposit-only leases." (submitted)
 
+**Park, J.** "Measured between branches or from homes? A 1 km closure condition and walking access to bank branches in South Korea, 2019–2026." (submitted)
+
 ## Software
 
 **[urban-wifi-sensing-toolkit](https://juhyeonpark.com/urban-wifi-sensing-toolkit/){.ptitle}**: An open-source R toolkit for measuring pedestrian activity with WiFi sensing, from sensor assembly to urban analytics metrics. Includes sample data from two field deployments.

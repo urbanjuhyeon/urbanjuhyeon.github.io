@@ -614,5 +614,12 @@
     "title": "네트워크 분석하기 2: 도로네트워크 리뷰",
     "section": "2차 검토",
     "text": "2차 검토\nA, B, C 도로망 DB을 3개 상권을 대상으로 시각화하여 비교한다.\n\n\n\n\n(A) 수치지도 도로중심선\n국가에서 공인한 수치지도를 기반으로 한 네트워크로, 가장 일반적인 도로 네트워크 형태를 보여준다.\n하지만 접경지역에 수치지도가 제공되지 않는다. 아래와 같이 김포, 파주 등 일부 지역에서는 1:5000 수치지도 다운이 불가능하며, 이를 추출한 도로중심선도 사용할 수 없다.\n\n\n\n일산지역 수치지도\n\n\n\n\n(B) OpenStreetMap\nOpenStreetMap은 별도 설치가 필요없이 QGIS, Python 등에서 다루기 쉽다. 사용자 참여도가 높은 지역(예: 일산호수공원)에서 매우 상세한 네트워크를 제공하며, 상대적으로 참여도가 낮을 것으로 예상되는 지역(예: 가평시청, 양평역)에서도 준수한 수준의 네트워크를 가진다.\n에서 등록된 도로 등 기물을 직접 확인할 수 있다.\n\n\n\n(C) 교통분석용네트워크\n전반적으로 네트워크 밀도가 낮아 상세한 분석에는 적합하지 않다. 일부 지역(예: 양평역 상권)에서는 도로 네트워크가 거의 표현되지 않았다. 대규모 교통 흐름 분석에 더 적합할 것으로 보인다."
+  },
+  {
+    "objectID": "research.html#under-review",
+    "href": "research.html#under-review",
+    "title": "Research",
+    "section": "Under Review",
+    "text": "Under Review\nPark, J., Jeong, J., & Kim, J. “What Consumers Rate Highly and What Stays Open: Sensory Experience and Business Continuity in Seoul’s Commercial Districts.” (R&R at Cities)\nPark, J. “Do renters spend and save less after they begin paying monthly rent? Evidence from South Korea’s deposit-only leases.” (submitted)\nPark, J. “Measured between branches or from homes? A 1 km closure condition and walking access to bank branches in South Korea, 2019–2026.” (submitted)"
   }
 ]

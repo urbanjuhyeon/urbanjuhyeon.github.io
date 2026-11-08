@@ -6,6 +6,8 @@ about:
   links:
     - text: E-mail
       href: mailto:urbanjuhyeon@gmail.com
+    - text: Google Scholar
+      href: https://scholar.google.com/citations?user=3T78cRAAAAAJ
     - text: LinkedIn
       href: https://linkedin.com/in/jhyeonpark/
     - text: Github

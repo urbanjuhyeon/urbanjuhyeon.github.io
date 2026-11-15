@@ -74,6 +74,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf_viewer.min.css">
 <style>
 .quarto-title-meta { display: none !important; }
 .cv-bar {
@@ -86,25 +87,25 @@ ul.task-list li input[type="checkbox"] {
 }
 .cv-bar p { margin: 0; }
 .cv-updated { opacity: 0.7; }
-/* page previews of the PDF, shown like a document viewer */
+/* the PDF, drawn page by page with a selectable text layer (pdf.js) */
 .cv-pages {
   background: rgba(127, 127, 127, 0.12);
   border-radius: 6px;
   padding: 1.25rem;
+  min-height: 12rem;
 }
-.cv-pages a { display: block; }
-.cv-pages img {
-  display: block;
-  width: 100%;
-  height: auto;
+.cv-page {
+  position: relative;
   margin: 0 auto 1.25rem;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
 }
-.cv-pages a:last-child img { margin-bottom: 0; }
+.cv-page:last-child { margin-bottom: 0; }
+.cv-page canvas { display: block; }
+.cv-pages .loading { opacity: 0.7; margin: 0; }
 @media (max-width: 575.98px) {
   .cv-pages { padding: 0.6rem; }
-  .cv-pages img { margin-bottom: 0.6rem; }
+  .cv-page { margin-bottom: 0.6rem; }
 }
 </style>
 
@@ -342,11 +343,72 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="cv-bar">
 <p><span class="cv-updated">Updated November 2026 · 2 pages</span></p>
-<p><a href="cv_jhyeon_v15.pdf" class="btn btn-outline-secondary btn-sm" download="Juhyeon_Park_CV.pdf">Download PDF</a></p>
+<p><a href="Juhyeon_Park_CV.pdf" class="btn btn-outline-secondary btn-sm" download="Juhyeon_Park_CV.pdf">Download PDF</a></p>
 </div>
-<div class="cv-pages">
-<p><a href="cv_jhyeon_v15.pdf"><img src="cv-preview/cv-page-1.png" class="img-fluid" alt="CV of Juhyeon Park, page 1"></a> <a href="cv_jhyeon_v15.pdf"><img src="cv-preview/cv-page-2.png" class="img-fluid" alt="CV of Juhyeon Park, page 2"></a></p>
+<div class="cv-pages" id="cv-pages">
+  <p class="loading">Loading the CV… If it does not appear, <a href="Juhyeon_Park_CV.pdf">open the PDF</a>.</p>
 </div>
+
+<script type="module">
+  import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+
+  const box = document.getElementById("cv-pages");
+  const pdf = await pdfjsLib.getDocument("Juhyeon_Park_CV.pdf").promise;
+
+  async function draw() {
+    const pad = parseFloat(getComputedStyle(box).paddingLeft) * 2;
+    const width = Math.min(box.clientWidth - pad, 900);
+    const dpr = window.devicePixelRatio || 1;
+    const pages = [];
+    for (let n = 1; n <= pdf.numPages; n++) {
+      const page = await pdf.getPage(n);
+      const scale = width / page.getViewport({ scale: 1 }).width;
+      const viewport = page.getViewport({ scale });
+
+      const holder = document.createElement("div");
+      holder.className = "cv-page";
+      holder.style.width = viewport.width + "px";
+      holder.style.height = viewport.height + "px";
+      holder.style.setProperty("--scale-factor", scale);
+
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.floor(viewport.width * dpr);
+      canvas.height = Math.floor(viewport.height * dpr);
+      canvas.style.width = viewport.width + "px";
+      canvas.style.height = viewport.height + "px";
+      holder.appendChild(canvas);
+
+      const text = document.createElement("div");
+      text.className = "textLayer";
+      holder.appendChild(text);
+      pages.push(holder);
+
+      await page.render({
+        canvasContext: canvas.getContext("2d"),
+        viewport,
+        transform: dpr !== 1 ? [dpr, 0, 0, dpr, 0, 0] : null,
+      }).promise;
+      await new pdfjsLib.TextLayer({
+        textContentSource: page.streamTextContent(),
+        container: text,
+        viewport,
+      }).render();
+    }
+    box.replaceChildren(...pages);
+  }
+
+  await draw();
+  let lastWidth = box.clientWidth;
+  let timer;
+  window.addEventListener("resize", () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      if (box.clientWidth !== lastWidth) { lastWidth = box.clientWidth; draw(); }
+    }, 200);
+  });
+</script>
 
 
 

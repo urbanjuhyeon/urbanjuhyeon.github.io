@@ -1,5 +1,6 @@
 ---
 title: "Juhyeon Park"
+subtitle: "Associate Research Fellow<br>Korea Housing & Urban Guarantee Corporation (HUG)"
 image: index.jpg
 page-layout: full
 include-in-header:
@@ -23,6 +24,8 @@ include-in-header:
 
     /* home page: keep the photo + text layout from stretching across wide screens */
     .quarto-about-trestles { max-width: 1080px; margin-left: auto; margin-right: auto; }
+    /* title and affiliation under the name */
+    .quarto-about-trestles .about-entity .subtitle { font-size: 0.95rem; line-height: 1.45; opacity: 0.75; margin-top: 0.25rem; }
     </style>
 aliases:
   - about.html

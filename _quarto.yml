@@ -3,6 +3,8 @@ project:
   output-dir: docs
   resources:
     - CNAME
+    - "cv_jhyeon_v*.pdf"
+    - Juhyeon_Park_CV.pdf
 
 website:
   title: "Juhyeon Park"

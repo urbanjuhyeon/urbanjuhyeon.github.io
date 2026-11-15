@@ -9,10 +9,9 @@ website:
   site-url: "https://juhyeonpark.com"
   navbar:
     right:
-      - href: about.qmd
-        text: About
-      - research.qmd
-      - blog.qmd
+      - publications.qmd
+      - href: cv.qmd
+        text: CV
       - icon: github
         href: https://github.com/urbanjuhyeon
 format:

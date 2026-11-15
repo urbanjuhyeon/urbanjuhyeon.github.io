@@ -1,36 +1,36 @@
 [
   {
-    "objectID": "research.html",
-    "href": "research.html",
-    "title": "Research",
+    "objectID": "publications.html",
+    "href": "publications.html",
+    "title": "Publications",
     "section": "",
-    "text": "I measure urban life with new forms of data, from WiFi signals to online reviews and listings, and test how well those measures hold up for policy."
+    "text": "Park, J., Jeong, J., & Kim, J. (in press). What consumers rate highly and what stays open: Sensory experience and business continuity in Seoul’s commercial districts. Cities.\nPark, J., & Kim, J. (2026). WiFi sensing for urban analytics: An open-source R toolkit. Environment and Planning B: Urban Analytics and City Science. Advance online publication.\n박주현 (2026). “온라인 아파트 매물량은 가격변동을 선행하는가?: 거래량의 역할과 매매·전세 시장 비교를 중심으로.” 주택연구, 34(3), 267–296.\n[Does Online Apartment Listing Volume Lead Price Changes?: The Role of Transaction Volume and a Comparison of Sale and Jeonse Markets. Housing Studies Review]\nPark, J., & Kim, J. (2019). Economic impacts of a linear urban park on local businesses: The case of Gyeongui Line Forest Park in Seoul. Landscape and Urban Planning, 181, 139–147.\nPark, J., & Kim, J. (2018). Defining heatwave thresholds using an inductive machine learning approach. PLOS ONE, 13(11), e0206872.\nYoon, D. K., Kang, J. E., & Park, J. (2017). Exploring environmental inequity in South Korea: An analysis of the distribution of toxic release inventory (TRI) facilities and toxic releases. Sustainability, 9(10), 1886."
   },
   {
-    "objectID": "research.html#publications",
-    "href": "research.html#publications",
-    "title": "Research",
-    "section": "Publications",
-    "text": "Publications\nPark, J., Jeong, J., & Kim, J. (in press). What consumers rate highly and what stays open: Sensory experience and business continuity in Seoul’s commercial districts. Cities.\nPark, J., & Kim, J. (2026). WiFi sensing for urban analytics: An open-source R toolkit. Environment and Planning B: Urban Analytics and City Science. Advance online publication.\n박주현 (2026). “온라인 아파트 매물량은 가격변동을 선행하는가?: 거래량의 역할과 매매·전세 시장 비교를 중심으로.” 주택연구, 34(3), 267–296.\n[Does Online Apartment Listing Volume Lead Price Changes?: The Role of Transaction Volume and a Comparison of Sale and Jeonse Markets. Housing Studies Review]\nPark, J., & Kim, J. (2019). Economic impacts of a linear urban park on local businesses: The case of Gyeongui Line Forest Park in Seoul. Landscape and Urban Planning, 181, 139–147.\nPark, J., & Kim, J. (2018). Defining heatwave thresholds using an inductive machine learning approach. PLOS ONE, 13(11), e0206872.\nYoon, D. K., Kang, J. E., & Park, J. (2017). Exploring environmental inequity in South Korea: An analysis of the distribution of toxic release inventory (TRI) facilities and toxic releases. Sustainability, 9(10), 1886."
+    "objectID": "publications.html#journal-articles",
+    "href": "publications.html#journal-articles",
+    "title": "Publications",
+    "section": "",
+    "text": "Park, J., Jeong, J., & Kim, J. (in press). What consumers rate highly and what stays open: Sensory experience and business continuity in Seoul’s commercial districts. Cities.\nPark, J., & Kim, J. (2026). WiFi sensing for urban analytics: An open-source R toolkit. Environment and Planning B: Urban Analytics and City Science. Advance online publication.\n박주현 (2026). “온라인 아파트 매물량은 가격변동을 선행하는가?: 거래량의 역할과 매매·전세 시장 비교를 중심으로.” 주택연구, 34(3), 267–296.\n[Does Online Apartment Listing Volume Lead Price Changes?: The Role of Transaction Volume and a Comparison of Sale and Jeonse Markets. Housing Studies Review]\nPark, J., & Kim, J. (2019). Economic impacts of a linear urban park on local businesses: The case of Gyeongui Line Forest Park in Seoul. Landscape and Urban Planning, 181, 139–147.\nPark, J., & Kim, J. (2018). Defining heatwave thresholds using an inductive machine learning approach. PLOS ONE, 13(11), e0206872.\nYoon, D. K., Kang, J. E., & Park, J. (2017). Exploring environmental inequity in South Korea: An analysis of the distribution of toxic release inventory (TRI) facilities and toxic releases. Sustainability, 9(10), 1886."
   },
   {
-    "objectID": "research.html#working-papers",
-    "href": "research.html#working-papers",
-    "title": "Research",
-    "section": "Working Papers",
-    "text": "Working Papers\nPark, J., Jeong, J., & Kim, J. “What Consumers Rate Highly and What Stays Open: Sensory Experience and Business Continuity in Seoul’s Commercial Districts.” (R&R at Cities)\nPark, J. “Do renters spend and save less after they begin paying monthly rent? Evidence from South Korea’s deposit-only leases.” (submitted)\nPark, J. “Measured between branches or from homes? A 1 km closure condition and walking access to bank branches in South Korea, 2019–2026.” (submitted)"
+    "objectID": "publications.html#under-review",
+    "href": "publications.html#under-review",
+    "title": "Publications",
+    "section": "Under Review",
+    "text": "Under Review\nPark, J. “Do renters spend and save less after they begin paying monthly rent? Evidence from South Korea’s deposit-only leases.” (submitted)\nPark, J. “Measured between branches or from homes? A 1 km closure condition and walking access to bank branches in South Korea, 2019–2026.” (submitted)"
   },
   {
-    "objectID": "research.html#software",
-    "href": "research.html#software",
-    "title": "Research",
+    "objectID": "publications.html#software",
+    "href": "publications.html#software",
+    "title": "Publications",
     "section": "Software",
     "text": "Software\nurban-wifi-sensing-toolkit: An open-source R toolkit for measuring pedestrian activity with WiFi sensing, from sensor assembly to urban analytics metrics. Includes sample data from two field deployments."
   },
   {
-    "objectID": "research.html#ph.d.-dissertation",
-    "href": "research.html#ph.d.-dissertation",
-    "title": "Research",
+    "objectID": "publications.html#ph.d.-dissertation",
+    "href": "publications.html#ph.d.-dissertation",
+    "title": "Publications",
     "section": "Ph.D. Dissertation",
     "text": "Ph.D. Dissertation\nPark, J. (2022). Measuring Public Life Through Digital Technologies: Investigating the Use of WiFi Sensing for Enhancing Public Space. Ulsan National Institute of Science and Technology (UNIST). Advisor: Prof. Jeongseob Kim.\n\nLast updated: November 2026"
   },
@@ -343,6 +343,13 @@
     "text": "실전 창업교육 소결\n낯선 현지인과 많은 대화를 나누는 가치있는 경험이었다. 외국을 학회나 여행으로 갈 일은 많지만, 사는 사람과 이야기를 할 일은 많지 않았다. 익숙치 않은 환경에서 여러 인터뷰를 수행한 경험은 충분히 가치 있었다.\n아래는 교육 외 인상 깊었던 것들이다.\n\n\n\n같이 활동한 UNIST 혁신단 사람들\n\n\n\n\n\n샌프란시스코 자전거 여행\n\n\n\n\n\n와인투어와 야외 공간\n\n\n\n\nVideo\n자유로운 지하철 분위기"
   },
   {
+    "objectID": "cv.html",
+    "href": "cv.html",
+    "title": "CV",
+    "section": "",
+    "text": "Updated November 2026 · 2 pages\nDownload PDF"
+  },
+  {
     "objectID": "blog.html",
     "href": "blog.html",
     "title": "Blog",
@@ -350,39 +357,32 @@
     "text": "네트워크 분석하기 2: 도로네트워크 리뷰\n\n\n\nGIS\n\nNetwork Analysis\n\n\n\n도로 네트워크를 시각화하여 비교\n\n\n\n\n\n\nAug 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nAI를 활용한 산업단지 이름 짓기\n\n\n\nAI\n\nChatGPT\n\n\n\n생성형 AI를 활용하여 산업단지의 새로운 이름 지어보기\n\n\n\n\n\n\nMar 8, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n한국어 감성 분석 비교: 네이버 vs 구글\n\n\n\nR\n\n\n\n대표적인 한국어 감성 분석 API를 제공하는 구글과 네이버 성능 비교\n\n\n\n\n\n\nApr 19, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n주거상담기록 데이터 분석 (6): 주제 공변량 분석\n\n\n\nR\n\n\n\n토픽모델링 주제와 메타데이터 간 분석\n\n\n\n\n\n\nMar 26, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n주거상담기록 데이터 분석 (5): 토픽모델링 주제 정보\n\n\n\nPython\n\n\n\n토픽모델링 주제의 비중과 분포 정보 추출\n\n\n\n\n\n\nMar 25, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n주거상담기록 데이터 분석 (4): 토픽모델링 주제 명명\n\n\n\nR\n\n\n\n토픽모델링의 주제 이름을 주요 단어, 대표문서를 참고하여 명명\n\n\n\n\n\n\nMar 24, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n주거상담기록 데이터 분석 (3): 토픽모델링 주제 수 결정\n\n\n\nR\n\n\n\n토픽모델링의 최종 주제 개수 결정\n\n\n\n\n\n\nMar 23, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n주거상담기록 데이터 분석 (2): 형태소분석\n\n\n\nPython\n\n\n\n텍스트 정제와 형태소분석을 포함한 텍스트 전처리 과정\n\n\n\n\n\n\nMar 22, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n주거상담기록 데이터 분석 (1): 개요\n\n\n\n주거상담기록\n\n텍스트마이닝\n\n\n\n주거상담기록 텍스트 데이터를 분석하는 시리즈의 개요\n\n\n\n\n\n\nMar 21, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nR를 활용하여 Open API로 공개된 데이터 수집하기\n\n\n\nR\n\nOpen API\n\n\n\nOpen API로 공개된 공공데이터를 R로 수집해보자\n\n\n\n\n\n\nFeb 11, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nR를 활용하여 구글 지도 데이터 수집하기\n\n\n\nR\n\nGoogle Maps\n\n\n\n구글 지도에 등록된 POI 정보를 R을 활용하여 모아보자\n\n\n\n\n\n\nJan 15, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n창업 맛보기: 2022년 한국형 아이코어 프로그램 참가 후기\n\n\n\n\n\n2022년 한국형 아이코어 사업(I-Corps) 후기\n\n\n\n\n\n\nAug 12, 2022\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Juhyeon Park",
-    "section": "",
-    "text": "I am an Associate Research Fellow at the Housing & Urban Finance Research Institute of the Korea Housing & Urban Guarantee Corporation (HUG). With a Ph.D. in Urban Planning from UNIST, I specialize in utilizing Big Data, AI, and Spatial Econometrics to address urban and financial challenges.\nMy particular areas of interest are:\n\nUrban Analytics & Geospatial Big Data\nAI & Urban Sensing Technologies (LLM, WiFi sensing)\nHousing Markets & Housing Policy\n\nI use this site to showcase my research, and discuss new data-science and statistical tools and techniques on my blog.\n\n\nUlsan National Institute of Science and Technology (UNIST) | Ph.D. in Urban and Environmental Engineering | 2022\nUlsan National Institute of Science and Technology (UNIST) | B.S. in Urban and Environmental Engineering | 2015\n\n\n\nAssociate Research Fellow at Housing & Urban Finance Research Institute, HUG | 2025 - Present\nAssociate Research Fellow at Gyeonggi Credit Guarantee Foundation | 2024 - 2025\nAssociate Research Fellow at Gyeongbuk Development Institute | 2023 - 2024\nPostdoctoral Researcher at Ulsan National Institute of Science and Technology | 2022 - 2023\n\n\n\nCV (PDF, updated November 2026)"
-  },
-  {
-    "objectID": "about.html#education",
-    "href": "about.html#education",
-    "title": "Juhyeon Park",
-    "section": "",
-    "text": "Ulsan National Institute of Science and Technology (UNIST) | Ph.D. in Urban and Environmental Engineering | 2022\nUlsan National Institute of Science and Technology (UNIST) | B.S. in Urban and Environmental Engineering | 2015"
-  },
-  {
-    "objectID": "about.html#experience",
-    "href": "about.html#experience",
-    "title": "Juhyeon Park",
-    "section": "",
-    "text": "Associate Research Fellow at Housing & Urban Finance Research Institute, HUG | 2025 - Present\nAssociate Research Fellow at Gyeonggi Credit Guarantee Foundation | 2024 - 2025\nAssociate Research Fellow at Gyeongbuk Development Institute | 2023 - 2024\nPostdoctoral Researcher at Ulsan National Institute of Science and Technology | 2022 - 2023"
-  },
-  {
-    "objectID": "about.html#cv",
-    "href": "about.html#cv",
-    "title": "Juhyeon Park",
-    "section": "",
-    "text": "CV (PDF, updated November 2026)"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Juhyeon Park",
     "section": "",
-    "text": "I am an Associate Research Fellow at the Housing & Urban Finance Research Institute of the Korea Housing & Urban Guarantee Corporation (HUG). With a Ph.D. in Urban Planning from UNIST, I specialize in utilizing Big Data, AI, and Spatial Econometrics to address urban and financial challenges. My experience includes data-driven strategy development at the Gyeonggi Credit Guarantee Foundation and regional policy research at the Gyeongbuk Development Institute."
+    "text": "I am an Associate Research Fellow at the Housing & Urban Finance Research Institute, Korea Housing & Urban Guarantee Corporation (HUG). I measure urban life with new forms of data, from WiFi signals to online reviews and listings, and test how well those measures hold up for policy."
+  },
+  {
+    "objectID": "index.html#research-interests",
+    "href": "index.html#research-interests",
+    "title": "Juhyeon Park",
+    "section": "Research Interests",
+    "text": "Research Interests\n\nPublic space & pedestrian behavior: WiFi sensing and open-source measurement tools\nCommercial district change: online reviews, sensory experience, and business continuity\nHousing markets & policy: online listings, jeonse–monthly rent transitions, and household outcomes\nAI in urban research (exploring): LLM agents for simulating residents’ responses to housing policy"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Juhyeon Park",
+    "section": "Experience",
+    "text": "Experience\n\n2025–present\nAssociate Research Fellow\nHousing & Urban Finance Research Institute, Korea Housing & Urban Guarantee Corporation (HUG)\n\n\n2024–2025\nAssociate Research Fellow\nGyeonggi Credit Guarantee Foundation\n\n\n2023–2024\nAssociate Research Fellow\nGyeongbuk Development Institute\n\n\n2022–2023\nPostdoctoral Researcher\nUlsan National Institute of Science and Technology (UNIST)"
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Juhyeon Park",
+    "section": "Education",
+    "text": "Education\n\n2022\nPh.D. in Urban and Environmental Engineering\nUlsan National Institute of Science and Technology (UNIST). Advisor: Prof. Jeongseob Kim\n\n\n2015\nB.S. in Urban and Environmental Engineering\nUlsan National Institute of Science and Technology (UNIST)"
   },
   {
     "objectID": "posts/2023-01-15-how-to-use-googleway-r/index.html",
@@ -614,12 +614,5 @@
     "title": "네트워크 분석하기 2: 도로네트워크 리뷰",
     "section": "2차 검토",
     "text": "2차 검토\nA, B, C 도로망 DB을 3개 상권을 대상으로 시각화하여 비교한다.\n\n\n\n\n(A) 수치지도 도로중심선\n국가에서 공인한 수치지도를 기반으로 한 네트워크로, 가장 일반적인 도로 네트워크 형태를 보여준다.\n하지만 접경지역에 수치지도가 제공되지 않는다. 아래와 같이 김포, 파주 등 일부 지역에서는 1:5000 수치지도 다운이 불가능하며, 이를 추출한 도로중심선도 사용할 수 없다.\n\n\n\n일산지역 수치지도\n\n\n\n\n(B) OpenStreetMap\nOpenStreetMap은 별도 설치가 필요없이 QGIS, Python 등에서 다루기 쉽다. 사용자 참여도가 높은 지역(예: 일산호수공원)에서 매우 상세한 네트워크를 제공하며, 상대적으로 참여도가 낮을 것으로 예상되는 지역(예: 가평시청, 양평역)에서도 준수한 수준의 네트워크를 가진다.\n에서 등록된 도로 등 기물을 직접 확인할 수 있다.\n\n\n\n(C) 교통분석용네트워크\n전반적으로 네트워크 밀도가 낮아 상세한 분석에는 적합하지 않다. 일부 지역(예: 양평역 상권)에서는 도로 네트워크가 거의 표현되지 않았다. 대규모 교통 흐름 분석에 더 적합할 것으로 보인다."
-  },
-  {
-    "objectID": "research.html#under-review",
-    "href": "research.html#under-review",
-    "title": "Research",
-    "section": "Under Review",
-    "text": "Under Review\nPark, J. “Do renters spend and save less after they begin paying monthly rent? Evidence from South Korea’s deposit-only leases.” (submitted)\nPark, J. “Measured between branches or from homes? A 1 km closure condition and walking access to bank branches in South Korea, 2019–2026.” (submitted)"
   }
 ]

@@ -73,12 +73,32 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>
+/* home page: experience and education as a two-column list (years | title + place) */
+.cv-entry {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  column-gap: 1rem;
+  margin-bottom: 0.9rem;
+  line-height: 1.45;
+}
+.cv-entry > p { margin: 0; }
+.cv-when { opacity: 0.65; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cv-place { opacity: 0.75; }
+@media (max-width: 575.98px) {
+  .cv-entry { grid-template-columns: 1fr; }
+  .cv-when { font-size: 0.9em; }
+}
+
+/* home page: keep the photo + text layout from stretching across wide screens */
+.quarto-about-trestles { max-width: 1080px; margin-left: auto; margin-right: auto; }
+</style>
 
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -258,16 +278,12 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="./publications.html"> 
+<span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./research.html"> 
-<span class="menu-text">Research</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
-<span class="menu-text">Blog</span></a>
+    <a class="nav-link" href="./cv.html"> 
+<span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/urbanjuhyeon"> <i class="bi bi-github" role="img">
@@ -283,41 +299,91 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<div class="quarto-about-jolla">
-  <img src="index.jpg" class="about-image
-  round " style="height: 15em; width: 15em;">
- <header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-about-trestles column-page">
+  <div class="about-entity">
+    <img src="index.jpg" class="about-image
+  round " style="height: 14em; width: 14em;">
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Juhyeon Park</h1>
 </div>
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
   </div>
-</header><main class="content" id="quarto-document-content">
-
-<p>I am an Associate Research Fellow at the Housing &amp; Urban Finance Research Institute of the Korea Housing &amp; Urban Guarantee Corporation (HUG). With a Ph.D.&nbsp;in Urban Planning from UNIST, I specialize in utilizing Big Data, AI, and Spatial Econometrics to address urban and financial challenges. My experience includes data-driven strategy development at the Gyeonggi Credit Guarantee Foundation and regional policy research at the Gyeongbuk Development Institute.</p>
-
-
-</main> 
-  <hr class="about-sep">
-   <div class="about-links">
+</header>
+    <div class="about-links">
   <a href="mailto:urbanjuhyeon@gmail.com" class="about-link" rel="" target="">
      <span class="about-link-text">E-mail</span>
   </a>
   <a href="https://scholar.google.com/citations?user=3T78cRAAAAAJ" class="about-link" rel="" target="">
      <span class="about-link-text">Google Scholar</span>
   </a>
-  <a href="https://linkedin.com/in/jhyeonpark/" class="about-link" rel="" target="">
-     <span class="about-link-text">LinkedIn</span>
+  <a href="https://orcid.org/0000-0002-9562-5454" class="about-link" rel="" target="">
+     <span class="about-link-text">ORCID</span>
   </a>
   <a href="https://github.com/urbanjuhyeon" class="about-link" rel="" target="">
-     <span class="about-link-text">Github</span>
+     <span class="about-link-text">GitHub</span>
+  </a>
+  <a href="/cv.html" class="about-link" rel="" target="">
+     <span class="about-link-text">CV</span>
   </a>
 </div>
+  </div>
+  <div class="about-contents"><main class="content column-page" id="quarto-document-content">
+
+<p>I am an Associate Research Fellow at the Housing &amp; Urban Finance Research Institute, Korea Housing &amp; Urban Guarantee Corporation (HUG). I measure urban life with new forms of data, from WiFi signals to online reviews and listings, and test how well those measures hold up for policy.</p>
+<section id="research-interests" class="level2">
+<h2 data-anchor-id="research-interests">Research Interests</h2>
+<ul>
+<li><strong>Public space &amp; pedestrian behavior</strong>: WiFi sensing and open-source measurement tools</li>
+<li><strong>Commercial district change</strong>: online reviews, sensory experience, and business continuity</li>
+<li><strong>Housing markets &amp; policy</strong>: online listings, <em>jeonse</em>–monthly rent transitions, and household outcomes</li>
+<li><strong>AI in urban research</strong> <em>(exploring)</em>: LLM agents for simulating residents’ responses to housing policy</li>
+</ul>
+</section>
+<section id="experience" class="level2">
+<h2 data-anchor-id="experience">Experience</h2>
+<div class="cv-entry">
+<p><span class="cv-when">2025–present</span></p>
+<p><strong>Associate Research Fellow</strong><br>
+<span class="cv-place">Housing &amp; Urban Finance Research Institute, Korea Housing &amp; Urban Guarantee Corporation (HUG)</span></p>
+</div>
+<div class="cv-entry">
+<p><span class="cv-when">2024–2025</span></p>
+<p><strong>Associate Research Fellow</strong><br>
+<span class="cv-place">Gyeonggi Credit Guarantee Foundation</span></p>
+</div>
+<div class="cv-entry">
+<p><span class="cv-when">2023–2024</span></p>
+<p><strong>Associate Research Fellow</strong><br>
+<span class="cv-place">Gyeongbuk Development Institute</span></p>
+</div>
+<div class="cv-entry">
+<p><span class="cv-when">2022–2023</span></p>
+<p><strong>Postdoctoral Researcher</strong><br>
+<span class="cv-place">Ulsan National Institute of Science and Technology (UNIST)</span></p>
+</div>
+</section>
+<section id="education" class="level2">
+<h2 data-anchor-id="education">Education</h2>
+<div class="cv-entry">
+<p><span class="cv-when">2022</span></p>
+<p><strong>Ph.D.&nbsp;in Urban and Environmental Engineering</strong><br>
+<span class="cv-place">Ulsan National Institute of Science and Technology (UNIST). Advisor: Prof.&nbsp;Jeongseob Kim</span></p>
+</div>
+<div class="cv-entry">
+<p><span class="cv-when">2015</span></p>
+<p><strong>B.S. in Urban and Environmental Engineering</strong><br>
+<span class="cv-place">Ulsan National Institute of Science and Technology (UNIST)</span></p>
+</div>
+
+
+</section>
+</main></div>
 </div>
  <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

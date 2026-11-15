@@ -1,5 +1,7 @@
 ---
-title: "Research"
+title: "Publications"
+aliases:
+  - research.html
 date-modified: last-modified
 date-format: "MMMM YYYY"
 toc: true
@@ -25,14 +27,7 @@ include-in-header:
     </style>
 ---
 
-I measure urban life with new forms of data, from WiFi signals to online reviews and listings, and test how well those measures hold up for policy.
-
--   **Public space & pedestrian behavior**: WiFi sensing and open-source measurement tools
--   **Commercial district change**: online reviews, sensory experience, and business continuity
--   **Housing markets & policy**: online listings, *jeonse*–monthly rent transitions, and household outcomes
--   **AI in urban research** *(exploring)*: LLM agents for simulating residents' responses to housing policy
-
-## Publications
+## Journal Articles
 
 **Park, J.**, Jeong, J., & Kim, J. (in press). [What consumers rate highly and what stays open: Sensory experience and business continuity in Seoul's commercial districts]{.ptitle}. *Cities*.
 

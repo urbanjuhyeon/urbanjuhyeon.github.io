@@ -1,0 +1,49 @@
+---
+title: "CV"
+include-in-header:
+  text: |
+    <style>
+    .quarto-title-meta { display: none !important; }
+    .cv-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin: 0.25rem 0 1.25rem;
+    }
+    .cv-bar p { margin: 0; }
+    .cv-updated { opacity: 0.7; }
+    /* page previews of the PDF, shown like a document viewer */
+    .cv-pages {
+      background: rgba(127, 127, 127, 0.12);
+      border-radius: 6px;
+      padding: 1.25rem;
+    }
+    .cv-pages a { display: block; }
+    .cv-pages img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0 auto 1.25rem;
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+    }
+    .cv-pages a:last-child img { margin-bottom: 0; }
+    @media (max-width: 575.98px) {
+      .cv-pages { padding: 0.6rem; }
+      .cv-pages img { margin-bottom: 0.6rem; }
+    }
+    </style>
+---
+
+::: cv-bar
+[Updated November 2026 · 2 pages]{.cv-updated}
+
+[Download PDF](cv_jhyeon_v15.pdf){.btn .btn-outline-secondary .btn-sm download="Juhyeon_Park_CV.pdf"}
+:::
+
+::: cv-pages
+[![CV page 1](cv-preview/cv-page-1.png){fig-alt="CV of Juhyeon Park, page 1"}](cv_jhyeon_v15.pdf)
+[![CV page 2](cv-preview/cv-page-2.png){fig-alt="CV of Juhyeon Park, page 2"}](cv_jhyeon_v15.pdf)
+:::
